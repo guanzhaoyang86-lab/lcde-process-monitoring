@@ -1,0 +1,16 @@
+This product contains an extracted and locally packaged subset of tsai:
+
+  Project: tsai
+  Repository: https://github.com/timeseriesAI/tsai
+  Tag: v1.0.1
+  Annotated tag object: 2bca845b2905aa2cfcb03a2e1615bdb196b821e5
+  Peeled commit: f9ecc6b6df798946fa5fb290ac2ade9a00815289
+  Upstream path: tsai/models/MINIROCKETPlus_Pytorch.py
+  License: Apache License 2.0
+
+The upstream repository did not contain a NOTICE file at the fixed commit.
+The local minirocket_plus.py is modified only by extracting the
+MiniRocketFeaturesPlus class and its direct imports, replacing the generated
+notebook header with an explicit provenance notice, and narrowing __all__.
+No numerical statement in the extracted class body has been changed.
+

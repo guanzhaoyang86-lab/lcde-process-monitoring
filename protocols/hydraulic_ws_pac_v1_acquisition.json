@@ -1,0 +1,61 @@
+{
+  "schema": "hydraulic_ws_pac_acquisition_protocol",
+  "schema_version": 1,
+  "protocol_id": "hydraulic_ws_pac_v1",
+  "frozen_before_download": true,
+  "frozen_date": "2026-09-07",
+  "purpose": "Independent external validation of PAC run-level false-alarm calibration for valve condition monitoring",
+  "source": {
+    "name": "UCI Condition monitoring of hydraulic systems",
+    "uci_id": 447,
+    "doi": "10.24432/C5CW21",
+    "official_url": "https://archive.ics.uci.edu/static/public/447/condition%2Bmonitoring%2Bof%2Bhydraulic%2Bsystems.zip",
+    "license": "CC BY 4.0"
+  },
+  "declared_before_access": {
+    "instances": 2205,
+    "cycle_duration_seconds": 60,
+    "sensor_count": 17,
+    "target_file": "profile.txt",
+    "profile_columns": [
+      "cooler_condition_percent",
+      "valve_condition_percent",
+      "internal_pump_leakage",
+      "hydraulic_accumulator_bar",
+      "stable_flag"
+    ],
+    "stable_flag_value": 0,
+    "healthy_valve_value": 100,
+    "faulty_valve_values": [90, 80, 73]
+  },
+  "first_stage_permissions": {
+    "allowed": [
+      "archive integrity and path-safety validation",
+      "file inventory and cryptographic hashing",
+      "profile.txt label-only feasibility audit",
+      "contiguous full-condition episode construction"
+    ],
+    "forbidden_until_analysis_protocol_is_frozen": [
+      "reading sensor values",
+      "feature engineering from measurements",
+      "model fitting",
+      "threshold selection",
+      "performance evaluation"
+    ]
+  },
+  "feasibility_rules": {
+    "episode_definition": "maximal contiguous rows with identical five-column profile tuple",
+    "split_unit": "episode",
+    "no_adjacent_cycle_leakage": true,
+    "minimum_pac_calibration_healthy_cycles": 59,
+    "target_run_false_alarm_probability": 0.05,
+    "calibration_confidence": 0.95,
+    "abort_certificate_if_minimum_not_met": true
+  },
+  "governance": {
+    "rieth_401_500_may_not_be_used_for_new_method_selection": true,
+    "rieth_fault_301_400_remains_unopened": true,
+    "label_only_audit_may_inform_split_feasibility_but_not_sensor_features": true,
+    "formal_analysis_protocol_must_be_frozen_before_any_sensor_file_is_read": true
+  }
+}

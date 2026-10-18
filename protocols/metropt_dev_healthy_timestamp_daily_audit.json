@@ -1,0 +1,26 @@
+{
+  "schema": "metropt_timestamp_only_daily_partition_audit",
+  "schema_version": 1,
+  "created_date": "2026-09-07",
+  "source_csv_sha256": "db30ccb4ea402e3c8bf2c99db06e288d4f2a772f6928f9dbe26a920d69793e24",
+  "partition": "dev_healthy",
+  "interval": {
+    "start_inclusive": "2020-02-21 00:00:00",
+    "stop_exclusive": "2020-03-01 00:00:00"
+  },
+  "timestamp_column_only": true,
+  "sensor_numeric_values_parsed": false,
+  "total_timestamp_count": 63553,
+  "daily_timestamp_counts": {
+    "2020-02-21": 8716,
+    "2020-02-22": 8716,
+    "2020-02-23": 7105,
+    "2020-02-24": 5893,
+    "2020-02-25": 8716,
+    "2020-02-26": 7244,
+    "2020-02-27": 8464,
+    "2020-02-28": 8699,
+    "2020-02-29": 0
+  },
+  "finding": "The nominal nine-calendar-day interval contains no source observation on leap day 2020-02-29; a power-gate rule requiring all nine dates to yield scores is structurally impossible."
+}

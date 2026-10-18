@@ -1,0 +1,6 @@
+[submodule "third_party/pytep_softx_d_21_00069"]
+	path = third_party/pytep_softx_d_21_00069
+	url = https://github.com/ElsevierSoftwareX/SOFTX-D-21-00069.git
+[submodule "third_party/tennessee-eastman-profbraatz"]
+	path = third_party/tennessee-eastman-profbraatz
+	url = https://github.com/jkitchin/tennessee-eastman-profbraatz.git

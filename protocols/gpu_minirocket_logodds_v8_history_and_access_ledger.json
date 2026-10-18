@@ -1,0 +1,127 @@
+{
+  "schema": "gpu_minirocket_logodds_v8_history_and_access_ledger",
+  "schema_version": 1,
+  "ledger_state": "PREACCESS_IMPLEMENTATION_FOR_V8_MODE2_EXPLORATORY_DEVELOPMENT",
+  "audit_date": "2026-09-09",
+  "audit_scope": {
+    "hdf5_files_opened_by_this_audit": 0,
+    "numeric_values_decoded_by_this_audit": 0,
+    "source_data_modified": false
+  },
+  "activation_evidence": {
+    "predecessor_candidate_id": "farm-rankcusum-v7-fixed",
+    "required_exact_decision": "DEVELOPMENT_NO_GO",
+    "v7_protocol_canonical_json_sha256": "c27242c66a650230390d68502245035f397bb61443c16af8152d8a091dcce977",
+    "v7_development_result_relative_path": "outputs/farm_rankcusum_v7/v7_fixed_formal/development_result.json",
+    "v7_development_result_file_bytes_sha256": "62411efc8e5d454297de9c66d05d5b96b199e82d95ace19fa588359fd8574d4a",
+    "v7_decision_evidence_relative_path": "outputs/farm_rankcusum_v7/v7_fixed_formal/artifacts/development_decision_before_final_refit.json",
+    "v7_decision_evidence_file_bytes_sha256": "7e1a1c3f131e0d87a9069cb07641b1a4a9744006359cfe45add8f26935e1042d",
+    "v7_completion_relative_path": "outputs/farm_rankcusum_v7/v7_fixed_formal/completion.json",
+    "v7_completion_file_bytes_sha256": "2026202b18fc1488d52119237b7b0b39a1735194f986c3bd53e8a45b9681dc0a",
+    "numeric_v7_metrics_used_to_select_or_modify_v8": false,
+    "activation_validated_without_hdf5": true
+  },
+  "source_identities": {
+    "extended_tep_mode1": {
+      "relative_path": "data/extended_tep_dtu_mode1/TEP_Mode1.h5",
+      "sha256": "d6b0ed0ef3974ff571afd6717ba0418a5b8eb58a7822c84a05735572d52b3294",
+      "size_bytes": 23924710848
+    },
+    "extended_tep_mode2": {
+      "relative_path": "data/extended_tep_dtu_mode2/TEP_Mode2.h5",
+      "sha256": "8462c0249761ae762a99028c7f8391620b68c69aaea4ecc961fe482799c974b4",
+      "size_bytes": 23897125720
+    }
+  },
+  "upstream_identity": {
+    "repository": "https://github.com/timeseriesAI/tsai",
+    "tag": "v1.0.1",
+    "tag_kind": "annotated",
+    "annotated_tag_object_sha": "2bca845b2905aa2cfcb03a2e1615bdb196b821e5",
+    "peeled_commit_sha": "f9ecc6b6df798946fa5fb290ac2ade9a00815289",
+    "source_path": "tsai/models/MINIROCKETPlus_Pytorch.py",
+    "license": "Apache-2.0"
+  },
+  "predecessor_disclosure": [
+    {"method": "PCLR-CUSUM-v2", "decision": "DEVELOPMENT_NO_GO"},
+    {"method": "MSCD-TCN-SPC-v3", "decision": "DEVELOPMENT_NO_GO"},
+    {"method": "CF-Max-GLR15-v4", "decision": "DEVELOPMENT_NO_GO"},
+    {"method": "CP-ETC-Scan-v5.1", "decision": "DEVELOPMENT_NO_GO"},
+    {"method": "PCF-CycleRank-Scan-v6", "decision": "TERMINAL_PROTOCOL_HANDSHAKE_ABORT", "scientific_result_available": false},
+    {"method": "FARM-RankCUSUM-v7", "decision": "DEVELOPMENT_NO_GO"}
+  ],
+  "v8_candidate": {
+    "candidate_id": "gpu-minirocket-logodds-cusum-v8-fixed",
+    "candidate_count": 1,
+    "source": "Extended TEP Mode2 magnitude50",
+    "development_status": "already-consumed adaptive exploratory feasibility pool",
+    "unbiased_confirmation_claim_allowed": false,
+    "same_candidate_rerun_after_claim": false,
+    "rescue_iteration_ids_allowed": false,
+    "global_claim_path": "outputs/gpu_minirocket_logodds_v8/development_access.claim.json",
+    "fixed_output_directory": "outputs/gpu_minirocket_logodds_v8/v8_fixed_formal",
+    "numeric_execution_claim_path": "outputs/gpu_minirocket_logodds_v8/v8_fixed_formal/numeric_execution.claim.json",
+    "numeric_execution_claim_is_permanent_and_nonreplayable": true,
+    "alternate_output_root_creates_new_claim": false,
+    "outcome_after_no_go": "terminate_current_development_pool_method_search"
+  },
+  "v8_governance_controls": {
+    "protocol_status_at_this_ledger_revision": "NOT_YET_FROZEN",
+    "persisted_protocol_validated_before_claim": true,
+    "protocol_file_identity": "file_bytes_sha256 includes terminal LF",
+    "runner_backend_semantic_identity": "canonical_json_sha256 excludes terminal LF",
+    "cross_hash_domain_comparison_allowed": false,
+    "h5py_import_attempt_blocked_before_claim": true,
+    "handshaken_backend_module_object_reused_after_intent": true,
+    "claim_precedes_access_intent": true,
+    "access_intent_precedes_hdf5_import_or_open": true,
+    "implementation_manifest_includes_transitive_local_imports": true,
+    "trusted_local_modules_execute_hash_checked_source_bytes_not_pyc": true,
+    "preclaim_test_count_exact": 66,
+    "preclaim_test_skips_deselections_xfails_allowed": false,
+    "formal_invocation_checked_before_global_claim": true,
+    "pinned_site_packages_precedes_project_import_paths": true,
+    "hdf5_external_or_soft_links_authorized": false,
+    "development_decision_persisted_before_any_go_final_refit": true,
+    "completed_result_requires_backend_access_state_artifact": true,
+    "mode1_remains_sealed_during_v8_development": true
+  },
+  "extended_tep_mode2_roles": {
+    "magnitude50_idv1_3_9_15_runs1_100": {
+      "access_level_before_v8": "SELECTED_OR_SCORED",
+      "v8_role": "repeatable but already-consumed adaptive exploratory development only",
+      "selected_record_count": 400,
+      "unique_seed_count": 395,
+      "duplicate_seed_value_count": 5,
+      "cross_fold_seed_collision_count_required": 0
+    },
+    "all_other_mode2_branches": {"v8_access_authorized": false}
+  },
+  "extended_tep_mode1_roles": {
+    "magnitude25_idv1_runs1_100": {"access_level": "NEVER_NUMERIC_ACCESSED", "state": "SEALED", "v8_development_access_authorized": false},
+    "magnitude25_idv3_9_15_runs1_100": {"access_level": "NEVER_NUMERIC_ACCESSED", "state": "QUARANTINED", "v8_development_access_authorized": false},
+    "magnitude75_idv1_3_9_15_runs1_100": {"access_level": "NEVER_NUMERIC_ACCESSED", "state": "SEALED", "v8_development_access_authorized": false}
+  },
+  "v8_development_authorization": {
+    "authorized_only_after_frozen_protocol_and_preclaim_handshake": true,
+    "source": "Extended TEP Mode2",
+    "mode": 2,
+    "fault_regime": "SingleFault",
+    "magnitude_percent": 50,
+    "idvs": [1, 3, 9, 15],
+    "simulation_runs": "1-100",
+    "exact_selector_count": 400,
+    "healthy_window_zero_based_half_open": [100, 600],
+    "fault_window_zero_based_half_open": [440, 940],
+    "authorized_processdata_projection": "processdata[start:stop,0:53] for each exact selector only",
+    "authorized_idv_init_projection": "idv_init[0:3,0:28] for each exact selector only",
+    "mode1_access_authorized": false,
+    "rieth_access_authorized": false
+  },
+  "required_reporting_statements": [
+    "All v8 Mode2 development metrics are adaptive exploratory feasibility evidence after multiple method versions, not an unbiased generalization estimate.",
+    "v8 was activated only by the exact categorical v7 DEVELOPMENT_NO_GO result under a charter fixed before v7 access; v7 numerical metrics did not modify v8.",
+    "A v8 DEVELOPMENT_NO_GO terminates method search on the current development pool.",
+    "Mode1 remains sealed unless a separate post-GO target-access protocol is frozen."
+  ]
+}

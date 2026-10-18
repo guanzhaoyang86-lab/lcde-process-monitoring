@@ -1,0 +1,32 @@
+{
+  "schema": "hydraulic_uci_447_file_manifest",
+  "schema_version": 1,
+  "created_before_numeric_sensor_parsing": true,
+  "archive": {
+    "filename": "hydraulic_uci_447.zip",
+    "size_bytes": 76601704,
+    "sha256": "24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2"
+  },
+  "files": [
+    {"name": "CE.txt", "size_bytes": 911516, "sha256": "2adc6e258be8e3b7a303b7962f485a7984099cea21248c3bf9f18c7d87283c09"},
+    {"name": "CP.txt", "size_bytes": 779343, "sha256": "63f60132cb5a30879c6f5c73640a39c69e416013195fe62dafe5133b0747baf4"},
+    {"name": "description.txt", "size_bytes": 4044, "sha256": "a115e362976a4532bc7d28c471caa257514584bb3f4f6f06f760ca1236761a63"},
+    {"name": "documentation.txt", "size_bytes": 4719, "sha256": "9fe5ce23d5b850df9bf38335588aa98601475b42b7551d10e84b1d075f7b62b4"},
+    {"name": "EPS1.txt", "size_bytes": 87411594, "sha256": "2a8d13ca793bb36c0ec4afd27b0103b97b3c1b5a176677be5e7a2ae98c277ab9"},
+    {"name": "FS1.txt", "size_bytes": 7581926, "sha256": "7ff09b17047f776befc136b7902bc7bd4419f96dc107a7ae94d8c412effe0375"},
+    {"name": "FS2.txt", "size_bytes": 8271923, "sha256": "5ee983f88e15ee054846b183224ebcab568b07e3bbe70a4f7f838e603cf1177f"},
+    {"name": "profile.txt", "size_bytes": 31196, "sha256": "867987ca884b2f0fd607ad3918329eba887d095af2befa21122cea518eaa584a"},
+    {"name": "PS1.txt", "size_bytes": 91391892, "sha256": "168e2e663bb511043a15a9c978b93a6e0280b27b113133d0a26f738170af39c0"},
+    {"name": "PS2.txt", "size_bytes": 82373611, "sha256": "2c283dac9a874828ac98badd172a136d52b1de580afb05311c47dc02e5e420c5"},
+    {"name": "PS3.txt", "size_bytes": 69916801, "sha256": "e671e83d99f37bcfe001fed22cb429002a9da8cad026f8abe4c1b7b284c8637f"},
+    {"name": "PS4.txt", "size_bytes": 46698180, "sha256": "fb58417e4a2c4f11d5614b31813b6942eb97f50690688d045090e3e4db2b252f"},
+    {"name": "PS5.txt", "size_bytes": 77776429, "sha256": "42b08cddc1fda06ae0b1c665e208680deb7ad1fff9b9cd9b9879a5820fdf4eca"},
+    {"name": "PS6.txt", "size_bytes": 77875407, "sha256": "9588d363210ab250cf179d930b6b8831643b55bfd8460e54374df18f37456573"},
+    {"name": "SE.txt", "size_bytes": 824838, "sha256": "4c04994cb28b82c001b4931acecf8099e9fe5c864f361c0a7435fbf8745361a1"},
+    {"name": "TS1.txt", "size_bytes": 904586, "sha256": "49cae5e9013d8e230698d95f53a98bb77fedfe3c86985b812cf701dcc9ef06d8"},
+    {"name": "TS2.txt", "size_bytes": 910594, "sha256": "34115a5b86886d83c0592c1ed259605634a8c83d3a051e97bf3e5790f1db58fa"},
+    {"name": "TS3.txt", "size_bytes": 908805, "sha256": "cc271852b4caad39a3b8f5c36d948b57f6cab761dad8b4c7bdd7cb7e99c0b980"},
+    {"name": "TS4.txt", "size_bytes": 910127, "sha256": "548b903f7cd4ea7f2497c0063bdda4bdf8793d55ff43a7d694b8cb835eaf2f55"},
+    {"name": "VS1.txt", "size_bytes": 778499, "sha256": "a6227d9bcb807ee9835c32e73834d3eb9262f0f5cad1b176ca10c473ced25e99"}
+  ]
+}

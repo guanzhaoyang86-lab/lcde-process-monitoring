@@ -1,0 +1,623 @@
+{
+  "schema": "hybrid_directional_energy_pac_q100_within_rieth_row_level_holdout_audit",
+  "schema_version": 1,
+  "analysis_status": "post_failure_sequential_within_Rieth_row_level_holdout_audit",
+  "method": "hybrid_directional_energy_pac_q100_glr_cusum",
+  "governance": {
+    "created_after_q99_within_Rieth_audit_failed": true,
+    "q100_rule_selected_after_q99_result_was_observed": true,
+    "q99_failed_healthy_gate": "5/100 versus at most 4/100",
+    "old_401_500_rows_are_not_reused": true,
+    "selected_holdout_rows_have_never_been_selected_transformed_or_scored": true,
+    "source_RData_partitions_were_previously_whole_file_decoded": true,
+    "partition_level_unseen_claim": false,
+    "row_level_unscored_claim": true,
+    "statistical_independence_not_established": true,
+    "common_random_number_coupling_across_partitions_not_established": true,
+    "same_301_400_identifiers_in_calibration_and_fault_audit_do_not_establish_independence": true,
+    "not_an_independent_external_or_final_confirmation": true,
+    "interpretation": "post_failure_sequential_within_Rieth_row_level_holdout_audit",
+    "failure_action": "report failure and do not retune on these rows"
+  },
+  "frozen_method": {
+    "directory": "outputs/hybrid_energy_glr_gpu_v1",
+    "artifacts": {
+      "hybrid_transformer.npz": {
+        "size_bytes": 449540,
+        "sha256": "09cca42496360e3132239150b3bf5f5dcd761df61eb35ae7082465c187fb28ab"
+      },
+      "hybrid_glr_uncalibrated.npz": {
+        "size_bytes": 46208,
+        "sha256": "0e2bfb1e6cfad1d6016f4fb3413c8a517c24fbeb6648bb8aad0533f23c17858d"
+      },
+      "calibration_scores.npz": {
+        "size_bytes": 3059740,
+        "sha256": "2139c9f05be6c7b1acfbf520b2a1c14411a9b515b4399352c30b62a599ad4151"
+      }
+    },
+    "feature_count": 1848,
+    "hybrid_output_feature_count": 1848,
+    "transformer_metadata_sha256": "8088d287555e7743c0f466cb1d0e96e75768d814396b32e724236c5b7465d3d4",
+    "model_metadata_sha256": "3e522af48134dc209f8bb7d040fb1fdbcc8325028956d3639e0de3754c111431"
+  },
+  "revised_pac_calibration": {
+    "source_partition": "fault_free_training",
+    "source_runs": [
+      301,
+      400
+    ],
+    "source_values_already_consumed": true,
+    "calibration_evidence": {
+      "path": "outputs/hybrid_pac_rmax_external_gpu_v1/calibration/calibration_evidence.npz",
+      "size_bytes": 4046263,
+      "sha256": "9494122e2332a655a90916b8fe8544b7b51029a29ef95392162f7875921786ab"
+    },
+    "calibration_completion": {
+      "directory": "C:/Users/ROG/Documents/ChatGPT/MATH/outputs/hybrid_pac_rmax_external_gpu_v1/calibration",
+      "decision": "PAC_Q99_CALIBRATION_FROZEN_FOR_EXTERNAL_AUDIT",
+      "completion_sha256": "d03316dbf7579f1fca0f349885fc699b4c73e2d74409f0e4acc4eccef4a98d3e",
+      "completion_fingerprint": "dcab8f230045636a06659d62ba4810ecd88f738b21063c4c4db195e4681a0ea2",
+      "phase_fingerprint": "be1fb3c4087361b525f2db666ecc21fb1d4fdcd71f3d8e9d24517b3f958fd5bb",
+      "artifact_records": {
+        "REPORT.md": {
+          "size_bytes": 708,
+          "sha256": "542389f57cfc97dd94d7b26678c01ef8ccdbad74d089d9961860fea62ef4bcba"
+        },
+        "access_intent.json": {
+          "size_bytes": 2988,
+          "sha256": "8d9381102b69e3762a55847e84673c215238f4214b04dc503ceec4053d78377a"
+        },
+        "artifact_manifest.json": {
+          "size_bytes": 1912,
+          "sha256": "8577e7719a2baa9cdbad3a54cecc76276340ff31bc8f6cab6ceb15c2414dfcbb"
+        },
+        "calibration_evidence.npz": {
+          "size_bytes": 4046263,
+          "sha256": "9494122e2332a655a90916b8fe8544b7b51029a29ef95392162f7875921786ab"
+        },
+        "calibration_result.json": {
+          "size_bytes": 1150,
+          "sha256": "8bc399669f9a6b25e8584b894266ec50a744eabef446e0d62058f3288f8e52d9"
+        },
+        "data_access_audit.json": {
+          "size_bytes": 1246,
+          "sha256": "009c2bb50de9b201c5a597b54094cc8a18ff4fac771aaa8b309edc9c89935db5"
+        },
+        "gpu_execution.json": {
+          "size_bytes": 4299,
+          "sha256": "986d4f6f21aa52dca7bb97aa73ead2b1b2700a96183b3c2ccab7c11442ed9365"
+        },
+        "pac_certificate.json": {
+          "size_bytes": 11614,
+          "sha256": "a37ad50ba247f70c6ce7bab39d90bb40ee054f57c6e370f38b1f15c8455a61ff"
+        },
+        "parity.json": {
+          "size_bytes": 49747,
+          "sha256": "224797648ac75ba4520aca017d05e3fd3924d1556d7df31945fcc119e407e5e5"
+        },
+        "phase_manifest.json": {
+          "size_bytes": 1220,
+          "sha256": "35b1d8f397d4ce71c8981d705935bab020bde6c2ddd728dd139e4c546a0401dd"
+        },
+        "protocol_snapshot.json": {
+          "size_bytes": 16303,
+          "sha256": "ee68f82699ea1330d3521105704c61a76ba4951237715635356bdeb8426b90eb"
+        },
+        "runtime_preflight.json": {
+          "size_bytes": 371,
+          "sha256": "3eff2d67565f31334433f87b10c59def5bc30bbdce45e4ca3341e71fc0145add"
+        }
+      }
+    },
+    "failed_q99_audit_completion": {
+      "directory": "C:/Users/ROG/Documents/ChatGPT/MATH/outputs/hybrid_pac_rmax_external_gpu_v1/audit",
+      "decision": "FAIL_POST_FAILURE_EXTERNAL_PARTITION_AUDIT_NO_RETUNING",
+      "completion_sha256": "23c3fa4a692e015e59e2925c1d66e6a22d984a5da157333445e382e03130ecb6",
+      "completion_fingerprint": "bd9279fb001a79c11bd1aef4b0ede8c4f39fe8b268c9abdbb88d41c1ebf61163",
+      "phase_fingerprint": "005338b56ef2d83480f36b4ad539af91b1652aafeb3c32aeb49e3df3a4dbc273",
+      "artifact_records": {
+        "REPORT.md": {
+          "size_bytes": 1661,
+          "sha256": "29b932bac17f5fdc4e594bc60c70b3c2eff3beb4fab95568567ae691d0d127db"
+        },
+        "access_intent.json": {
+          "size_bytes": 8418,
+          "sha256": "eacf5e01a3f01fa48805a08aa502985d89f51cdb2ed8655c53649c89eeee6988"
+        },
+        "artifact_manifest.json": {
+          "size_bytes": 1747,
+          "sha256": "67153ab2113495e2f38d49e1830b2e243d0828042a8045b2643921aa1619ce4e"
+        },
+        "audit_evidence.npz": {
+          "size_bytes": 17137281,
+          "sha256": "5a91591b81b15269aae2f1b52047bedcf72cc5df67750052c65ce73a9ef14804"
+        },
+        "data_access_audit.json": {
+          "size_bytes": 2072,
+          "sha256": "a680f8e3a069e508e83cb0acd3d38c6475d1bdda46430beced3c09cb348df6c9"
+        },
+        "gpu_execution.json": {
+          "size_bytes": 11304,
+          "sha256": "de68a7184aa5b839afe6d649b4035b5aa42c64296fdbda267b2fa4c30bb8894f"
+        },
+        "parity.json": {
+          "size_bytes": 194167,
+          "sha256": "cf29459b308c16f1b2386ad0b16cc5af65b32667b022730da0157cfd84ea2537"
+        },
+        "phase_manifest.json": {
+          "size_bytes": 1869,
+          "sha256": "6c441d92216c4411f4a81482ff77c4feebd3fbc4bccf1a8498798ac8a1b823e8"
+        },
+        "protocol_snapshot.json": {
+          "size_bytes": 16303,
+          "sha256": "ee68f82699ea1330d3521105704c61a76ba4951237715635356bdeb8426b90eb"
+        },
+        "result.json": {
+          "size_bytes": 208024,
+          "sha256": "c544364e163216ccf45e06a7226895992caced7a6c8913517cce111b1825bcf6"
+        },
+        "runtime_preflight.json": {
+          "size_bytes": 371,
+          "sha256": "3eff2d67565f31334433f87b10c59def5bc30bbdce45e4ca3341e71fc0145add"
+        }
+      }
+    },
+    "epsilon": 0.05,
+    "delta": 0.01,
+    "rank_one_based": 100,
+    "rank_rule": "maximum_order_statistic_no_interpolation",
+    "threshold": 236.3968052224969,
+    "threshold_binary64_hex": "0x1.d8cb2a0ddb033p+7",
+    "rank_driver_run": "Rieth-fault_free_training-fault-00-run-338",
+    "canonical_calibration_maxima_sha256": "bf8f78cb77c781fc58a035dbbf08b71cfd926cd671fd35da9a1b30ac2a8b6c03",
+    "certificate": {
+      "status": "CERTIFIED",
+      "threshold": 236.3968052224969,
+      "comparison": "strictly_greater_than",
+      "rank_driver_run": "Rieth-fault_free_training-fault-00-run-338",
+      "deployment_spec_sha256": "72e16e3849dcf6c029dc42748044f01f1da8727b8fb5e0a13dc519e17d7f4d5b",
+      "monitor_configuration_sha256": "3e18efd327a7b82effe3b38a7ea4b9d08e8646019214b7d6c4d77d9555aa5483",
+      "unconditional_sample_count": 100,
+      "pass_conditional_sample_count": 100,
+      "defer_sample_count": 0,
+      "deferred_runs": [],
+      "calibration_maxima_sha256": "bf8f78cb77c781fc58a035dbbf08b71cfd926cd671fd35da9a1b30ac2a8b6c03",
+      "rank": {
+        "status": "CERTIFIED",
+        "sample_count": 100,
+        "epsilon": 0.05,
+        "delta": 0.01,
+        "rank_one_based": 100,
+        "achieved_confidence": 0.9940794707796659,
+        "upper_tail_probability_bound": 0.005920529220334024,
+        "minimum_sample_count": 90
+      }
+    },
+    "threshold_frozen_before_new_holdout_numeric_access": true
+  },
+  "posthoc_design_evidence": {
+    "observed_before_this_revision_was_frozen": true,
+    "materially_influenced_most_likely_to_succeed_selection": true,
+    "old_hybrid_testing_audit_q100_replay": {
+      "evidence_path": "outputs/hybrid_energy_glr_gpu_v1/audit_scores.npz",
+      "evidence": {
+        "size_bytes": 13101451,
+        "sha256": "c4d66bbded5fe854dd3330bfe7a99891006377337c7c2d5a1e3a62b1c8527454"
+      },
+      "partition_and_runs": "fault_free_testing and faulty_testing runs 201-300",
+      "healthy_alarm_runs": 1,
+      "healthy_run_count": 100,
+      "faults": {
+        "03": {
+          "detected": 100,
+          "run_count": 100,
+          "median_delay": 59.0,
+          "p90_delay": 70.0
+        },
+        "09": {
+          "detected": 100,
+          "run_count": 100,
+          "median_delay": 100.0,
+          "p90_delay": 153.0
+        },
+        "15": {
+          "detected": 100,
+          "run_count": 100,
+          "median_delay": 84.0,
+          "p90_delay": 127.0
+        }
+      },
+      "pre_fault_alarm_episodes": 0
+    },
+    "external_training_partition_audit_q100_replay": {
+      "evidence_path": "outputs/hybrid_pac_rmax_external_gpu_v1/audit/audit_evidence.npz",
+      "evidence": {
+        "size_bytes": 17137281,
+        "sha256": "5a91591b81b15269aae2f1b52047bedcf72cc5df67750052c65ce73a9ef14804"
+      },
+      "partition_and_runs": "fault_free_training and faulty_training runs 401-500",
+      "healthy_alarm_runs": 4,
+      "healthy_run_count": 100,
+      "faults": {
+        "03": {
+          "detected": 100,
+          "run_count": 100,
+          "median_delay": 78.0,
+          "p90_delay": 83.0
+        },
+        "09": {
+          "detected": 100,
+          "run_count": 100,
+          "median_delay": 104.0,
+          "p90_delay": 153.0
+        },
+        "15": {
+          "detected": 100,
+          "run_count": 100,
+          "median_delay": 98.0,
+          "p90_delay": 139.0
+        }
+      }
+    },
+    "old_replays_are_not_current_audit_results": true
+  },
+  "monitor_binding": {
+    "deployment_spec": {
+      "method": "hybrid_directional_energy_pac_q100_glr_cusum",
+      "transformer_sha256": "09cca42496360e3132239150b3bf5f5dcd761df61eb35ae7082465c187fb28ab",
+      "uncalibrated_model_sha256": "0e2bfb1e6cfad1d6016f4fb3413c8a517c24fbeb6648bb8aad0533f23c17858d",
+      "sequence_length": 500,
+      "valid_start_zero_based": 63,
+      "first_alarm_eligible_zero_based": 65,
+      "fault_start_zero_based": 160,
+      "fault_head_order": [
+        3,
+        9,
+        15
+      ],
+      "run_state_reset": true
+    },
+    "deployment_spec_sha256": "72e16e3849dcf6c029dc42748044f01f1da8727b8fb5e0a13dc519e17d7f4d5b",
+    "monitor_configuration": {
+      "density_ratio_heads": [
+        3,
+        9,
+        15
+      ],
+      "kappa_per_head": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "z_clip": [
+        -8.0,
+        8.0
+      ],
+      "page_cusum": "one_sided_reset_at_zero",
+      "persistence": "3_of_3_per_head_then_family_maximum",
+      "comparison": "strictly_greater_than",
+      "threshold_rule": "PAC_RMax_maximum_q100_of_100_run_maxima",
+      "epsilon": 0.05,
+      "delta": 0.01
+    },
+    "monitor_configuration_sha256": "3e18efd327a7b82effe3b38a7ea4b9d08e8646019214b7d6c4d77d9555aa5483"
+  },
+  "row_level_holdout_audit_data": {
+    "dataset": "Rieth et al. multi-run Tennessee Eastman process",
+    "doi": "10.7910/DVN/6C3JR1",
+    "healthy": {
+      "partition": "fault_free_training",
+      "simulation_runs": [
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200
+      ],
+      "expected_source_length": 500
+    },
+    "faults": {
+      "partition": "faulty_testing",
+      "fault_ids": [
+        3,
+        9,
+        15
+      ],
+      "simulation_runs": [
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364,
+        365,
+        366,
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392,
+        393,
+        394,
+        395,
+        396,
+        397,
+        398,
+        399,
+        400
+      ],
+      "expected_source_length": 960,
+      "fault_start_zero_based": 160
+    },
+    "scored_interval_half_open": [
+      0,
+      500
+    ],
+    "source_files": {
+      "fault_free_training": {
+        "file_name": "TEP_FaultFree_Training.RData",
+        "md5": "ec126484534331f85001d8c4ebce6d17",
+        "sha256": "12d1055b852763fac09ef36bd7c9612a800c8bf7b6f75f344d12119206f9e940",
+        "size_bytes": 24678017
+      },
+      "faulty_testing": {
+        "file_name": "TEP_Faulty_Testing.RData",
+        "md5": "556bdb64c83021bc0c5f92e427753565",
+        "sha256": "c2f1aabc77498efda4d5f9ad81ecc829e2fcd98752b84cf5b2a06558cabacc36",
+        "size_bytes": 836882037
+      }
+    },
+    "total_sequences": 380,
+    "decode_disclosure": "pyreadr decodes a complete RData object before exact row selection"
+  },
+  "success_gates": {
+    "all_required": true,
+    "healthy_alarm_runs_maximum": 3,
+    "healthy_gate_note": "3/80 has one-sided CP95 upper 0.09407454652521366, which supports only the broad p<0.10 audit ceiling and does not establish p<0.05",
+    "per_fault_detected_runs_minimum": 90,
+    "total_fault_detected_runs_minimum": 270,
+    "per_fault_median_restricted_delay_samples_maximum": 120.0,
+    "per_fault_restricted_p90_delay_samples_maximum": 180.0,
+    "restricted_delay_miss_imputation_samples": 340,
+    "fault_detection_requires_new_alarm_episode_start_at_or_after_fault_onset": true,
+    "cpu_cuda_all_numeric_paths_within_tolerance": 1e-10,
+    "cpu_cuda_alarm_arrays_exact": true
+  },
+  "runtime": {
+    "required_device": "cuda",
+    "score_dtype": "float64",
+    "tf32": false,
+    "deterministic_algorithms": true,
+    "cpu_reference": "separate NumPy implementation of directional GLR-CUSUM"
+  },
+  "forbidden_actions": [
+    "training_on_row_level_audit_rows",
+    "refitting_on_row_level_audit_rows",
+    "threshold_or_gate_selection_on_row_level_audit_rows",
+    "same_rows_retuning_after_result",
+    "claiming_independent_external_or_final_confirmation"
+  ],
+  "output_contract": {
+    "atomic_row_level_audit_directory": true,
+    "completed_reentry_reads_no_RData": true,
+    "artifacts": [
+      "REPORT.md",
+      "access_intent.json",
+      "artifact_manifest.json",
+      "audit_evidence.npz",
+      "data_access_audit.json",
+      "gpu_execution.json",
+      "parity.json",
+      "phase_manifest.json",
+      "protocol_snapshot.json",
+      "q100_certificate.json",
+      "result.json",
+      "runtime_preflight.json",
+      "completion.json"
+    ]
+  },
+  "implementation_snapshot": {
+    "scripts/run_hybrid_pac_q100_holdout_gpu.py": {
+      "size_bytes": 46405,
+      "sha256": "e81ec0cf6685ab87dc023f329c15fe12a5b679581eefee23863cf96dd33856c9"
+    },
+    "tests/test_run_hybrid_pac_q100_holdout_gpu.py": {
+      "size_bytes": 11871,
+      "sha256": "9906ed0a06a766196c192b231ac251a49b91d481a09a3f061568379e53fa35b3"
+    },
+    "scripts/run_hybrid_pac_rmax_external_gpu.py": {
+      "size_bytes": 87605,
+      "sha256": "cb1b238548808b3479441b6437ad579ca0acb6307df1b5cf33c7893b7794b11d"
+    },
+    "scripts/run_directional_glr_gpu.py": {
+      "size_bytes": 76043,
+      "sha256": "4273af06da613bd2b8b9b353d0a15713fc0a630c3f4f2b0e651276c22fa4a173"
+    },
+    "src/mate_spc/datasets.py": {
+      "size_bytes": 26347,
+      "sha256": "64818ab8406e3b96abe0b3688cdf0aee8203aabe5a04af29d14705a66f182e51"
+    },
+    "src/mate_spc_hybrid/features.py": {
+      "size_bytes": 27457,
+      "sha256": "eabdc065f70534cd0df753d83cffc9715e48a7b8813f49caec2b6e30b95710d5"
+    },
+    "src/mate_spc_directional/features.py": {
+      "size_bytes": 30536,
+      "sha256": "e750d82aec576cafb256fa769a3b8cba973f995712e88c89a4ec4fac96645d14"
+    },
+    "src/mate_spc_directional/glr.py": {
+      "size_bytes": 25302,
+      "sha256": "5025dcf1cc8193978748ff3235de6b26de9e1ca0170129876671582735469a24"
+    },
+    "src/mate_spc_directional/gpu.py": {
+      "size_bytes": 28722,
+      "sha256": "bbaa375be3896e88e744349f1f78e2e0dcfc70fec2fae9908556c5a5260e976d"
+    },
+    "src/mate_spc_pac/certificate.py": {
+      "size_bytes": 7933,
+      "sha256": "4bd793beca1cce3cb6252bccf9c5fb5c0557401e7fd3dccb724b08e51a7a07a4"
+    },
+    "src/mate_spc_pac/common.py": {
+      "size_bytes": 10398,
+      "sha256": "d65151727ed8714456c8531b87205d62e7c61b5b55ff8d3f6232fbea46eb2a1d"
+    },
+    "src/mate_spc_pac/probability.py": {
+      "size_bytes": 6215,
+      "sha256": "8607a0c20f2c4db69238e427d0b6381882f9ba73d06e683374f43b116f4d2ee5"
+    }
+  }
+}

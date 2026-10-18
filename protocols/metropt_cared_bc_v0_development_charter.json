@@ -1,0 +1,404 @@
+{
+  "schema": "metropt_cared_bc_development_charter",
+  "schema_version": 1,
+  "charter_id": "metropt_cared_bc_v0_development",
+  "charter_version": "0.1.0",
+  "created_date": "2026-09-07",
+  "status": "DEVELOPMENT_ONLY_SEALED_CALIBRATION_AND_CONFIRMATION",
+  "method_family": {
+    "name": "CARED-BC",
+    "expansion": "control-aware residual encoder with directional GLR and block-conformal CUSUM",
+    "family_is_fixed": true,
+    "permitted_development_work": [
+      "implement the fixed CARED-BC family",
+      "repair implementation defects",
+      "repair numerical or training-stability defects",
+      "verify causal feature construction and timestamp handling",
+      "select only explicitly listed development hyperparameters using fit, dev_healthy, and development fault F1"
+    ],
+    "forbidden_development_work": [
+      "inspect calibration sensor values",
+      "inspect confirmation sensor values",
+      "select a different method family after inspecting a sealed partition",
+      "derive features or gates from calibration or confirmation outcomes",
+      "use LPS or Oil_level as primary-model inputs",
+      "treat rows or windows from one failure interval as independent failure events"
+    ]
+  },
+  "source_binding": {
+    "dataset": "UCI MetroPT-3 Dataset",
+    "uci_id": 791,
+    "dataset_url": "https://archive.ics.uci.edu/dataset/791/metropt%203%20dataset.",
+    "dataset_doi": "10.24432/C5VW3R",
+    "license": "CC BY 4.0",
+    "archive": {
+      "path": "data/metropt.zip",
+      "size_bytes": 218381995,
+      "sha256": "aab991a970e58210de853bb8078ce0e63abb4d9412fdc5c79792dae3d8e1721a"
+    },
+    "sensor_csv": {
+      "path": "data/metropt/MetroPT3(AirCompressor).csv",
+      "size_bytes": 218300507,
+      "sha256": "db30ccb4ea402e3c8bf2c99db06e288d4f2a772f6928f9dbe26a920d69793e24"
+    },
+    "description_pdf": {
+      "path": "data/metropt/Data Description_Metro.pdf",
+      "size_bytes": 81208,
+      "sha256": "b00fac0e8899854078309bef4adaa480d82ecf14dc81c5097c3646973e824127"
+    }
+  },
+  "timestamp_only_audit": {
+    "sensor_values_parsed": false,
+    "row_count": 1516948,
+    "minimum_timestamp": "2020-02-01 00:00:00",
+    "maximum_timestamp": "2020-09-01 03:59:50",
+    "timestamps_monotone_non_decreasing": true,
+    "duplicate_timestamp_count": 0,
+    "nonpositive_delta_count": 0,
+    "median_positive_delta_seconds": 10,
+    "modal_positive_delta_seconds": 10,
+    "gap_count_strictly_greater_than_10_seconds": 51147,
+    "gap_count_strictly_greater_than_60_seconds": 331,
+    "monthly_row_counts": {
+      "2020-02": 214850,
+      "2020-03": 230448,
+      "2020-04": 198734,
+      "2020-05": 212800,
+      "2020-06": 216514,
+      "2020-07": 222638,
+      "2020-08": 220434,
+      "2020-09": 530
+    },
+    "sampling_metadata_conflict": "The UCI description contains both 1 Hz and 0.1 Hz statements; all processing is governed by audited timestamps rather than either prose statement."
+  },
+  "partition_convention": {
+    "timestamp_timezone": "dataset-native naive local time; no timezone conversion",
+    "interval_semantics": "left_closed_right_open",
+    "row_count_total": 1516948,
+    "partitions_are_disjoint_and_exhaustive": true,
+    "partitions": [
+      {
+        "name": "fit",
+        "start": "2020-02-01 00:00:00",
+        "end": "2020-02-21 00:00:00",
+        "row_count": 151297,
+        "current_numeric_access": "ALLOWED"
+      },
+      {
+        "name": "dev_healthy",
+        "start": "2020-02-21 00:00:00",
+        "end": "2020-03-01 00:00:00",
+        "row_count": 63553,
+        "current_numeric_access": "ALLOWED"
+      },
+      {
+        "name": "calibration_a",
+        "start": "2020-03-01 00:00:00",
+        "end": "2020-04-11 00:00:00",
+        "row_count": 300769,
+        "current_numeric_access": "FORBIDDEN_SEALED"
+      },
+      {
+        "name": "embargo_a",
+        "start": "2020-04-11 00:00:00",
+        "end": "2020-04-18 00:00:00",
+        "row_count": 46945,
+        "current_numeric_access": "FORBIDDEN_PERMANENT_GUARD_BAND"
+      },
+      {
+        "name": "dev_fault_f1",
+        "start": "2020-04-18 00:00:00",
+        "end": "2020-04-19 00:00:00",
+        "row_count": 8663,
+        "current_numeric_access": "ALLOWED"
+      },
+      {
+        "name": "embargo_b",
+        "start": "2020-04-19 00:00:00",
+        "end": "2020-04-22 00:00:00",
+        "row_count": 22834,
+        "current_numeric_access": "FORBIDDEN_PERMANENT_GUARD_BAND"
+      },
+      {
+        "name": "calibration_b",
+        "start": "2020-04-22 00:00:00",
+        "end": "2020-05-21 00:00:00",
+        "row_count": 188937,
+        "current_numeric_access": "FORBIDDEN_SEALED"
+      },
+      {
+        "name": "confirmation",
+        "start": "2020-05-21 00:00:00",
+        "end": "2020-09-01 00:00:00",
+        "row_count": 733420,
+        "current_numeric_access": "FORBIDDEN_SEALED"
+      },
+      {
+        "name": "post_study_tail",
+        "start": "2020-09-01 00:00:00",
+        "end": "2020-09-01 04:00:00",
+        "row_count": 530,
+        "current_numeric_access": "FORBIDDEN_OUTSIDE_STUDY"
+      }
+    ]
+  },
+  "official_failure_intervals": {
+    "source": "UCI 791 company failure reports",
+    "events": [
+      {
+        "event_id": "F1",
+        "role": "development_fault",
+        "start": "2020-04-18 00:00:00",
+        "end": "2020-04-19 00:00:00",
+        "timestamp_only_row_count": 8663,
+        "fault_type": "air_leak",
+        "severity": "high_stress"
+      },
+      {
+        "event_id": "F2",
+        "role": "sealed_confirmation_fault",
+        "start": "2020-05-29 23:30:00",
+        "end": "2020-05-30 06:00:00",
+        "timestamp_only_row_count": 2360,
+        "fault_type": "air_leak",
+        "severity": "high_stress"
+      },
+      {
+        "event_id": "F3",
+        "role": "sealed_confirmation_fault",
+        "start": "2020-06-05 10:00:00",
+        "end": "2020-06-07 14:30:00",
+        "timestamp_only_row_count": 17315,
+        "fault_type": "air_leak",
+        "severity": "high_stress"
+      },
+      {
+        "event_id": "F4",
+        "role": "sealed_confirmation_fault",
+        "start": "2020-07-15 14:30:00",
+        "end": "2020-07-15 19:00:00",
+        "timestamp_only_row_count": 1622,
+        "fault_type": "air_leak",
+        "severity": "high_stress"
+      }
+    ]
+  },
+  "frozen_data_transform": {
+    "resampling": {
+      "period": "1 minute",
+      "alignment": "dataset-native wall-clock minute boundaries",
+      "causality": "a minute feature may use only observations whose timestamps fall within that completed minute",
+      "continuous_aggregation": "within-minute median for each of the seven analogue channels",
+      "binary_control_aggregation": "within-minute last observation for COMP, DV_eletric, Towers, MPG, and Pressure_switch",
+      "flow_aggregation": "within-minute sum for Caudal_impulses",
+      "primary_tcn_input_width": 13,
+      "coverage_and_missingness_use": "eligibility and reset only; coverage or mask values are not model inputs",
+      "empty_bins": "retained with explicit missingness and coverage masks; never removed to hide gaps",
+      "partial_bins": "retain observed aggregates and coverage fraction",
+      "gap_reset": "reset temporal state after any raw timestamp gap strictly greater than 60 seconds"
+    },
+    "causal_window_minutes": 10,
+    "forecast_horizons_minutes": [1, 3, 5],
+    "direct_alarm_channels_excluded_from_primary_model": [
+      "LPS",
+      "Oil_level"
+    ],
+    "direct_alarm_channels_allowed_uses": [
+      "locked comparator",
+      "secondary lead-time audit after confirmation",
+      "never model fitting, score construction, calibration, or selection"
+    ],
+    "control_state_channels": [
+      "COMP",
+      "DV_eletric",
+      "Towers",
+      "MPG",
+      "Pressure_switch"
+    ],
+    "continuous_channels": [
+      "TP2",
+      "TP3",
+      "H1",
+      "DV_pressure",
+      "Reservoirs",
+      "Oil_temperature",
+      "Motor_current"
+    ],
+    "flow_channel": "Caudal_impulses"
+  },
+  "development_method_contract": {
+    "encoder": {
+      "type": "causal temporal convolutional network",
+      "residual_blocks": 4,
+      "channels": 64,
+      "kernel_size": 3,
+      "dilations": [1, 2, 4, 8],
+      "latent_width": 32,
+      "dropout": 0.1,
+      "seeds": [17, 29, 43],
+      "ensemble_rule": "elementwise median forecast",
+      "optimizer": "AdamW",
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "maximum_epochs": 50,
+      "early_stopping_patience": 8,
+      "primary_loss": "multi-horizon Huber forecast loss with deterministic control-state-balanced sampling",
+      "auxiliary_loss": null,
+      "auxiliary_loss_weight": 0.0,
+      "required_training_device": "cuda"
+    },
+    "residual_representation": {
+      "forecast_error_horizons_minutes": [1, 3, 5],
+      "forecast_error_channel_count": 21,
+      "physics_features": [
+        "TP2_minus_TP3",
+        "TP3_minus_Reservoirs",
+        "TP3_one_minute_slope",
+        "Reservoirs_one_minute_slope",
+        "pressure_rise_per_motor_current",
+        "ten_minute_loaded_duty_fraction",
+        "DV_pressure_discharge_pulse_amplitude",
+        "DV_pressure_discharge_pulse_duration",
+        "Caudal_impulses_per_loaded_minute",
+        "Oil_temperature_five_minute_slope"
+      ],
+      "future_values_used_in_a_score_at_its_timestamp": false,
+      "state_covariance": "fit-only Ledoit-Wolf shrinkage covariance",
+      "rare_state_minimum_fit_minutes": 500,
+      "rare_state_action": "pool to the nearest frequent control state by Hamming distance with deterministic lexical tie break"
+    },
+    "fault_direction": {
+      "source": "F1 only versus dev_healthy matched by control state",
+      "location_estimator": "Huber mean",
+      "state_shrinkage": "rho_s=n_s/(n_s+500) toward the global F1 direction",
+      "windows_are_not_independent_failure_replicates": true
+    },
+    "channels": {
+      "energy": "E_t = r_t' (Sigma_s + lambda I)^(-1) r_t",
+      "directional": "D_t = max(0, v_s' Sigma_s^(-1) r_t / sqrt(v_s' Sigma_s^(-1) v_s))",
+      "normalization": "separate dev_healthy empirical-rank Gaussian transforms clipped to [-4,8]"
+    },
+    "cusum": {
+      "recursion": "G_t^j=max(0,G_(t-1)^j+Z_t^j-0.5), j in {energy,directional}",
+      "page_kappa": 0.5,
+      "reset": [
+        "dataset-native midnight",
+        "raw timestamp gap strictly greater than 60 seconds"
+      ],
+      "daily_run_loss": "maximum over all valid minutes and both channels",
+      "alarm_comparison": "strictly greater than the frozen effective boundary"
+    }
+  },
+  "development_power_gate": {
+    "must_pass_before_calibration_unsealing": true,
+    "requirements": [
+      "the TCN dev_healthy multi-horizon Huber loss is at least 5 percent lower than a causal persistence predictor",
+      "F1 crosses a provisional threshold equal to the maximum complete-day CUSUM path maximum in dev_healthy",
+      "F1 first-alarm latency is no more than 60 minutes",
+      "F1 maximum CUSUM is at least 1.25 times the provisional threshold",
+      "LPS and Oil_level were absent from all primary model inputs, residuals, statistics, and selection",
+      "all feature and score causality tests pass",
+      "CPU and CUDA development alarm decisions agree and numerical margins exceed the declared parity tolerance"
+    ],
+    "failure_action": "ABORT_BEFORE_CALIBRATION_NUMERIC_ACCESS",
+    "failure_does_not_authorize": [
+      "opening calibration",
+      "opening confirmation",
+      "switching method family under this charter"
+    ]
+  },
+  "future_calibration_contract_not_yet_authorized": {
+    "data": [
+      "calibration_a",
+      "calibration_b"
+    ],
+    "unit": "one complete dataset-native calendar day",
+    "minimum_qualified_days": 39,
+    "target_daily_any_alarm_probability": 0.05,
+    "rank": "k=ceil((n+1)*(1-0.05))",
+    "raw_boundary": "k-th order statistic of complete-day two-channel CUSUM path maxima",
+    "numerical_boundary": "a final protocol must freeze a positive numerical guard and nextafter rule before confirmation",
+    "example_if_n_equals_70": {
+      "rank_k": 68,
+      "order_statistic_description": "third largest calibration-day maximum",
+      "exchangeable_day_marginal_miscoverage_upper_bound": 0.04225352112676056
+    },
+    "insufficient_days_action": "ABORT_BEFORE_CONFIRMATION",
+    "authorization_preconditions": [
+      "development power gate passed",
+      "implementation tests passed",
+      "final analysis protocol and its SHA-256 sidecar were frozen",
+      "development manifest and model artifact hashes were frozen",
+      "a calibration access-intent record was durably written before any calibration numeric read"
+    ]
+  },
+  "future_confirmation_contract_not_yet_authorized": {
+    "data": "confirmation",
+    "fault_events": ["F2", "F3", "F4"],
+    "single_numeric_access": true,
+    "fit_selection_calibration_or_gate_change": false,
+    "primary_gates": {
+      "event_detection": "3 of 3 confirmation failure intervals",
+      "maximum_first_alarm_latency_minutes": 60,
+      "maximum_median_first_alarm_latency_minutes": 30,
+      "healthy_complete_day_alarm_rate_maximum": 0.05,
+      "healthy_complete_day_alarm_rate_exact_one_sided_95pct_ucb_maximum": 0.10,
+      "healthy_time_in_alarm_fraction_maximum": 0.01,
+      "cpu_cuda_alarm_decisions_exact": true
+    },
+    "healthy_day_definition": "a qualified complete day not overlapping an official failure interval or its following 72-hour recovery embargo",
+    "secondary_metrics": [
+      "official event-interval overlap",
+      "per-event first-alarm latency",
+      "false alarms per 100 monitored hours",
+      "mean monitored time between false alarms",
+      "lead relative to first LPS activation",
+      "sensor and physics-feature attribution",
+      "paired frozen-baseline and ablation results"
+    ],
+    "decision_pass": "PASS_LOCKED_FORWARD_CONFIRMATION",
+    "decision_fail": "FAIL_LOCKED_FORWARD_CONFIRMATION_NO_RETUNING",
+    "authorization_preconditions": [
+      "all calibration preconditions were satisfied",
+      "calibration count was sufficient",
+      "raw and effective alarm boundaries were frozen",
+      "calibration certificate and all artifact hashes were frozen",
+      "a confirmation access ledger was atomically created before any confirmation numeric read"
+    ]
+  },
+  "statistical_scope": {
+    "primary_independent_units": [
+      "calendar-day block for false alarms",
+      "maintenance-report interval for fault detection"
+    ],
+    "row_level_independence_claimed": false,
+    "window_level_independence_claimed": false,
+    "block_conformal_claim": "finite-sample marginal daily any-alarm control only under exchangeability of calibration and future day blocks",
+    "dependent_time_series_caveat": "non-overlapping days, state conditioning, and embargoes reduce but do not eliminate dependence; under weak dependence the claim is approximate, not distribution-free under arbitrary drift",
+    "three_of_three_event_recall_one_sided_95pct_lower_bound": 0.3684031498640387,
+    "population_sensitivity_claim_allowed": false,
+    "allowed_interpretation": "a locked three-event forward feasibility confirmation for reported high-stress air leaks"
+  },
+  "governance_state": {
+    "numeric_access_currently_allowed": [
+      "fit",
+      "dev_healthy",
+      "dev_fault_f1"
+    ],
+    "numeric_access_currently_forbidden": [
+      "calibration_a",
+      "embargo_a",
+      "embargo_b",
+      "calibration_b",
+      "confirmation",
+      "post_study_tail"
+    ],
+    "timestamp_only_access_permitted_for_integrity_checks": true,
+    "sensor_numeric_access_during_charter_creation": false,
+    "calibration_unseal_requires_final_protocol_and_power_gate": true,
+    "confirmation_unseal_requires_frozen_calibration_certificate": true,
+    "failed_confirmation_forbids_same_data_retuning": true,
+    "prior_hydraulic_confirmation_may_not_be_used_for_same_data_retuning": true,
+    "this_file_is_not_a_final_analysis_protocol": true
+  }
+}

@@ -1,0 +1,648 @@
+{
+  "schema": "cp_etc_scan_preregistered_development_protocol",
+  "schema_version": 5,
+  "protocol_id": "cp-etc-scan-v5-mode2-development",
+  "protocol_state": "FROZEN_BEFORE_MODE2_H5_NUMERIC_ACCESS",
+  "frozen_date": "2026-09-08",
+  "decision_scope": "one fixed CP-ETC-Scan candidate, developed only by grouped out-of-fold evaluation on official DTU TEP Mode2 magnitude-50 runs",
+  "supersession_and_authorization": {
+    "fresh_pytep_bank": "PROHIBITED_AND_NOT_GENERATED",
+    "reason": "The same-seed pyTEP reproduction compatibility probe failed. A fresh bank from that implementation cannot be treated as source-equivalent replication data.",
+    "authorization_date": "2026-09-08",
+    "authorization": "The user authorized the previously numerically unread Mode2 magnitude-50 IDV1/3/9/15 runs 1-100 to become the sole v5 development set.",
+    "prior_byte_level_checks": "OS file size and whole-file digests are provenance checks, not HDF5 numeric access.",
+    "no_fallback": "No fresh simulation, alternate magnitude, additional fault, alternate fold, alternate seed, or Mode1 target data may be substituted after this freeze."
+  },
+  "claim_boundary": {
+    "development_domain": "official DTU extended TEP Mode2",
+    "target_domain": "official DTU extended TEP Mode1",
+    "design_label": "cross-mode development followed by target-domain healthy threshold calibration and a once-only target-domain confirmation",
+    "forbidden_labels": [
+      "same-domain IID test",
+      "zero-shot external validation",
+      "prospective validation",
+      "independent institutional validation",
+      "paired-seed experiment",
+      "common-random-number experiment"
+    ],
+    "mode2_cv_interpretation": "The five outer folds are internal out-of-fold development evidence. They are not the final independent confirmation and leave no unused Mode2 magnitude-50 estimate after final refitting.",
+    "mode1_interpretation": "Mode1 is a distinct simulator mode used as the target domain. Mode1 magnitude-25 healthy runs calibrate only the final run threshold; Mode1 magnitude-75 is the once-only target-domain confirmation.",
+    "external_domain_rule_for_resimulation": "A MATLAB R2024b or other reimplementation output is not a replicate merely because a nominal seed matches. Unless an independently frozen reproduction gate passes schema, schedule, metadata, and predeclared numeric trajectory tolerances, it is a separate simulator/external domain and cannot replace any role in this protocol.",
+    "current_r2024b_disposition": "The failed same-seed compatibility probe is treated as a reproduction NO-GO; its output is excluded from training, calibration, testing, and sample-size claims."
+  },
+  "source_files": {
+    "mode2": {
+      "relative_path": "data/extended_tep_dtu_mode2/TEP_Mode2.h5",
+      "size_bytes": 23897125720,
+      "sha256": "8462c0249761ae762a99028c7f8391620b68c69aaea4ecc961fe482799c974b4",
+      "dataset_doi": "10.11583/DTU.13385936.v1",
+      "numeric_access_status_at_freeze": "UNREAD_FOR_V5"
+    },
+    "mode1": {
+      "relative_path": "data/extended_tep_dtu_mode1/TEP_Mode1.h5",
+      "size_bytes": 23924710848,
+      "sha256": "d6b0ed0ef3974ff571afd6717ba0418a5b8eb58a7822c84a05735572d52b3294",
+      "md5": "c79ecc6d12a5ccb49caffcd8f531feae",
+      "dataset_doi": "10.11583/DTU.13385936.v1",
+      "mode1_magnitude_25_numeric_access": "SEALED_UNTIL_DEVELOPMENT_GO",
+      "mode1_magnitude_75_numeric_access": "SEALED_UNTIL_FINAL_ARTIFACT_AND_THRESHOLD_FREEZE"
+    }
+  },
+  "access_governance": {
+    "atomic_freeze_requirement": [
+      "This JSON must exist and parse as JSON.",
+      "Its SHA256 sidecar must match its exact bytes.",
+      "A commit sidecar must bind the protocol filename, protocol SHA256, sidecar filename, and sidecar SHA256.",
+      "Only after all three artifacts exist may Mode2 HDF5 topology, attributes, metadata, seeds, or processdata be opened."
+    ],
+    "first_authorized_h5_action": "After atomic freeze, create a durable append-only access-intent record naming this protocol hash, source hash, selected paths, UTC timestamp, code revision, and operator before opening Mode2.",
+    "fail_closed": "Any digest, topology, metadata, seed, shape, dtype, time-axis, IDV schedule, finiteness, or uniqueness failure ends v5 as DATA_CONTRACT_NO_GO. Do not search for a more favorable subset or modify the protocol.",
+    "mode1_guard": "Development code must not open the Mode1 HDF5 file, enumerate its HDF5 keys, read attributes, read seeds, or decode numeric arrays before DEVELOPMENT_GO. Previously known whole-file byte digests do not authorize HDF5 access.",
+    "result_immutability": "Outer-fold predictions and metrics are append-only. A fold may not be rerun to replace an unfavorable finite result; reruns are allowed only for a documented infrastructure failure before metrics are revealed, with identical code, data, and seeds.",
+    "no_adaptive_iteration": "Any architecture, loss, feature, endpoint, threshold, fold, hyperparameter, data cleaning, or metric change after Mode2 numeric access creates a new version and v5 remains NO_GO."
+  },
+  "role_ledger": {
+    "R": {
+      "name": "reproduction compatibility gate",
+      "status": "FAILED_AND_CLOSED",
+      "data": "prior already-consumed reproduction probe only",
+      "consequence": "No fresh pyTEP bank is generated or used."
+    },
+    "E": {
+      "name": "unique development and out-of-fold evaluation",
+      "data": "Mode2 magnitude-50 IDV1/3/9/15 runs 1-100",
+      "unique_run_objects": 400,
+      "analytic_sequences": 400,
+      "analytic_samples_per_sequence": 500,
+      "analytic_process_hours": 10000,
+      "new_simulation_hours": 0
+    },
+    "C1": {
+      "name": "final per-expert endpoint ECDF score-map fit",
+      "data": "Mode2 magnitude-50 IDV1 healthy pre-fault segments, runs 1-100",
+      "runs": 100,
+      "monitor_endpoints_per_run": 85,
+      "endpoint_scores_per_expert": 8500,
+      "independence_note": "C1 reuses development-domain healthy runs after DEVELOPMENT_GO and is a fixed monotone score mapping, not an independent false-alarm calibration set."
+    },
+    "C2": {
+      "name": "independent target-domain run-threshold calibration",
+      "data": "Mode1 magnitude-25 IDV1 pre-fault segments, runs 1-100",
+      "runs": 100,
+      "analytic_process_hours": 2500,
+      "allowed_action": "Score with the frozen Mode2 model, transforms, and C1 ECDF; choose ascending rank 96 of 100 run maxima.",
+      "forbidden_action": "Do not refit the ECDF, network, normalization, AE, loop parameters, features, scan, or any hyperparameter on C2."
+    },
+    "L": {
+      "name": "once-only target-domain lockbox confirmation",
+      "data": "Mode1 magnitude-75 IDV1/3/9/15 runs 1-100",
+      "unique_run_objects": 400,
+      "analytic_sequences": 400,
+      "analytic_process_hours": 10000,
+      "access": "ONCE_ONLY_AFTER_C2_THRESHOLD_AND_ALL_ARTIFACT_HASHES_ARE_FROZEN"
+    },
+    "total_unique_analytic_process_hours_E_C2_L": 22500,
+    "total_new_simulation_hours": 0,
+    "note": "C1 is a reuse of E and therefore is not added again to the unique-hour total. Each 500-sample analytic sequence spans 25 process hours at 0.05 hour per sample."
+  },
+  "mode2_development_data_contract": {
+    "mode": "Mode2",
+    "fault_regime": "SingleFault",
+    "magnitude": 50,
+    "idv_roles": {
+      "1": "healthy control from the pre-fault slice only",
+      "3": "fault-positive sequence",
+      "9": "fault-positive sequence",
+      "15": "fault-positive sequence"
+    },
+    "run_ids": {
+      "start": 1,
+      "stop_inclusive": 100,
+      "count_per_idv": 100
+    },
+    "hdf5_path_template": "Mode2/SingleFault/{SimulationCompleted|SimulationStopped}/IDV{idv}/Mode2_IDVInfo_{idv}_50/Run{run_id}",
+    "path_resolution": "Exactly one completed-or-stopped path must resolve for each selected IDV/run pair; duplicates or missing paths are fatal.",
+    "required_processdata": {
+      "shape": [
+        2000,
+        54
+      ],
+      "dtype": "float64",
+      "time_column_zero_based": 0,
+      "projected_feature_columns_half_open": [
+        1,
+        53
+      ],
+      "projected_feature_count": 52,
+      "excluded_last_column": "Agitator",
+      "required_time_start_hours": 0.05,
+      "required_time_end_hours": 100.0,
+      "required_time_step_hours": 0.05,
+      "time_absolute_tolerance": 1e-12,
+      "all_selected_values_must_be_finite": true
+    },
+    "required_idv_init": {
+      "shape": [
+        3,
+        28
+      ],
+      "selected_idv_schedule": [
+        0.0,
+        0.5,
+        30.0
+      ],
+      "numeric_absolute_tolerance": 1e-12,
+      "other_idvs_must_remain_inactive": true
+    },
+    "slices_zero_based_half_open": {
+      "healthy_idv1": [
+        100,
+        600
+      ],
+      "fault_idv3_idv9_idv15": [
+        440,
+        940
+      ],
+      "samples": 500,
+      "fault_local_onset_index": 160,
+      "baseline": [
+        0,
+        128
+      ]
+    },
+    "seed_audit": {
+      "required_before_processdata_decode": true,
+      "selected_seed_records": 400,
+      "required_nonmissing_seed_records": 400,
+      "required_unique_seed_values": 400,
+      "collision_policy": "Any missing, unparsable, non-scalar, or repeated seed is DATA_CONTRACT_NO_GO and must be reported; do not repair, relabel, or select replacement runs.",
+      "run_id_semantics": "The same run_id across IDV1/3/9/15 is only a balanced stratification block. It must not be interpreted as a shared seed, matched realization, pairing, or common random number.",
+      "paired_analysis": false,
+      "paired_seed_claim": false
+    }
+  },
+  "folds": {
+    "assignment": "fold = (run_id - 1) mod 5",
+    "run_to_fold_canonical_json_sha256": "7768fdf453f9a7e1173c2b3bbbc441a17b63187ab17bd8af104f143f395fac71",
+    "balanced_block_note": "Placing equal run_id values in one fold guarantees 20 observations per IDV per fold but conveys no seed pairing.",
+    "fold_run_ids": {
+      "0": [
+        1,
+        6,
+        11,
+        16,
+        21,
+        26,
+        31,
+        36,
+        41,
+        46,
+        51,
+        56,
+        61,
+        66,
+        71,
+        76,
+        81,
+        86,
+        91,
+        96
+      ],
+      "1": [
+        2,
+        7,
+        12,
+        17,
+        22,
+        27,
+        32,
+        37,
+        42,
+        47,
+        52,
+        57,
+        62,
+        67,
+        72,
+        77,
+        82,
+        87,
+        92,
+        97
+      ],
+      "2": [
+        3,
+        8,
+        13,
+        18,
+        23,
+        28,
+        33,
+        38,
+        43,
+        48,
+        53,
+        58,
+        63,
+        68,
+        73,
+        78,
+        83,
+        88,
+        93,
+        98
+      ],
+      "3": [
+        4,
+        9,
+        14,
+        19,
+        24,
+        29,
+        34,
+        39,
+        44,
+        49,
+        54,
+        59,
+        64,
+        69,
+        74,
+        79,
+        84,
+        89,
+        94,
+        99
+      ],
+      "4": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50,
+        55,
+        60,
+        65,
+        70,
+        75,
+        80,
+        85,
+        90,
+        95,
+        100
+      ]
+    },
+    "outer_loop": {
+      "outer_fold_j": "test fold j",
+      "inner_calibration_fold": "fold (j + 1) mod 5",
+      "fit_folds": "the other three folds",
+      "fit_runs_per_class": 60,
+      "inner_healthy_runs": 20,
+      "inner_fault_runs": "COMPLETELY_UNUSED_IN_THIS_OUTER_FOLD",
+      "outer_runs_per_class": 20,
+      "outer_runs_total_per_fold": 80,
+      "outer_access": "Score each outer fold once after its model, fit-health ECDF arrays, and inner-health threshold are frozen."
+    }
+  },
+  "candidate": {
+    "candidate_id": "cp-etc-scan-v5-mode2-fixed",
+    "candidate_count": 1,
+    "fault_expert_order": [
+      3,
+      9,
+      15
+    ],
+    "selection": "No model selection, hyperparameter sweep, ensemble, early stopping, alternate initialization, or post-access feature editing is allowed.",
+    "random_seed": 20260912,
+    "input_shape_per_run": [
+      500,
+      52
+    ],
+    "windowing": {
+      "window_length": 128,
+      "stride": 4,
+      "endpoint_definition": "A window with endpoint t is x[t-127:t+1], using zero-based half-open slicing x[t-127,t+1).",
+      "all_endpoints": "128..496 inclusive, step 4",
+      "all_endpoint_count": 93,
+      "prefix_endpoints": "128..156 inclusive, step 4",
+      "prefix_endpoint_count": 8,
+      "monitor_endpoints": "160..496 inclusive, step 4",
+      "monitor_endpoint_count": 85,
+      "earliest_scan_eligible_endpoint": 164
+    },
+    "normalization": {
+      "fit_data": "All timepoints in the 60 fit-healthy analytic sequences only, calculated independently in each outer fold.",
+      "location_per_channel": "median",
+      "mad_per_channel": "median(abs(x - median))",
+      "scale_per_channel": "max(1.4826 * MAD, 1e-6)",
+      "transform": "clip((x - median) / scale, -8, 8)",
+      "final_refit": "Recompute once from all 100 Mode2 healthy analytic sequences after DEVELOPMENT_GO.",
+      "leakage_rule": "Inner, outer, Mode1, and fault-positive values never affect the normalization fit."
+    },
+    "channel_denoising_autoencoder": {
+      "encoder": [
+        "grouped Conv1d 52->208, groups=52, kernel=7, stride=2, padding=3",
+        "GELU",
+        "grouped Conv1d 208->104, groups=52, kernel=5, stride=2, padding=2"
+      ],
+      "code_shape": "[batch,52,2,32] after reshaping [batch,104,32]",
+      "decoder": [
+        "grouped ConvTranspose1d 104->208, groups=52, kernel=4, stride=2, padding=1",
+        "GELU",
+        "grouped ConvTranspose1d 208->52, groups=52, kernel=4, stride=2, padding=1"
+      ],
+      "training_windows": "All 93 windows from fit-healthy runs only.",
+      "corruption": "For each training example and timepoint draw M~Bernoulli(0.10), broadcast M across channels, and iid epsilon~Normal(0,0.05^2); input is (1-M)*x + epsilon while target is clean x.",
+      "loss": "Huber_delta1(reconstruction,x) + 0.1*Huber_delta1(first_difference(reconstruction),first_difference(x)), with mean reduction",
+      "optimizer": "AdamW",
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "epochs": 40,
+      "batch_size_windows": 256,
+      "checkpoint": "last epoch",
+      "post_training": "Freeze every AE parameter before classifier training.",
+      "seed": 20260912
+    },
+    "channel_features": {
+      "time_features_per_channel_in_order": [
+        "mean(x)",
+        "log1p(population_variance(x))",
+        "log1p(mean(diff(x)^2))",
+        "log1p(mean((AE(x)-x)^2))",
+        "mean(AE_code)",
+        "sqrt(mean(AE_code^2))"
+      ],
+      "spectral_preprocessing": {
+        "detrend": "Subtract that window's own time mean.",
+        "window": "periodic Hann length 128",
+        "power": "P_k=abs(rFFT(x_demeaned*Hann)_k)^2/sum(Hann^2); multiply one-sided interior bins k=1..63 by 2; set DC k=0 to zero; do not double Nyquist k=64.",
+        "normalizer": "Q=sum(P_k,k=1..64); Qeps=max(Q,1e-12).",
+        "bands_half_open": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            8,
+            16
+          ],
+          [
+            16,
+            32
+          ],
+          [
+            32,
+            65
+          ]
+        ],
+        "band_feature": "log(sum(P_k in band)/Qeps + 1e-12)",
+        "spectral_entropy": "-sum(q_k*log(q_k+1e-12),k=1..64)/log(64), where q_k=P_k/Qeps",
+        "spectral_centroid": "sum((k/64)*q_k,k=1..64)"
+      },
+      "spectral_features_per_channel": 8,
+      "total_fixed_features_per_channel": 14
+    },
+    "loop_features": {
+      "zero_based_channels": {
+        "XMV11_u": 51,
+        "XMEAS11_y1": 10,
+        "XMEAS22_y2": 21
+      },
+      "numeric_precision_for_fitted_constants": "float64",
+      "dwell_threshold": "From each fit-healthy original run after global normalization, pool each unique non-overlapping transition du=u[t]-u[t-1]. tau_d=max(numpy linear quantile(abs(du),q=0.20),1e-6).",
+      "u_features_in_order": [
+        "dwell=mean(abs(du)<=tau_d)",
+        "slip=(1/(W-4))*sum over t=4..W-2 of I(the preceding four du values are all <=tau_d and abs(du_t)>tau_d)*log1p((abs(du_t)/tau_d)^2)",
+        "reversal=mean(I(du_t*du_(t-1)<0)) over defined consecutive du pairs"
+      ],
+      "response_features_repeated_in_order_for_y1_then_y2": {
+        "normalized_oriented_loop_area": "sum over t=1..127 of 0.5*(u_t+u_(t-1))*(y_t-y_(t-1)) / (127*(population_std(u)*population_std(y)+1e-8))",
+        "lag_asymmetry": "max over l=1..8 abs(PearsonCorr(u[:-l],y[l:])) minus max over l=1..8 abs(PearsonCorr(y[:-l],u[l:])); floor every Pearson denominator at 1e-8",
+        "arx_residual_ratio": "Fit y_t=beta0+beta1*y_(t-1)+beta2*u_(t-1)+r_t on all unique fit-healthy transitions by ridge solve with penalty diag(0,1e-4,1e-4). Let denom_y=max(median across fit-healthy windows of mean(r^2),1e-8). Window feature=log1p(mean(r^2)/denom_y).",
+        "welch_coherence": "Within the length-128 window use seven segments length32 at starts 0,16,...,96. Demean each segment and use periodic Hann32. Average Sxx,Syy,Sxy across segments using the same one-sided scaling. C_k=clip(abs(Sxy_k)^2/(Sxx_k*Syy_k+1e-12),0,1). Feature=sum(C_k*Sxx_k,k=1..16)/(sum(Sxx_k,k=1..16)+1e-12)."
+      },
+      "final_u_feature": "XMV non-DC PSD concentration=max(P_k,k=1..64)/Qeps using the frozen length-128 PSD definition.",
+      "feature_count": 12,
+      "fitting_scope": "tau_d, both ARX coefficient vectors, and both denom_y values use fit healthy only and are frozen before inner or outer scoring.",
+      "linear_algebra_guard": "Use a direct float64 solve; pseudoinverse is forbidden. Failure, nonfinite coefficients, or condition number above 1e12 is a fold-level numeric NO_GO."
+    },
+    "classifier": {
+      "channel_embedding": "Learned channel-ID embedding dimension 4, concatenated with 14 fixed features to make 18 inputs per channel.",
+      "shared_channel_mlp": "Linear 18->8, GELU, Linear 8->4",
+      "channel_aggregation": "Flatten [52,4] to 208, Linear 208->32, GELU",
+      "loop_branch": "Linear 12->8, GELU",
+      "fusion": "Concatenate to 40 dimensions.",
+      "heads": "Three independent heads, one per ordered fault expert 3/9/15; each Linear 40->16, GELU, Linear 16->1.",
+      "expert_labels": "Expert e uses its own fault e as positive and healthy as negative. Other fault types are never negatives for that expert.",
+      "parameter_scale_note": "Approximately twenty thousand trainable parameters; the implemented exact count must be reported but is not a tuning target."
+    },
+    "mil_training": {
+      "fault_positive_bag": "For the target fault, take its 85 monitor logits and average the largest 9 (fixed top-10-percent count).",
+      "healthy_negative_bag": "For healthy, take all 93 endpoint logits and average the largest 10 (fixed top-10-percent count).",
+      "fault_prefix_negative_bag": "For the same target fault, take the 8 prefix logits and use the largest 1.",
+      "loss_per_expert": "0.5*BCEWithLogits(positive_bag,1)+0.5*BCEWithLogits(healthy_bag,0)+0.1*BCEWithLogits(fault_prefix_bag,0)",
+      "total_loss": "Arithmetic mean of the three expert losses.",
+      "optimizer": "AdamW",
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001,
+      "epochs": 60,
+      "run_batch_per_class": 8,
+      "epoch_definition": "Independently shuffle the 60 fit runs of each of the four classes with the fixed generator; use eight joint batches, keeping the final four runs rather than dropping them. Each step contains one healthy batch and one batch for each target fault.",
+      "checkpoint": "last epoch",
+      "seed": 20260912,
+      "early_stopping": false,
+      "ensemble": false,
+      "hyperparameter_grid": false
+    },
+    "determinism": {
+      "python_numpy_torch_seed": 20260912,
+      "torch_deterministic_algorithms": true,
+      "cudnn_benchmark": false,
+      "training_device": "CUDA RTX 5090 when the fixed environment passes preflight",
+      "failure_policy": "A nondeterministic unsupported operation, nonfinite value, CUDA OOM, or environment mismatch is infrastructure failure, not permission to modify the model."
+    }
+  },
+  "tail_mapping_and_scan": {
+    "operational_loo": false,
+    "loo_scope": "LOO-ECDF may exist only as an algorithm unit test on synthetic fixtures. It is superseded operationally and may not supply any v5 threshold or score.",
+    "per_fold_expert_ecdf": {
+      "fit_source": "The 60 fit-healthy runs only, using all 85 monitor endpoints for that expert.",
+      "reference_count_per_expert": 5100,
+      "survival_p": "p_e(q)=(1 + count(z >= q))/(N+1)",
+      "tie_rule": "Reference values equal to the query count in the upper tail through >=.",
+      "inner_data_role": "The 20 inner healthy runs do not fit or update the endpoint ECDF. They are transformed by the already frozen fit-healthy ECDF."
+    },
+    "fusion": {
+      "formula": "p_fused=min(1,3*min(p_3,p_9,p_15))",
+      "evidence": "e=-log(p_fused)",
+      "subtracted_constant": 0,
+      "relu": false,
+      "winner": "argmin over p values in expert order [3,9,15]; exact ties choose the lowest array index, hence fault 3 first."
+    },
+    "scan": {
+      "history_endpoints": 8,
+      "top_evidence_count": 2,
+      "formula": "At monitor endpoint k, S_k is the sum of the two largest fused evidence values among the latest min(8,k) monitor endpoints.",
+      "eligibility": "At least two monitor endpoints must have been observed, so the first eligible endpoint is 164.",
+      "run_maximum": "max S_k over eligible endpoints",
+      "alarm": "The earliest eligible endpoint with S_k strictly greater than h.",
+      "threshold_comparison": ">",
+      "fault_delay_samples": "alarm_endpoint - 160",
+      "fault_delay_hours": "0.05*(alarm_endpoint - 160)",
+      "miss_delay_samples": 340
+    },
+    "inner_threshold": {
+      "procedure": "Use the frozen fit-healthy endpoint ECDF to obtain one run maximum for each of the 20 inner healthy runs, then set h to their maximum, equivalently ascending rank 20.",
+      "inner_runs": 20,
+      "fault_inner_runs_used": 0,
+      "nondegeneracy": "At least 19 of the 20 maxima must be exactly distinct, and rank20-rank19 must exceed 100*eps_float64*max(1,abs(rank20),abs(rank19)).",
+      "future_rule": "Outer alarms use strict S>h."
+    }
+  },
+  "development_outputs_required": {
+    "per_fold": [
+      "resolved run IDs for fit, inner healthy, unused inner faults, and outer test",
+      "all source and code hashes plus environment manifest",
+      "seed audit evidence without changing fold assignment",
+      "normalization, dwell, ARX, ECDF, checkpoint, and threshold artifact hashes",
+      "20 inner healthy run maxima and their sorted ranks",
+      "outer alarm endpoint, delay or miss, winning expert, and p/e/S paths for each run",
+      "healthy endpoint winner counts and shares",
+      "CPU/CUDA parity report",
+      "finite-value and nondegeneracy assertions"
+    ],
+    "aggregate": [
+      "healthy false alarms overall and by fold",
+      "fault detection rate overall and by fold for faults 3,9,15",
+      "fault delay median and nearest-rank p90 with misses coded 340",
+      "attribution confusion matrix as descriptive output only",
+      "all gate booleans and the single final DEVELOPMENT_GO or DEVELOPMENT_NO_GO decision"
+    ],
+    "attribution_status": "report-only secondary analysis; classification accuracy is not a detection GO gate"
+  },
+  "development_go_gates": {
+    "healthy": {
+      "total_false_alarms_max": 10,
+      "denominator": 100,
+      "per_fold_false_alarms_max": 4,
+      "per_fold_denominator": 20
+    },
+    "each_fault_3_9_15": {
+      "aggregate_detection_rate_min": 0.85,
+      "aggregate_denominator": 100,
+      "per_fold_detection_rate_min": 0.7,
+      "per_fold_denominator": 20,
+      "aggregate_median_delay_samples_max": 140,
+      "aggregate_nearest_rank_p90_delay_samples_max": 220,
+      "miss_delay_samples": 340
+    },
+    "winner_dominance": {
+      "population": "Every outer healthy monitor endpoint, regardless of whether an alarm occurs.",
+      "aggregate_max_share_for_any_single_expert": 0.6,
+      "per_fold_max_share_for_any_single_expert": 0.7
+    },
+    "threshold_nondegeneracy": "Required in every fold using the frozen 19-distinct and top-gap rule.",
+    "cuda_parity": {
+      "procedure": "For each frozen fold checkpoint, run identical outer inference and tail/scan calculations on CPU and CUDA.",
+      "max_absolute_difference_for_logits_p_evidence_scan_and_run_max": 1e-5,
+      "alarm_arrays_exact": true,
+      "winner_arrays_exact": true,
+      "all_outputs_finite": true
+    },
+    "logic": "DEVELOPMENT_GO only if every gate passes in every required scope. Any single failure yields DEVELOPMENT_NO_GO.",
+    "no_rescue": "A DEVELOPMENT_NO_GO forbids Mode1 magnitude-25 and magnitude-75 access for v5 and forbids changing v5 to rescue the outcome."
+  },
+  "post_development_go": {
+    "final_mode2_refit": {
+      "training_data": "All Mode2 magnitude-50 runs 1-100 for IDV1 healthy and faults 3/9/15, using the identical candidate and seed.",
+      "normalization_and_loop_fit": "Fit only all 100 Mode2 healthy analytic sequences.",
+      "ae_fit": "Fit only all 100 Mode2 healthy analytic sequences with the frozen AE procedure.",
+      "expert_fit": "Fit using all 100 Mode2 healthy runs and all 100 runs of each target fault with the frozen MIL procedure.",
+      "endpoint_ecdf": "For each expert, fit once on all 85 monitor logits from all 100 Mode2 healthy runs, N=8500, with p=(1+count(z>=q))/(8501).",
+      "important": "The Mode2 ECDF remains fixed throughout C2 and L; Mode1 never refits it."
+    },
+    "mode1_c2_target_threshold": {
+      "magnitude": 25,
+      "idv": 1,
+      "runs": "1..100",
+      "slice_zero_based_half_open": [
+        100,
+        600
+      ],
+      "procedure": "After final model, transforms, loop fits, Mode2 ECDF, code revision, and environment are frozen, score the 100 Mode1 healthy runs once and compute their run maxima.",
+      "threshold": "ascending rank 96 of 100 run maxima",
+      "future_alarm_rule": "strict S>h_target",
+      "rank_rationale": "Under exchangeability of the fixed target-domain healthy run maxima with a future target healthy run, the marginal exceedance probability is at most 5/101. This is not a cross-mode IID guarantee.",
+      "nondegeneracy": "All values must be finite; at least 96 maxima must be exactly distinct; rank96 must be separated from rank95 by more than 100*eps_float64*max(1,abs(rank96),abs(rank95)); rank96 must be strictly below rank100.",
+      "failure": "Any failure is CALIBRATION_NO_GO; do not open Mode1 magnitude-75."
+    },
+    "mode1_l_once_only_confirmation": {
+      "magnitude": 75,
+      "idvs": [
+        1,
+        3,
+        9,
+        15
+      ],
+      "runs_per_idv": 100,
+      "healthy_slice_zero_based_half_open": [
+        100,
+        600
+      ],
+      "fault_slice_zero_based_half_open": [
+        440,
+        940
+      ],
+      "fault_local_onset_index": 160,
+      "access": "One pass only after a durable lockbox access intent binds every final artifact and h_target hash.",
+      "gates": {
+        "healthy_false_alarms_max": 10,
+        "healthy_denominator": 100,
+        "each_fault_detections_min": 85,
+        "each_fault_denominator": 100,
+        "each_fault_median_delay_samples_max": 140,
+        "each_fault_nearest_rank_p90_delay_samples_max": 220,
+        "miss_delay_samples": 340
+      },
+      "decision": "CONFIRMATION_PASS only if every listed gate passes; otherwise CONFIRMATION_FAIL. Results are reported regardless of outcome and are never used for tuning.",
+      "false_alarm_claim_rule": "Report the exact Clopper-Pearson 95% interval. If more than 4 of 100 healthy runs alarm, do not claim the healthy-run false-alarm probability is below 0.10 even when the operational confirmation gate of at most 10 alarms passes."
+    },
+    "quarantine": "Mode1 magnitude-25 fault segments remain unused and quarantined. Previously consumed Mode1 magnitude-50 development data remain excluded."
+  },
+  "implementation_tests_before_real_data": {
+    "synthetic_only": [
+      "window endpoint and count test",
+      "PSD bin, one-sided scaling, entropy, and centroid test",
+      "dwell, slip, reversal, loop area, lag asymmetry, ARX, and Welch tests",
+      "ECDF >= tie-direction and +1 correction test",
+      "Bonferroni fusion and expert tie-order test",
+      "latest-8 top-2 scan, first eligibility, run maximum, and strict-threshold test",
+      "inner rank20 threshold and nondegeneracy test",
+      "LOO-ECDF algorithm test explicitly marked non-operational",
+      "fold membership, counts, disjointness, and run-to-fold canonical hash test",
+      "CPU/CUDA parity harness test"
+    ],
+    "restriction": "Synthetic tests may correct an implementation that contradicts this text before real numeric access. They may not change the frozen method."
+  },
+  "final_decision_vocabulary": [
+    "DATA_CONTRACT_NO_GO",
+    "DEVELOPMENT_NO_GO",
+    "DEVELOPMENT_GO",
+    "CALIBRATION_NO_GO",
+    "CONFIRMATION_FAIL",
+    "CONFIRMATION_PASS"
+  ]
+}

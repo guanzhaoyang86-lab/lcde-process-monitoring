@@ -1,0 +1,371 @@
+{
+  "schema": "metropt_cared_bc_portability_governance_repair_protocol",
+  "schema_version": 1,
+  "protocol_id": "metropt_cared_bc_v1_1_portability_development",
+  "protocol_version": "1.1.0",
+  "created_date": "2026-09-07",
+  "status": "FROZEN_BEFORE_V1_1_NUMERIC_REPLAY",
+  "disclosure": {
+    "created_after_observing_v1_pass": true,
+    "not_an_original_v0_v0_1_or_v1_preregistered_pass": true,
+    "development_sensor_values_already_observed": true,
+    "v1_scientific_result_was_pass": true,
+    "v1_completion_is_governance_invalid": true,
+    "v1_invalidity_reasons": [
+      "ledger_and_intent_authorized_fit_despite_the_protocol_allowing_only_dev_healthy_and_dev_fault_f1",
+      "runtime_cuda_preflight_occurred_after_numeric_partition_loading",
+      "an_injectable_gate_hook_could_return_passed_true_without_a_trusted_semantic_recomputation",
+      "completed_reentry_authenticated_bytes_but_did_not_recompute_the_core_audit_from_full_evidence"
+    ],
+    "purpose": "A parameter-identical replay that repairs governance and auditability only; it cannot tune, select, or change the CARED-BC method.",
+    "calibration_numeric_access_occurred": false,
+    "confirmation_numeric_access_occurred": false,
+    "sealed_partitions_remain_closed": true,
+    "v0_v0_1_and_v1_outputs_must_remain_byte_identical": true
+  },
+  "parent_bindings": {
+    "development_charter_sha256": "11beddf51f11a42b8a41fb25954179e7612c387d0dad3bd74980202e63314382",
+    "preaccess_amendment_001_sha256": "9b998cd4866097443971f0f1fe6a18b6f9aba26964c164ed6a47d7684143bc83",
+    "preaccess_amendment_002_sha256": "cf68a99a74ac1505975987785222d3095c8243394d13f60d5134ca8b4fe7f9bc",
+    "v0_1_abort": {
+      "output_directory": "outputs/metropt_cared_bc_gpu_v0_1",
+      "completion_sha256": "e68fe843083473088725d43f1a5d7639524263a62d6f55f8981d088fc8e504d2",
+      "completion_fingerprint": "54a40a2ae70bedc8c3275d28af27ca29d4f6a801cce0040abd72cff5fc639db0",
+      "decision": "ABORTED_BEFORE_CALIBRATION_NUMERIC_ACCESS"
+    },
+    "v1_governance_invalid_pass": {
+      "output_directory": "outputs/metropt_cared_bc_gpu_v1_portability",
+      "directory_snapshot_fingerprint": "2f6b7e0244e330fb97eccec469c9916dc7c17f32a0624b051fd9ff64fb293839",
+      "decision": "PASS_DEVELOPMENT_POWER_GATE",
+      "phase_manifest": {
+        "size_bytes": 5805,
+        "sha256": "aa651028d69e0189816822c977d118eb6e3d1d84051a7359619a27a51e427896",
+        "fingerprint": "ee5299de7b290d71a6cba85b812fa1b6bc1e07630aad27cb000357469c9db7a5"
+      },
+      "access_ledger": {
+        "size_bytes": 1258,
+        "sha256": "eeb793ef8b2a7e2783f4d121dbea97929a17e6f5fe89a030cffb94393eca3c99",
+        "fingerprint": "6137cc0bb6618fa896387f348de5ee250f92065754c1e715d89b551aa98e7927"
+      },
+      "access_intent": {
+        "size_bytes": 1175,
+        "sha256": "223bd93465af30666ddbccb8c3c5a2160411e484a708adcded64a324445e1f8e",
+        "fingerprint": "f69d65e6cd73b8c8a4e53760a17a275713769bf9603de06aa5b8cd036d18d8f4"
+      },
+      "artifact_manifest": {
+        "size_bytes": 1808,
+        "sha256": "6b98662a4fbbf0949c7a87cf28b081c3bea9778326385a55f1519afcc4bffb1d",
+        "fingerprint": "e724b89cfc0e9d5a2eddd339f7877312616d4417b00843604cf73c62984b2c5f"
+      },
+      "completion": {
+        "size_bytes": 1433,
+        "sha256": "6e1f01f6965b99fc3be956971cc7e63acbbe506ade156e84e8b947c552f04c35",
+        "fingerprint": "c3a25fd985861df50206b86df2c0c5c772e9dc5a04126b7fe6928fbde1323396"
+      },
+      "development_result": {
+        "size_bytes": 8028,
+        "sha256": "934ef9d83e3819aada2c0c63776d0da6bb945cd410ed6e920d4ee2c82f65fd48"
+      },
+      "portability_audit": {
+        "size_bytes": 6221,
+        "sha256": "d8e36e32db09db306ae098c5b80c03ed6b78cfb392c2bf7302bd2f481f328416"
+      },
+      "gpu_execution": {
+        "size_bytes": 2994,
+        "sha256": "c7504489bdfa850eea2eea66846988087479f4ed390cd90070a54c9cb682d7fe"
+      },
+      "portability_evidence": {
+        "size_bytes": 4461790,
+        "sha256": "2d99f2c370b6f97c1c841f0d345f292ca85d74a399247846f984d98e5c70b2b5"
+      }
+    }
+  },
+  "fixed_artifacts": {
+    "ensemble": {
+      "source_path": "outputs/metropt_cared_bc_gpu_v1_portability/cared_ensemble.npz",
+      "size_bytes": 2376101,
+      "sha256": "4e75c7718482e66f0fd535a5bd0bf4c0dd78ec3335c3f420797d728c8e9d970f",
+      "dtype": "float64",
+      "protocol_id_in_serialized_metadata": "metropt_cared_bc_v0_development"
+    },
+    "uncalibrated_scorer": {
+      "source_path": "outputs/metropt_cared_bc_gpu_v1_portability/cared_scorer.npz",
+      "size_bytes": 181175,
+      "sha256": "a7da9f5980778f0f65d51e7ab64e1cee3a9604cb186025d1240c45623d7d1887",
+      "threshold_must_be_null": true,
+      "threshold_status_in_serialized_metadata": "uncalibrated",
+      "protocol_id_in_serialized_metadata": "metropt_cared_bc_v0_development"
+    },
+    "exact_byte_copy_required": true,
+    "pickle_loading_forbidden": true,
+    "retraining_refitting_optimizer_and_backward_forbidden": true,
+    "all_model_scorer_parameters_and_hyperparameters_frozen": true
+  },
+  "scientific_implementation_bindings": {
+    "binding_scope": "Scientific numerical implementations are byte-bound here. The runner, governance, and data access implementations are recorded in the preaccess phase manifest to avoid a protocol-SHA dependency cycle.",
+    "model": {
+      "path": "src/mate_spc_metropt/model.py",
+      "size_bytes": 92730,
+      "sha256": "28d08ff51533a3a52453d12042e99f03b4ec0691ae41eab7b919c3122f0a83a9"
+    },
+    "portability": {
+      "path": "src/mate_spc_metropt/portability.py",
+      "size_bytes": 20874,
+      "sha256": "b219850b30b422a6a374c5e98406320784d30ec32e9e344a696c84b74b03c8b7"
+    },
+    "portability_replay": {
+      "path": "src/mate_spc_metropt/portability_replay.py",
+      "size_bytes": 20714,
+      "sha256": "9c1802c83ce316629526cb20e36fa87946aded3f791bd4a9780fc7d123e70acc"
+    }
+  },
+  "fixed_development_evidence": {
+    "raw_provisional_threshold": 36.02052930938596,
+    "tcn_relative_improvement_over_persistence": 0.5025773655903889,
+    "legacy_nonparity_gates_all_passed": true,
+    "feature_model_threshold_and_gate_selection_may_not_change": true
+  },
+  "numeric_access": {
+    "exact_authorized_partitions": [
+      "dev_healthy",
+      "dev_fault_f1"
+    ],
+    "ledger_intent_and_loader_must_all_use_exact_authorization": true,
+    "fit_permitted": false,
+    "selection_permitted": false,
+    "single_access": true,
+    "reusable": false,
+    "maximum_loads_per_authorized_partition": {
+      "dev_healthy": 1,
+      "dev_fault_f1": 1
+    },
+    "fit_must_be_rejected_before_any_csv_access": true,
+    "sealed_or_excluded_partitions": [
+      "fit",
+      "calibration_a",
+      "embargo_a",
+      "embargo_b",
+      "calibration_b",
+      "confirmation",
+      "post_study_tail"
+    ],
+    "expected_counts": {
+      "dev_healthy": {
+        "inference_windows": 10387,
+        "aligned_scores": 10327
+      },
+      "dev_fault_f1": {
+        "inference_windows": 1416,
+        "aligned_scores": 1406
+      }
+    },
+    "complete_sequences_only": true,
+    "sampling_or_prefix_parity_forbidden": true
+  },
+  "runtime_preflight": {
+    "must_complete_after_ledger_before_intent_and_numeric_loader": true,
+    "intent_must_bind_preflight_fingerprint": true,
+    "primary_device": "cuda",
+    "comparison_device": "cpu",
+    "dtype": "float64",
+    "batch_size": 1024,
+    "torch_cuda_available_required": true,
+    "cuda_probe_tensor_required": true,
+    "cuda_matmul_tf32": false,
+    "cudnn_tf32": false,
+    "deterministic_algorithms": true,
+    "expected_runtime": {
+      "python_version": "3.11.14",
+      "numpy_version": "2.4.0",
+      "pandas_version": "2.3.3",
+      "torch_version": "2.10.0.dev20251124+cu128",
+      "cuda_runtime_version": "12.8",
+      "device_name": "NVIDIA GeForce RTX 5090 Laptop GPU",
+      "compute_capability": [
+        12,
+        0
+      ]
+    }
+  },
+  "trusted_audit": {
+    "function": "mate_spc_metropt.portability.certify_development_portability",
+    "concrete_type": "CertifiedDevelopmentPortabilityAudit",
+    "injectable_gate_hook_forbidden": true,
+    "runner_must_call_trusted_function_directly": true,
+    "four_complete_portability_paths_required": true,
+    "completed_reentry_must_reconstruct_four_paths_from_pickle_free_evidence": true,
+    "completed_reentry_must_recompute_and_exactly_match_core_audit": true,
+    "completed_reentry_must_recompute_alarm_arrays_and_hashes": true,
+    "completed_reentry_must_recompute_scorer_stages_from_fixed_scorer": true
+  },
+  "portability_gate": {
+    "primitive_max_absolute_tolerance": 1e-09,
+    "physical_residual_last_10_pointwise_exact": true,
+    "timestamps_indices_state_codes_and_reset_pointwise_exact": true,
+    "global_envelope_delta": "maximum absolute CPU/CUDA envelope difference over every score in both complete development sequences",
+    "effective_boundary_formula": "nextafter(h_raw + global_envelope_delta + 1e-9, +infinity)",
+    "alarm_comparison": "strictly_greater_than",
+    "required_checks": {
+      "full_cpu_cuda_alarm_arrays_exact": true,
+      "dev_healthy_alarm_count_each_device": 0,
+      "f1_detected_each_device": true,
+      "f1_first_alarm_availability_exact": true,
+      "f1_availability_lag_minutes": 1,
+      "f1_maximum_delay_minutes_inclusive": 60,
+      "f1_minimum_peak_to_effective_boundary_ratio_inclusive": 1.25,
+      "minimum_absolute_distance_of_every_envelope_to_boundary_strictly_greater_than": 1e-09
+    }
+  },
+  "full_sequence_reporting": {
+    "save_each_cpu_and_cuda_sequence": [
+      "prediction",
+      "residual",
+      "timestamps",
+      "indices",
+      "state_codes",
+      "reset_before",
+      "source_window_rows",
+      "physical_features",
+      "energy",
+      "directional_glr",
+      "standardized_evidence",
+      "cusum",
+      "envelope",
+      "score_reset",
+      "alarm"
+    ],
+    "report_max_absolute_cpu_cuda_difference": [
+      "prediction",
+      "residual",
+      "energy",
+      "directional_glr",
+      "standardized_evidence",
+      "cusum",
+      "envelope"
+    ]
+  },
+  "reproduction_targets_from_v1": {
+    "canonical_sha256": {
+      "v1_35_array_projection": "59597b715973599186767ca1a68e7a47728fb1ddd4216be8d6d570379297289c",
+      "core_portability_audit": "7ff32dc008fcdaffd4317fe2988082f10e62de2b5281bfb0020f95132d192b52",
+      "exact_backend_checks": "a8dd75575b8fc4e8830a780fa34eb836e065209d75cc575e1bebd0d81c5563db",
+      "alarm_array_hashes": "e35bcae4b78cefe2e5c1c51669466e424afad40e484fd77ba701ce4e6129b9d8"
+    },
+    "v1_projection_semantic_algorithm": {
+      "key_order": "lexicographically sorted",
+      "manifest_record": {
+        "dtype": "original numpy dtype.str",
+        "shape": "original array shape as a JSON integer list",
+        "sha256": "SHA256(dtype.str ASCII || compact JSON shape after np.ascontiguousarray || C-order bytes)"
+      },
+      "manifest_hash": "SHA256 of UTF-8 strict JSON with allow_nan=false, sort_keys=true, separators=[comma,colon]",
+      "scalar_detail": "np.ascontiguousarray changes a scalar to shape [1] inside array_sha256 while its outer manifest shape remains []",
+      "keys": [
+        "dev_fault_f1__cpu__alarm",
+        "dev_fault_f1__cpu__envelope",
+        "dev_fault_f1__cpu__indices",
+        "dev_fault_f1__cpu__prediction",
+        "dev_fault_f1__cpu__reset_before",
+        "dev_fault_f1__cpu__residual",
+        "dev_fault_f1__cpu__state_codes",
+        "dev_fault_f1__cpu__timestamps_ns",
+        "dev_fault_f1__cuda__alarm",
+        "dev_fault_f1__cuda__envelope",
+        "dev_fault_f1__cuda__indices",
+        "dev_fault_f1__cuda__prediction",
+        "dev_fault_f1__cuda__reset_before",
+        "dev_fault_f1__cuda__residual",
+        "dev_fault_f1__cuda__state_codes",
+        "dev_fault_f1__cuda__timestamps_ns",
+        "dev_healthy__cpu__alarm",
+        "dev_healthy__cpu__envelope",
+        "dev_healthy__cpu__indices",
+        "dev_healthy__cpu__prediction",
+        "dev_healthy__cpu__reset_before",
+        "dev_healthy__cpu__residual",
+        "dev_healthy__cpu__state_codes",
+        "dev_healthy__cpu__timestamps_ns",
+        "dev_healthy__cuda__alarm",
+        "dev_healthy__cuda__envelope",
+        "dev_healthy__cuda__indices",
+        "dev_healthy__cuda__prediction",
+        "dev_healthy__cuda__reset_before",
+        "dev_healthy__cuda__residual",
+        "dev_healthy__cuda__state_codes",
+        "dev_healthy__cuda__timestamps_ns",
+        "global_envelope_delta",
+        "h_eff",
+        "h_raw"
+      ]
+    },
+    "threshold": {
+      "h_raw": 36.02052930938596,
+      "global_envelope_delta": 0.21800327523659302,
+      "h_eff": 36.23853258562255
+    },
+    "f1_first_alarm_availability": "2020-04-18T00:49:00.000000000",
+    "f1_first_alarm_delay_minutes": 49.0,
+    "alarm_arrays": {
+      "dev_healthy": {
+        "cpu": {
+          "count": 0,
+          "sha256": "91f3f81beea57b8173f2c82b6d810556b54ed91e6f2db31db942c759824c491a"
+        },
+        "cuda": {
+          "count": 0,
+          "sha256": "91f3f81beea57b8173f2c82b6d810556b54ed91e6f2db31db942c759824c491a"
+        }
+      },
+      "dev_fault_f1": {
+        "cpu": {
+          "count": 1392,
+          "sha256": "079ab33a16ebbb7709dea958b0318eb54dfd7cb34673ef21de2f145b6761101c"
+        },
+        "cuda": {
+          "count": 1392,
+          "sha256": "079ab33a16ebbb7709dea958b0318eb54dfd7cb34673ef21de2f145b6761101c"
+        }
+      }
+    },
+    "reported_cpu_cuda_max_absolute_differences": {
+      "comparison_rule": "IEEE float64 exact equality to the frozen decimal values under the exactly bound runtime and scientific implementation; no tolerance, rounding, or fallback is permitted",
+      "dev_healthy": {
+        "energy": 2.3163693185779266e-11,
+        "directional_glr": 3.6193270602780103e-13,
+        "standardized_evidence": 0.1712539623305891,
+        "cusum": 0.2184869636321487,
+        "envelope": 0.21800327523659302
+      },
+      "dev_fault_f1": {
+        "energy": 1.724401954561472e-09,
+        "directional_glr": 6.252776074688882e-12,
+        "standardized_evidence": 0.0,
+        "cusum": 0.0,
+        "envelope": 0.0
+      }
+    },
+    "exact_reproduction_required_for_pass": true,
+    "no_target_may_be_changed_after_numeric_access": true
+  },
+  "output_contract": {
+    "directory": "outputs/metropt_cared_bc_gpu_v1_1_portability",
+    "create_new_only": true,
+    "partial_bundle_fails_closed_without_numeric_reentry": true,
+    "runtime_or_scientific_failures_after_preflight_record_and_intent_before_artifact_manifest_commit_require_authenticated_abort": true,
+    "any_atomic_record_or_completion_io_failure_may_leave_only_a_partial_fail_closed_bundle": true,
+    "partial_bundle_never_authorizes_retry_calibration_or_confirmation": true,
+    "runtime_preflight_record_before_loader_required": true,
+    "pickle_free_full_evidence_required": true,
+    "completed_reentry_must_not_read_csv": true,
+    "implementation_snapshot_required_before_numeric_access": true,
+    "calibration_access_authorized_directly_by_this_protocol": false,
+    "final_analysis_protocol_still_required_after_pass": true
+  },
+  "outcome_policy": {
+    "pass_decision": "PASS_DEVELOPMENT_POWER_GATE",
+    "failure_decision": "ABORTED_BEFORE_CALIBRATION_NUMERIC_ACCESS",
+    "failure_next_method_family": "MB-CycleMIL-BC",
+    "further_cared_bc_repair_after_failure_forbidden": true,
+    "calibration_and_confirmation_remain_sealed_on_failure": true
+  }
+}

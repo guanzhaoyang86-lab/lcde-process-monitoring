@@ -1,0 +1,128 @@
+{
+  "schema": "metropt_cared_bc_preaccess_amendment",
+  "schema_version": 1,
+  "amendment_id": "metropt_cared_bc_v0_preaccess_amendment_001",
+  "created_date": "2026-09-07",
+  "status": "FROZEN_BEFORE_ANY_SENSOR_NUMERIC_ACCESS",
+  "parent_charter": {
+    "path": "protocols/metropt_cared_bc_v0_development_charter.json",
+    "sha256": "11beddf51f11a42b8a41fb25954179e7612c387d0dad3bd74980202e63314382"
+  },
+  "scope": {
+    "reason": "A pre-access implementation audit identified ambiguities and defects affecting online causality, raw-gap resets, tied empirical ranks, day qualification, event latency, state pooling, artifact validation, and enforcement of partition authorization.",
+    "sensor_numeric_values_accessed_before_freeze": false,
+    "timestamp_only_audit_already_completed": true,
+    "method_family_changed": false,
+    "sealed_partitions_remain_sealed": true,
+    "precedence": "This amendment controls where it is more specific than the parent development charter. All other parent-charter requirements remain unchanged.",
+    "not_a_final_calibration_or_confirmation_protocol": true
+  },
+  "online_forecast_and_score_causality": {
+    "training_windows": "Target-complete fit/dev windows may require the predeclared future targets because they are used only for offline self-supervised fitting and validation.",
+    "inference_windows": "Forecast-issuance windows require only the ten eligible minutes ending at their anchor and must not depend on any value, missingness flag, or eligibility flag after the anchor.",
+    "score_at_t": "A score at minute t uses the observed values through t and forecasts issued at t-1, t-3, and t-5 for their matching horizons.",
+    "availability_invariance": "Changing values, missingness, or eligibility after t must not change whether a score exists at or before t, nor any such score value or alarm decision.",
+    "day_boundary": "Every issuance window and each issuance-to-target path must stay within one dataset-native calendar day.",
+    "future_missingness_selection_forbidden": true
+  },
+  "raw_gap_reset": {
+    "trigger": "A strictly greater than 60 second difference between consecutive raw timestamps.",
+    "minute_mapping": "Set reset_before=true for the minute containing the later raw record, including when the two records occupy adjacent one-minute bins.",
+    "interval_start": "The first minute of every separately loaded governed partition has reset_before=true.",
+    "exactly_60_seconds_resets": false,
+    "training_window_may_cross_reset": false,
+    "inference_window_may_cross_reset": false,
+    "forecast_path_may_cross_reset": false,
+    "cusum": "The Page CUSUM must accept an explicit reset-before vector and combine it with dataset-native midnight and observed score-timestamp gaps strictly greater than 60 seconds."
+  },
+  "empirical_rank_ties": {
+    "rule": "For each channel, use the midpoint of the left and right insertion ranks for tied reference values before applying the frozen probability formula.",
+    "probability": "p=(midrank+0.5)/(n+1)",
+    "constant_reference_behavior": "A query equal to an all-constant reference maps exactly to zero Gaussian evidence.",
+    "zero_direction_atom_may_not_create_positive_cusum_drift": true
+  },
+  "minute_coverage_and_eligibility": {
+    "audited_modal_raw_period_seconds": 10,
+    "nominal_raw_samples_per_complete_minute": 6,
+    "coverage_fraction": "min(source_row_count_per_bin/6, 1)",
+    "minimum_coverage_fraction_inclusive": 0.5,
+    "minimum_raw_samples_per_eligible_minute": 3,
+    "other_requirements": [
+      "the minute contains at least one raw observation",
+      "all seven analogue aggregates are observed and finite",
+      "all six safe control inputs are finite after the parent-charter causal state-only forward-fill rule"
+    ],
+    "coverage_or_masks_are_model_inputs": false
+  },
+  "complete_and_qualified_days": {
+    "complete_day": "A full dataset-native [00:00,24:00) calendar day wholly contained in its governed partition.",
+    "theoretical_score_count_per_complete_day": 1426,
+    "derivation": "1440 one-minute bins minus the first 14 minutes required by a ten-minute issuance history and the five-minute forecast alignment.",
+    "minimum_score_fraction_inclusive": 0.8,
+    "minimum_valid_score_count_inclusive": 1141,
+    "zero_score_day": "unqualified and explicitly reported",
+    "partial_first_or_last_day": "unqualified and explicitly reported",
+    "development_requirement": "All nine complete dev_healthy dates must qualify; otherwise the development power gate aborts before calibration access.",
+    "calibration_requirement": "Only qualified complete days enter the block-conformal order statistic, and at least 39 must qualify.",
+    "confirmation_healthy_rate_denominator": "Only qualified complete healthy days after the frozen fault and 72-hour recovery exclusions."
+  },
+  "development_f1_alarm_semantics": {
+    "comparison": "strictly greater than the provisional threshold",
+    "detection_point": "the first scored minute in F1 whose two-channel CUSUM envelope is strictly greater than the threshold",
+    "availability_time": "The aggregate labelled minute t becomes available at t plus one minute, after that minute closes.",
+    "latency_origin": "2020-04-18 00:00:00",
+    "no_alarm_latency": "+infinity and gate failure",
+    "maximum_latency_minutes_inclusive": 60,
+    "pre_event_alarm_credit": false,
+    "partition_start_reset_required": true
+  },
+  "control_state_pooling": {
+    "frequent_state_minimum_fit_minutes_inclusive": 500,
+    "no_frequent_state_action": "fail closed before fitting the scorer",
+    "distance": "Hamming distance over the five frozen binary control-state channels in their charter order",
+    "tie_break": "lexicographic order of the explicit five-bit control tuple, ascending"
+  },
+  "governed_numeric_entry": {
+    "formal_runner_must_use_authorized_partition_loader": true,
+    "required_inputs": [
+      "authenticated workspace access ledger",
+      "authenticated phase access intent",
+      "authenticated phase-manifest fingerprint",
+      "exact frozen partition name",
+      "authenticated timestamp-only audit"
+    ],
+    "checks_before_sensor_numeric_parsing": [
+      "the partition is authorized for the intent phase",
+      "start and stop equal the frozen left-closed right-open boundaries",
+      "the timestamp-only row count equals the frozen partition row count",
+      "the source identity matches the charter",
+      "development credentials cannot request calibration, embargo, confirmation, or post-study partitions"
+    ],
+    "arbitrary_subintervals_in_formal_runs": false,
+    "lower_level_arbitrary_interval_loader": "not an authorized formal-experiment entry point"
+  },
+  "frozen_artifact_invariants": {
+    "ensemble_seeds": [17, 29, 43],
+    "monitoring_feature_count": 31,
+    "page_kappa": 0.5,
+    "maximum_gap_seconds": 60,
+    "reference_shrinkage_count": 500,
+    "direction_shrinkage_count": 500,
+    "rank_clip": [-4, 8],
+    "direction_and_reference_state_codes_must_match": true,
+    "npz_pickle_allowed": false,
+    "loaders_must_reject_structurally_valid_but_method_incompatible_artifacts": true
+  },
+  "required_pre_access_tests": [
+    "future missingness does not alter scores or alarms at or before the intervention time",
+    "a 70-second raw gap across adjacent minute bins resets and blocks every crossing window",
+    "an exactly 60-second raw gap does not independently reset",
+    "explicit CUSUM reset begins from zero before adding current evidence",
+    "constant tied rank references map their atom to zero and do not create positive Page drift",
+    "unauthorized partition requests fail before a numeric sensor scan",
+    "partial, zero-score, and under-covered days are excluded deterministically",
+    "no frequent control state fails closed",
+    "frozen artifact invariants are verified on load",
+    "formal runner imports PyTorch before NumPy in the validated Windows CUDA environment"
+  ]
+}

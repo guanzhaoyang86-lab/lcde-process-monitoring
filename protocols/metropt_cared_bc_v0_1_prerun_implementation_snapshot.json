@@ -1,0 +1,47 @@
+{
+  "schema": "metropt_cared_bc_prerun_implementation_snapshot",
+  "schema_version": 1,
+  "snapshot_id": "metropt_cared_bc_v0_1_recovery_prerun_20260907",
+  "created_date": "2026-09-07",
+  "status": "FROZEN_BEFORE_RECOVERY_DEVELOPMENT_RUN_AND_BEFORE_CALIBRATION_OR_CONFIRMATION_ACCESS",
+  "protocol_bindings": {
+    "development_charter_sha256": "11beddf51f11a42b8a41fb25954179e7612c387d0dad3bd74980202e63314382",
+    "preaccess_amendment_001_sha256": "9b998cd4866097443971f0f1fe6a18b6f9aba26964c164ed6a47d7684143bc83",
+    "recovery_amendment_002_sha256": "cf68a99a74ac1505975987785222d3095c8243394d13f60d5134ca8b4fe7f9bc",
+    "timestamp_daily_audit_sha256": "f3ece710913539ce8961c9eac981b835d97c6bda70aa3c32c44e5c87def0a9cd",
+    "development_coverage_diagnostic_sha256": "764f321b36f038d85d62de08c71347e068ac15cfc8f8970ba44260d3bd9817cc"
+  },
+  "prior_failed_run": {
+    "output_directory": "outputs/metropt_cared_bc_gpu_v0",
+    "abort_sha256": "08d570c0a044a56cf5b91237ceb8a3c501aacfb84e05e2c4ddf9cb13a3ccaf14",
+    "completion_sha256": "c57d421901ea1f38ea14d1412740439f5a2276cca15b51df27f83a74a3f4ebf6",
+    "remains_immutable": true
+  },
+  "implementation_files": [
+    {"path": "src/mate_spc_metropt/data.py", "size_bytes": 41420, "sha256": "8c5766400d6bc916f8676f6f030df228f2bafbf7734c373d73a95c9b6bc3da64"},
+    {"path": "src/mate_spc_metropt/model.py", "size_bytes": 92730, "sha256": "28d08ff51533a3a52453d12042e99f03b4ec0691ae41eab7b919c3122f0a83a9"},
+    {"path": "src/mate_spc_metropt/governance.py", "size_bytes": 53105, "sha256": "389c33a0058656f71104143e29c9fd8f4fb421f72d78cfa860ddf7a97db46471"},
+    {"path": "src/mate_spc_metropt/__init__.py", "size_bytes": 984, "sha256": "281dd3961d9abdb052444814cbe73947bce40bc91844f02f38587e6fd230788b"},
+    {"path": "scripts/run_metropt_cared_bc_gpu.py", "size_bytes": 83880, "sha256": "93377b3296986788950c353f007b63a393a3c25fe1d3a109cd749edc0042abdb"}
+  ],
+  "test_files": [
+    {"path": "tests/test_metropt_cared_data.py", "size_bytes": 20934, "sha256": "89f0e86c4d39a52fff2ad5eb77d8b8304908cbb09d85937ee88a642acfbe597b"},
+    {"path": "tests/test_metropt_cared_model.py", "size_bytes": 24552, "sha256": "f6febbb1b01a190d60c969f1d24ac59c019f81198fe75fd3994b36f4d83008df"},
+    {"path": "tests/test_metropt_cared_governance.py", "size_bytes": 21922, "sha256": "59b794b711a14febcc0b6c99f32be57396e04a1398fd3efebe53d816d5845f5a"},
+    {"path": "tests/test_run_metropt_cared_bc_gpu.py", "size_bytes": 41058, "sha256": "6f97981ed815ed74fb2b8629b8576b337d390c04b204ae51312c0c587f549c06"}
+  ],
+  "verification": {
+    "result": "PASS",
+    "pytest_passed": 278,
+    "pytest_failed": 0,
+    "pytest_subtests_passed": 42,
+    "elapsed_seconds": 22.85,
+    "runner_synthetic_passed": 19,
+    "torch_version": "2.10.0.dev20251124+cu128",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA GeForce RTX 5090 Laptop GPU",
+    "recovery_output_directory_absent": true,
+    "calibration_numeric_access_before_snapshot": false,
+    "confirmation_numeric_access_before_snapshot": false
+  }
+}

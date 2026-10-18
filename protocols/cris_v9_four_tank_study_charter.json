@@ -1,0 +1,187 @@
+{
+  "schema": "cris_v9_four_tank_study_charter",
+  "schema_version": 3,
+  "protocol_id": "cris-v9-four-tank-development-and-confirmation-v3",
+  "created_utc": "2026-09-09T15:25:00Z",
+  "state": "PREREGISTERED_BEFORE_CONFIRMATION_GENERATION",
+  "history": {
+    "v1_file_sha256": "c8631c889a76908e73c88861728aa1f16a37fd22514a3468f0d0181f01d38c3c",
+    "v2_amendment_before_any_study_generation_or_numeric_access": "set trajectory alpha to 0.05 so its finite-sample target is coherent with the preregistered 11/200 confirmation gate",
+    "v2_file_sha256": "32d80bb077b781ca7c6822355d8be9820b89b9f077c22c42ae064809b9c47cbf",
+    "v3_amendment_before_any_designated_seed_generation": "close the covariate-support, post-treatment-conditioning, episode-matching, fixed-runtime, monitor-state, and baseline-definition issues found by the independent design review",
+    "v8_outcome": "TERMINAL_ACCESS_INTENT_HANDSHAKE_ABORT_WITHOUT_NUMERIC_EXECUTION",
+    "v8_same_candidate_repair_or_rerun": "FORBIDDEN",
+    "cris_v9_is_genuinely_new_hypothesis": true,
+    "extended_tep_mode2_use": "FORBIDDEN",
+    "rieth_use": "FORBIDDEN"
+  },
+  "simulator": {
+    "system": "nonlinear closed-loop quadruple-tank process",
+    "sample_period_seconds": 1.0,
+    "trajectory_length": 600,
+    "fault_onset_index": 300,
+    "raw_observation_channels": ["level_1", "level_2", "level_3", "level_4"],
+    "raw_control_channels": ["setpoint_1", "setpoint_2", "pump_1_command", "pump_2_command"],
+    "model_target_channels": ["level_1", "level_2", "level_3", "level_4", "pump_1_command", "pump_2_command"],
+    "model_exogenous_covariates": ["setpoint_1", "setpoint_2"],
+    "post_treatment_pump_commands_as_covariates": "FORBIDDEN",
+    "healthy_setpoint_support": [[10.5, 15.0], [10.5, 15.0]],
+    "healthy_setpoint_block_length": 75,
+    "healthy_setpoint_offset_normal_sd": 0.75,
+    "healthy_setpoint_offset_clip": 1.5,
+    "covariate_shift_only_offsets": [0.65, -0.55],
+    "covariate_shift_only_rule": "new trajectory and transitions inside the healthy operating envelope",
+    "fault_families": ["sensor_bias", "intermittent_pump", "valve_stiction", "dependence_shift"],
+    "negative_controls": ["healthy", "covariate_shift_only"],
+    "counterfactual_rule": "same seed produces byte-identical prefault x/c/noise path for healthy and each intervention",
+    "fault_effect_alignment": {
+      "sensor_bias": "fault_mask starts at intervention index t",
+      "intermittent_pump": "an intervention at t first affects the observation at t+1",
+      "valve_stiction": "an intervention at t first affects the observation at t+1",
+      "dependence_shift": "an intervention at t first affects the observation at t+1"
+    },
+    "confirmation_generation_before_method_freeze": "FORBIDDEN"
+  },
+  "development_seed_roles": {
+    "healthy_model_fit": {"first": 100001, "last": 100400, "count": 400},
+    "healthy_point_reference": {"first": 200001, "last": 200200, "count": 200},
+    "healthy_threshold_calibration": {"first": 300001, "last": 300200, "count": 200},
+    "development_healthy": {"first": 400001, "last": 400200, "count": 200},
+    "development_sensor_bias": {"first": 410001, "last": 410200, "count": 200},
+    "development_intermittent_pump": {"first": 420001, "last": 420200, "count": 200},
+    "development_valve_stiction": {"first": 430001, "last": 430200, "count": 200},
+    "development_dependence_shift": {"first": 440001, "last": 440200, "count": 200},
+    "development_covariate_shift_only": {"first": 450001, "last": 450200, "count": 200}
+  },
+  "confirmation_seed_roles": {
+    "confirmation_healthy": {"first": 900001, "last": 900200, "count": 200},
+    "confirmation_sensor_bias": {"first": 910001, "last": 910200, "count": 200},
+    "confirmation_intermittent_pump": {"first": 920001, "last": 920200, "count": 200},
+    "confirmation_valve_stiction": {"first": 930001, "last": 930200, "count": 200},
+    "confirmation_dependence_shift": {"first": 940001, "last": 940200, "count": 200},
+    "confirmation_covariate_shift_only": {"first": 950001, "last": 950200, "count": 200}
+  },
+  "method": {
+    "id": "CRIS-v9",
+    "document": "docs/cris_v9_method.md",
+    "context_length": 60,
+    "prediction_horizons": [1, 5, 15],
+    "student_t_df": 5.0,
+    "conditional_scale": "positive diagonal",
+    "gru_layers": 2,
+    "gru_hidden_width": 64,
+    "training_epochs": 40,
+    "training_batch_size": 1024,
+    "training_seed": 20260915,
+    "gradient_clip_norm": 1.0,
+    "inference_batch_size": 2048,
+    "minimum_scale": 0.0001,
+    "optimizer": {"name": "AdamW", "learning_rate": 0.0003, "weight_decay": 0.0001},
+    "rolling_scales": [4, 16, 64],
+    "innovation_moments": ["signed_location", "scale", "lag1_dependence"],
+    "power_betting_eta": 0.5,
+    "hmm_modes": [
+      {"rho": 0.02, "lambda": 0.2},
+      {"rho": 0.1, "lambda": 0.5}
+    ],
+    "trajectory_alpha": 0.05,
+    "alarm_comparison": "strictly_greater_than",
+    "reset_gap": 64,
+    "hmm_initial_state": [1.0, 0.0],
+    "unknown_semantics": "missing components hold their own HMM state; available enabled components continue; combination denominator remains fixed; 64 consecutive missing samples reset a component",
+    "point_rank_validity": "empirical tail-rank feature only; no conformal-p-value or e-value claim under serial dependence",
+    "false_alarm_control_source": "outer independent healthy-trajectory maximum rank only",
+    "candidates": [
+      {"id": "cris-k1-equal", "top_k": 1, "moment_weights": [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]},
+      {"id": "cris-k2-equal", "top_k": 2, "moment_weights": [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]},
+      {"id": "cris-k2-location", "top_k": 2, "moment_weights": [0.5, 0.25, 0.25]}
+    ]
+  },
+  "selection": {
+    "data": "development roles only",
+    "rule": [
+      "require development healthy alarm rate <= 0.10",
+      "require covariate-shift-only alarm rate <= 0.10",
+      "maximize minimum four-fault recall",
+      "minimize total pre-onset false-alarm runs",
+      "minimize worst-family median relative delay",
+      "prefer earlier candidate order"
+    ],
+    "selected_candidate_count": 1,
+    "adaptive_candidates_outside_fixed_list": "FORBIDDEN",
+    "candidate_specific_threshold_recalibration_after_selection": "FORBIDDEN",
+    "confirmation_unlock": "FORBIDDEN until the selected candidate passes every development_go_gate"
+  },
+  "development_go_gates": {
+    "healthy_alarm_rate_max": 0.1,
+    "covariate_shift_only_alarm_rate_max": 0.1,
+    "each_persistent_fault_recall_min": 0.75,
+    "intermittent_pump_recall_min": 0.7,
+    "each_fault_median_relative_delay_max": 0.3,
+    "all_conditions_required": true
+  },
+  "confirmation_go_gates": {
+    "healthy_alarm_runs_max": 11,
+    "healthy_denominator": 200,
+    "healthy_one_sided_cp95_upper_max": 0.1,
+    "sensor_bias_recall_min": 0.8,
+    "valve_stiction_recall_min": 0.8,
+    "dependence_shift_recall_min": 0.8,
+    "intermittent_pump_recall_min": 0.75,
+    "each_fault_median_relative_delay_max": 0.25,
+    "covariate_shift_only_alarm_rate_max": 0.1,
+    "cuda_repeat_score_atol": 0.000001,
+    "cuda_alarm_decisions_exact": true,
+    "all_conditions_required": true
+  },
+  "episode_evaluation": {
+    "fault_mask_semantics": "first physically affected observation",
+    "intermittent_right_grace_samples": 5,
+    "intermittent_detection_credit": "first alarm on an active fault_mask sample or within the fixed right-sided grace after an active sample",
+    "intermittent_inactive_gap_alarms": "reported separately and receive no detection credit",
+    "persistent_detection_credit": "first alarm where fault_mask is true",
+    "pre_effect_alarm": "reported as false positive and receives no detection credit",
+    "miss_delay": "trajectory_length minus first affected observation",
+    "continuous_alarm_from_before_effect": "does not receive detection credit until a new false-to-true alarm onset occurs in the eligible matching mask"
+  },
+  "baselines": [
+    {
+      "id": "pca_t2_plus_q",
+      "input": "six model target channels",
+      "healthy_fit_role": "healthy_model_fit",
+      "variance_fraction": 0.9,
+      "point_score": "T2/healthy_mean_T2 + Q/healthy_mean_Q",
+      "threshold_role": "healthy_threshold_calibration",
+      "trajectory_alpha": 0.05
+    },
+    {
+      "id": "energy_cusum",
+      "input": "six standardized model target channels",
+      "healthy_fit_role": "healthy_model_fit",
+      "allowance": 0.5,
+      "threshold_role": "healthy_threshold_calibration",
+      "trajectory_alpha": 0.05
+    },
+    {
+      "id": "predictive_residual_cusum",
+      "input": "all finite CRIS innovations reduced to mean squared energy",
+      "healthy_fit_role": "healthy_point_reference",
+      "allowance": 0.5,
+      "threshold_role": "healthy_threshold_calibration",
+      "trajectory_alpha": 0.05
+    }
+  ],
+  "superiority_gate": {
+    "minimum_fault_families_with_recall_gain": 3,
+    "recall_gain_min": 0.1,
+    "baseline_healthy_alarm_rate_must_not_be_exceeded": true
+  },
+  "governance": {
+    "complete_trajectory_is_independent_unit": true,
+    "rows_windows_channels_and_views_are_not_independent_units": true,
+    "confirmation_global_claim_required": true,
+    "same_confirmation_candidate_rerun_after_claim": false,
+    "producer_consumer_integration_test_required": true,
+    "confirmation_outcome_reported_once_regardless_of_pass_or_fail": true
+  }
+}

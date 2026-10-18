@@ -1,0 +1,247 @@
+{
+  "schema": "hydraulic_padr_pac_analysis_protocol",
+  "schema_version": 4,
+  "protocol_id": "hydraulic_padr_pac_v1_3",
+  "protocol_version": "1.3",
+  "frozen_before_sensor_access": false,
+  "base_protocol_frozen_before_sensor_access": true,
+  "frozen_after_development_sensor_access": true,
+  "frozen_after_healthy_calibration_sensor_access": true,
+  "amendment_frozen_before_confirmation_sensor_access": true,
+  "frozen_date": "2026-09-07",
+  "status": "prospective_external_confirmation_validator_amendment",
+  "method_name": "PAC-PADR-CUSUM",
+  "method_expansion": "PAC-calibrated phase-aligned directional residual CUSUM",
+  "parent_protocol": {
+    "protocol_id": "hydraulic_padr_pac_v1_2",
+    "filename": "hydraulic_padr_pac_v1_2_analysis.json",
+    "sha256": "42003f3f1b394b2284ee82e7558d3d421b6ece7a81c45dae4a8a56e963a58efa"
+  },
+  "aborted_parent_attempt": {
+    "record_path": "outputs/hydraulic_padr_pac_gpu_v1_2/ABORTED.json",
+    "sha256": "8ffe81d25167aaac5344d35607b372e50bf58bd55120de6eb0518ca6e513ea76",
+    "status": "ABORTED_BEFORE_CONFIRMATION_SENSOR_ACCESS"
+  },
+  "inherited_prior_lineage": {
+    "v1_2_parent_protocol": {
+      "protocol_id": "hydraulic_padr_pac_v1_1",
+      "filename": "hydraulic_padr_pac_v1_1_analysis.json",
+      "sha256": "81b0aecdae8ef964686bc6d3939fa03e717158dbb928f9b3a8d917514708984f"
+    },
+    "v1_2_aborted_parent_attempt": {
+      "record_path": "outputs/hydraulic_padr_pac_gpu_v1_1/ABORTED.json",
+      "sha256": "c411736cf12027bb4b50d4c8e8e187ad563f2bd8c98295bb2b871c77a4f3d6c7",
+      "status": "ABORTED_BEFORE_METHOD_FREEZE"
+    },
+    "base_protocol": {
+      "protocol_id": "hydraulic_padr_pac_v1",
+      "filename": "hydraulic_padr_pac_v1_analysis.json",
+      "sha256": "24809b4c89cc1cd72c08c2442489d4498e279a82dc9b040b8eaabc8bfe8f3d67"
+    },
+    "aborted_v1_attempt": {
+      "record_path": "outputs/hydraulic_padr_pac_gpu_v1/ABORTED.json",
+      "sha256": "1efa46813ebd8993e3a54710f03207e97dfa853d7e268c346feda5ed4f9359bb",
+      "status": "ABORTED_BEFORE_METHOD_FREEZE"
+    }
+  },
+  "frozen_parent_development": {
+    "protocol_id": "hydraulic_padr_pac_v1_2",
+    "output_directory": "outputs/hydraulic_padr_pac_gpu_v1_2",
+    "development_manifest_sha256": "192ea5af010d3f60d01ad7c837bf5e39ebcc01a848272523759ca474378894ab",
+    "development_manifest_fingerprint": "4aaa478bd9841d2a8a8c7b375e0210da51113854d9ae953e7cef7f05aa13f0eb",
+    "development_access_intent_sha256": "15463ec3df837fc3efad175a901e0351a1a8bbb992ab18811f4664549d235abd",
+    "development_completion_sha256": "2c2610dc7f5010312a95c8ea5060f3c91243fcf317f304981373b0db7820dd34",
+    "development_completion_fingerprint": "3e33b8cf8b8fc30628665bec0b076ecdc0156f23242fc00435c770cfdc4a62f1",
+    "calibrated_model_sha256": "7f016deef19abc930764981939e852e8db610f4f3d595ed378b27be6916b76d1",
+    "phase_template_sha256": "e71247efaa232f1ae037ff5ccd5401913e4ad5466ab79b78fe7e787e46e272e4",
+    "development_result_sha256": "85b9aac7d31e39b6006b83b5408f10c39b316419cb5121e2bf0615d32d17f3d5",
+    "calibration_certificate_sha256": "0606b8d2d76a56b7a9b7a78f08487a4e36072627e93456ee608d064f50ccbbd7",
+    "cuda_validation_development_sha256": "dee9b79b7fa16afc7b2a97b366ef7df58635e9c411ccd0e617414b01ffea6e5b",
+    "gpu_execution_development_sha256": "3a8c26535d1d1b1af090cbbb9f2172fa9335d9ef5b0fc3b3f98a2c5870eeebe1"
+  },
+  "amendment": {
+    "scope": "confirmation_entry_validator_representation_only",
+    "trigger": "v1.2 completed and froze development and healthy calibration, but confirmation entry failed closed before its manifest, ledger, or sensor access because the validator compared raw protocol nuisance identifiers against the model's existing string:-canonical identifiers",
+    "only_change": {
+      "confirmation_authentication.expected_cv_held_out_nuisance_groups": {
+        "from": "{raw_protocol_group}",
+        "to": "string:{raw_protocol_group}",
+        "reason": "mate_spc_hydraulic.model._normalize_nuisance_groups canonically prefixes nonempty string identifiers with string: before CV results are serialized",
+        "training_scoring_threshold_gate_or_numeric_result_changed": false
+      }
+    },
+    "frozen_v1_2_development_artifacts_bound_as_reference": true,
+    "deterministic_development_replay_required_in_new_v1_3_output": true,
+    "development_values_previously_accessed": true,
+    "healthy_calibration_values_previously_loaded_transformed_calibrated_and_scored": true,
+    "calibration_fault_values_accessed": false,
+    "confirmation_values_decoded_or_numerically_parsed": false,
+    "confirmation_manifest_created": false,
+    "confirmation_access_ledger_created": false,
+    "confirmation_fit_selection_calibration_or_scoring_performed": false
+  },
+  "inputs": {
+    "acquisition_protocol_sha256": "25840109b6f75fe2e56ecd0dc259da0bd356205e1bd706596e26c9334f88e74d",
+    "label_audit_fingerprint": "2983dea038f1272ddc354a468e1c6427fec7d27ab71e1f73a8703060d0b5114a",
+    "archive_sha256": "24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2",
+    "profile_sha256": "867987ca884b2f0fd607ad3918329eba887d095af2befa21122cea518eaa584a"
+  },
+  "estimand": {
+    "analysis_unit": "one official stable 60-second hydraulic load cycle",
+    "healthy": "stable_flag=0 and valve_condition_percent=100",
+    "fault_severities": [90, 80, 73],
+    "nuisance_group": [
+      "cooler_condition_percent",
+      "internal_pump_leakage",
+      "hydraulic_accumulator_bar"
+    ],
+    "other_component_labels_used_as_model_inputs": false,
+    "pac_claim": "distribution-free run-maximum risk bound under exchangeability of calibration and future cycles",
+    "serial_dependence_caveat": "episodes are kept intact across partitions and episode-level sensitivity is mandatory; the PAC statement is conditional on cycle exchangeability"
+  },
+  "split": {
+    "unit": "complete nuisance group containing all four valve episodes",
+    "salt": "HYDRAULIC-PADR-PAC-v1",
+    "ordering": "ascending SHA256(salt + '|' + group_key), then group_key",
+    "group_key_format": "C{cooler:03d}-P{pump}-A{accumulator:03d}",
+    "development_groups": [
+      "C100-P1-A115",
+      "C003-P0-A130",
+      "C020-P1-A115",
+      "C003-P1-A100",
+      "C003-P1-A090",
+      "C100-P0-A100",
+      "C020-P1-A130",
+      "C020-P2-A115",
+      "C100-P2-A115",
+      "C003-P1-A115",
+      "C100-P0-A130",
+      "C003-P2-A090",
+      "C003-P0-A100",
+      "C020-P0-A115",
+      "C020-P2-A090",
+      "C003-P0-A090",
+      "C020-P0-A130",
+      "C003-P2-A115"
+    ],
+    "calibration_groups": [
+      "C100-P2-A090",
+      "C003-P1-A130",
+      "C100-P1-A130",
+      "C003-P2-A100",
+      "C100-P1-A090",
+      "C003-P2-A130",
+      "C020-P2-A130",
+      "C020-P0-A090",
+      "C100-P2-A130"
+    ],
+    "confirmation_groups": [
+      "C100-P0-A115",
+      "C100-P0-A090",
+      "C003-P0-A115",
+      "C020-P1-A090",
+      "C020-P0-A100",
+      "C020-P1-A100",
+      "C100-P2-A100",
+      "C100-P1-A100",
+      "C020-P2-A100"
+    ],
+    "expected_stable_cycle_counts": {
+      "development": {"100": 180, "90": 180, "80": 180, "73": 180},
+      "calibration": {"100": 90, "90": 90, "80": 90, "73": 90},
+      "confirmation": {"100": 99, "90": 90, "80": 90, "73": 90}
+    },
+    "confirmation_sensor_values_forbidden_until_method_frozen": true
+  },
+  "features": {
+    "time_grid": "60 causal non-overlapping one-second bins",
+    "high_rate_sensor_statistics": ["mean", "population_std", "minimum", "maximum"],
+    "one_hz_sensor_statistic": "observed value",
+    "level_channel_count": 44,
+    "phase_reference": "development healthy cycles only: per-second per-channel median",
+    "phase_scale": "1.4826*MAD with floor max(1e-6, 0.1 times the channel global healthy robust scale)",
+    "level_residual_clip": [-8.0, 8.0],
+    "causal_difference": "current clipped residual minus previous clipped residual, zero at second zero",
+    "output_channel_count": 88,
+    "future_values_used": false
+  },
+  "directional_model": {
+    "heads_in_order": [90, 80, 73],
+    "normal_label": 100,
+    "model": "three independent ridge-logistic density-ratio heads shared over cycle phase",
+    "training_samples": "all 60 phase rows from development cycles of normal and the head severity",
+    "weighting": "each nuisance-group by valve-class cell has equal total weight; phase rows share their cycle weight equally",
+    "ridge_lambda_grid": [0.0001, 0.001, 0.01, 0.1, 1.0],
+    "selection": "three-fold nuisance-group cross-validation minimizing mean cell-balanced binary log loss over heads; exact ties choose larger lambda",
+    "fold_ordering": "ascending SHA256('HYDRAULIC-PADR-PAC-v1-CV|' + group_key), round-robin into folds 0,1,2",
+    "optimizer": "PyTorch CUDA float64 LBFGS",
+    "max_iter": 2000,
+    "max_eval": 2500,
+    "tolerance_grad": 1e-7,
+    "tolerance_change": 1e-10,
+    "history_size": 100,
+    "required_device": "cuda",
+    "tf32": false
+  },
+  "online_statistic": {
+    "logit_reference": "development healthy cycles: per-phase per-head median and 1.4826*MAD",
+    "logit_scale_floor": "max(1e-6, 0.1 times head global healthy robust scale)",
+    "standardized_logit_clip": [-8.0, 8.0],
+    "page_kappa": 0.75,
+    "page_reset": "zero at the beginning of every official cycle",
+    "persistence": "3 of 3 consecutive one-second samples per head",
+    "envelope": "maximum persistent Page statistic across the three heads",
+    "run_loss": "maximum envelope over the complete 60-second cycle",
+    "alarm_comparison": "strictly greater than threshold",
+    "numerical_alarm_guard": {
+      "guard": 1e-10,
+      "guard_source": "the pre-existing frozen CPU/CUDA maximum-absolute-error tolerance",
+      "effective_boundary_rule": "nextafter(raw_pac_threshold + guard, positive_infinity)",
+      "comparison": "strictly greater than effective boundary",
+      "raw_pac_threshold_and_certificate_unchanged": true
+    }
+  },
+  "calibration": {
+    "data": "healthy cycles in calibration groups only",
+    "expected_count": 90,
+    "epsilon": 0.05,
+    "delta": 0.05,
+    "threshold_rule": "smallest one-sided binomial tolerance rank k with P(Binomial(n,1-epsilon)<=k-1)>=1-delta",
+    "minimum_count": 59,
+    "insufficient_action": "stop without a certificate",
+    "fault_cycles_in_calibration_groups_may_not_be_used": true
+  },
+  "confirmation": {
+    "single_access_after_freeze": true,
+    "healthy_maximum_alarms": 3,
+    "healthy_point_fap_maximum": 0.05,
+    "healthy_exact_one_sided_95pct_ucb_maximum": 0.08,
+    "minimum_recall_each_severity": 0.8,
+    "minimum_overall_fault_recall": 0.85,
+    "cpu_cuda_max_abs_error": 1e-10,
+    "cpu_cuda_alarm_decisions_exact": true,
+    "secondary_metrics": [
+      "episode-level false-alarm incidence",
+      "recall by complete nuisance group",
+      "median first-alarm second",
+      "severity-head attribution",
+      "calibration and confirmation score distributions"
+    ],
+    "decision_pass": "PASS_EXTERNAL_CONFIRMATION",
+    "decision_fail": "FAIL_EXTERNAL_CONFIRMATION_NO_RETUNING"
+  },
+  "governance": {
+    "source_hashes_and_data_file_hashes_locked_before_measurement_loading": true,
+    "development_may_select_only_ridge_lambda": true,
+    "calibration_may_set_only_the_pac_threshold": true,
+    "confirmation_may_not_change_any_method_or_gate": true,
+    "failed_confirmation_forbids_same_data_retuning": true,
+    "rieth_final_data_not_used": true,
+    "parent_v1_attempt_permanently_aborted": true,
+    "parent_v1_1_attempt_permanently_aborted": true,
+    "parent_v1_2_attempt_permanently_aborted": true,
+    "v1_2_completed_development_artifacts_bound_as_reference": true,
+    "v1_3_development_is_a_deterministic_replay_without_method_change": true,
+    "v1_3_validator_amendment_frozen_before_confirmation_numeric_access": true
+  }
+}

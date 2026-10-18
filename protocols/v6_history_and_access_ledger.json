@@ -1,0 +1,341 @@
+{
+  "schema": "pcf_cyclerank_v6_history_and_access_ledger",
+  "schema_version": 1,
+  "ledger_state": "UPDATED_AFTER_TERMINAL_V6_HANDSHAKE_ABORT_WITH_ZERO_HDF5_DECODE",
+  "audit_date": "2026-09-09",
+  "audit_scope": {
+    "inspected_roots": [
+      "docs",
+      "protocols",
+      "outputs"
+    ],
+    "hdf5_files_opened_by_this_audit": 0,
+    "hdf5_values_decoded_by_this_audit": 0,
+    "source_data_modified": false,
+    "evidence_rule": "Only durable text governance, manifest, result, and completion artifacts were used. Absence of an access artifact is not by itself proof; the positive no-access bindings recorded below are required for the Mode1 lockbox conclusion."
+  },
+  "access_levels": {
+    "PARTITION_DECODED": "A container library decoded a complete source partition before row selection. Unselected rows may remain administratively unscored, but the partition cannot be described as byte-level untouched.",
+    "SELECTED_OR_SCORED": "Numeric rows were selected, transformed, fitted, calibrated, scored, diagnosed, or used to choose a method. They are permanently exploratory or historical.",
+    "METADATA_ONLY": "Only source identity, group existence, status, shape, dtype, or seed metadata were inspected; no processdata or idv_init array value was decoded.",
+    "NEVER_NUMERIC_ACCESSED": "Durable phase records explicitly bind zero authorized opens and zero numeric reads for the named HDF5 branch."
+  },
+  "source_identities": {
+    "extended_tep_mode1": {
+      "relative_path": "data/extended_tep_dtu_mode1/TEP_Mode1.h5",
+      "sha256": "d6b0ed0ef3974ff571afd6717ba0418a5b8eb58a7822c84a05735572d52b3294",
+      "size_bytes": 23924710848
+    },
+    "extended_tep_mode2": {
+      "relative_path": "data/extended_tep_dtu_mode2/TEP_Mode2.h5",
+      "sha256": "8462c0249761ae762a99028c7f8391620b68c69aaea4ecc961fe482799c974b4",
+      "size_bytes": 23897125720
+    },
+    "rieth": {
+      "dataset_doi": "10.7910/DVN/6C3JR1",
+      "container_semantics": "pyreadr decodes a complete authorized RData partition before exact fault/run selection"
+    }
+  },
+  "method_history": [
+    {
+      "method_version": "PCLR-CUSUM-v2",
+      "source": "Extended TEP Mode1",
+      "numeric_role": "magnitude50 IDV1/3/9/15 runs1-100 development",
+      "candidate_count": 27,
+      "decision": "DEVELOPMENT_NO_GO",
+      "selected_model_generated": false,
+      "mode1_magnitude25_or_75_accessed": false,
+      "evidence": [
+        "outputs/pclr_cusum_successor_v2/develop/access_intent.json",
+        "outputs/pclr_cusum_successor_v2/develop/development_result.json",
+        "outputs/pclr_cusum_successor_v2/develop/completion.json"
+      ]
+    },
+    {
+      "method_version": "MSCD-TCN-SPC-v3",
+      "source": "Extended TEP Mode1",
+      "numeric_role": "magnitude50 IDV1/3/9/15 runs1-100 development and development diagnostics",
+      "candidate_count": 4,
+      "decision": "DEVELOPMENT_NO_GO",
+      "selected_model_generated": false,
+      "mode1_magnitude25_or_75_accessed": false,
+      "evidence": [
+        "outputs/mstcn_spc_v3/development_iterations/mscd_tcn_spc_v3_strictjson_20260908/access_intent.json",
+        "outputs/mstcn_spc_v3/development_iterations/mscd_tcn_spc_v3_strictjson_20260908/development_result.json",
+        "outputs/mstcn_spc_v3/development_iterations/mscd_tcn_spc_v3_strictjson_20260908/completion.json",
+        "outputs/mstcn_spc_v3_diagnostics/separability.json"
+      ]
+    },
+    {
+      "method_version": "CF-Max-GLR15-v4",
+      "source": "Extended TEP Mode1",
+      "numeric_role": "magnitude50 IDV1/3/9/15 runs1-100 development",
+      "candidate_count": 1,
+      "decision": "DEVELOPMENT_NO_GO",
+      "selected_model_generated": false,
+      "mode1_magnitude25_or_75_accessed": false,
+      "evidence": [
+        "outputs/cf_max_glr15_v4/development_iterations/cf_max_glr15_v4_fixed_20260908/access_intent.json",
+        "outputs/cf_max_glr15_v4/development_iterations/cf_max_glr15_v4_fixed_20260908/development_result.json",
+        "outputs/cf_max_glr15_v4/development_iterations/cf_max_glr15_v4_fixed_20260908/completion.json"
+      ]
+    },
+    {
+      "method_version": "CP-ETC-Scan-v5",
+      "source": "Extended TEP Mode2",
+      "numeric_role": "magnitude50 IDV1/3/9/15 runs1-100 metadata-only topology audit",
+      "candidate_count": 1,
+      "decision": "DATA_CONTRACT_NO_GO",
+      "reason": "400 selected records contained 395 rather than 400 unique seed values",
+      "processdata_or_idv_init_values_decoded": false,
+      "evidence": [
+        "outputs/cp_etc_scan_v5/governance/mode2_first_access_intent.json",
+        "outputs/cp_etc_scan_v5/governance/v5_data_contract_no_go.json"
+      ]
+    },
+    {
+      "method_version": "CP-ETC-Scan-v5.1",
+      "source": "Extended TEP Mode2",
+      "numeric_role": "magnitude50 IDV1/3/9/15 runs1-100 full five-fold numeric development",
+      "candidate_count": 1,
+      "decision": "DEVELOPMENT_NO_GO",
+      "selected_model_generated": false,
+      "mode1_access_authorized": false,
+      "mode1_hdf5_opens_or_value_reads": 0,
+      "mode1_accessed": false,
+      "evidence": [
+        "protocols/cp_etc_scan_v5_1_mode2_development.json",
+        "outputs/cp_etc_scan_v5_1/development_access.claim.json",
+        "outputs/cp_etc_scan_v5_1/development_iterations/v5_1_fixed_formal_20260909/access_intent.json",
+        "outputs/cp_etc_scan_v5_1/development_iterations/v5_1_fixed_formal_20260909/development_result.json",
+      "outputs/cp_etc_scan_v5_1/development_iterations/v5_1_fixed_formal_20260909/completion.json"
+      ]
+    },
+    {
+      "method_version": "PCF-CycleRank-Scan-v6",
+      "candidate_id": "pcf-cyclerank-scan-v6-fixed",
+      "source": "Extended TEP Mode2",
+      "numeric_role": "magnitude50 IDV1/3/9/15 runs1-100 exact-selector intent committed but never exercised",
+      "candidate_count": 1,
+      "decision": "TERMINAL_PROTOCOL_HANDSHAKE_ABORT",
+      "scientific_go_or_no_go_available": false,
+      "reason": "The runner compared the exact persisted protocol-file SHA-256, including terminal LF, with the backend canonical-JSON SHA-256, excluding terminal LF.",
+      "frozen_protocol_file_sha256": "2b3cf4268b6f479b9944d2154aaec25d20b019a161143e78c783dd51fce98b7a",
+      "frozen_protocol_canonical_json_sha256": "9e7fcdaf9e84b6c3d062375ba3dbc09444c7dcb569c2ef5aef2d92fe8200d4ff",
+      "access_plan_sha256": "74b19927fee7d31f33c3b64d62a0c5235b58ad41e5d2d7d28b583a6ff4e43466",
+      "claim_committed": true,
+      "access_intent_committed": true,
+      "same_candidate_rerun_authorized": false,
+      "hdf5_library_opens": 0,
+      "numeric_values_decoded": 0,
+      "training_started": false,
+      "selected_model_generated": false,
+      "mode1_access_authorized": false,
+      "mode1_hdf5_opens_or_value_reads": 0,
+      "mode1_accessed": false,
+      "evidence": [
+        "docs/pcf_cyclerank_v6_abort_audit.md",
+        "protocols/pcf_cyclerank_v6_mode2_development.json.commit.json",
+        "outputs/pcf_cyclerank_v6/development_access.claim.json",
+        "outputs/pcf_cyclerank_v6/v6_fixed_formal/preflight.json",
+        "outputs/pcf_cyclerank_v6/v6_fixed_formal/access_intent.json",
+        "outputs/pcf_cyclerank_v6/v6_fixed_formal/failure.json",
+        "outputs/pcf_cyclerank_v6/v6_fixed_formal/completion.json"
+      ]
+    }
+  ],
+  "v6_terminal_abort": {
+    "status": "TERMINAL_PROTOCOL_HANDSHAKE_ABORT",
+    "failure_stage": "backend_import_and_cuda_preflight",
+    "failure_type": "ValueError",
+    "failure_message": "numeric backend rejected the frozen v6 protocol",
+    "completion_label": "ABORTED_AFTER_NUMERIC_ACCESS",
+    "completion_label_interpretation": "Conservative post-intent state label only; positive phase evidence shows zero HDF5 library opens and zero numeric reads.",
+    "raw_source_byte_hashing_occurred": true,
+    "raw_source_byte_hashing_role": "cryptographic source identity verification only",
+    "hdf5_library_imported_or_opened": false,
+    "processdata_or_idv_init_values_decoded": false,
+    "backend_cuda_preflight_started": false,
+    "backend_run_development_started": false,
+    "folds_scored": 0,
+    "training_started": false,
+    "model_or_calibrator_generated": false,
+    "same_candidate_or_rescue_iteration_authorized": false,
+    "mode1_magnitude25_state": "SEALED",
+    "mode1_magnitude75_state": "SEALED",
+    "mode2_disposition_for_successor": "May be reused only as an already-consumed adaptive exploratory pool for a genuinely new v7 candidate.",
+    "hash_domain_root_cause": {
+      "file_sha256_including_terminal_lf": "2b3cf4268b6f479b9944d2154aaec25d20b019a161143e78c783dd51fce98b7a",
+      "canonical_json_sha256_excluding_terminal_lf": "9e7fcdaf9e84b6c3d062375ba3dbc09444c7dcb569c2ef5aef2d92fe8200d4ff",
+      "required_successor_rule": "Persist and compare file_sha256 and canonical_json_sha256 only within their explicitly named hash domains."
+    }
+  },
+  "rieth_access_history": {
+    "dataset_level_disposition": "HISTORICAL_EXPLORATORY_ONLY_FOR_V6",
+    "reason": "All four relevant RData partitions have been decoded at partition level, and sequential method development, audit, final confirmation, and post-failure analyses have consumed the target fault families. Remaining administratively unscored rows cannot be promoted to a new v6 external lockbox.",
+    "partition_decode_status": {
+      "fault_free_training": "PARTITION_DECODED",
+      "fault_free_testing": "PARTITION_DECODED",
+      "faulty_training": "PARTITION_DECODED",
+      "faulty_testing": "PARTITION_DECODED"
+    },
+    "known_selected_or_scored": {
+      "fault_free_testing": {
+        "fault_id": 0,
+        "simulation_runs": "1-500"
+      },
+      "faulty_testing_target_faults": {
+        "fault_ids": [
+          3,
+          9,
+          15
+        ],
+        "simulation_runs": "1-500"
+      },
+      "faulty_testing_pilot_additions": {
+        "fault_ids": [
+          1,
+          19
+        ],
+        "simulation_runs": "1-10"
+      },
+      "fault_free_training_known_subsets": [
+        "runs1-20 design",
+        "runs121-200 post-failure row-level audit",
+        "runs201-300 transformer or energy reference",
+        "runs301-400 external PAC calibration",
+        "runs401-500 external PAC audit"
+      ],
+      "faulty_training": {
+        "fault_ids": [
+          3,
+          9,
+          15
+        ],
+        "simulation_runs": "401-500 external PAC audit"
+      }
+    },
+    "claim_boundary": "No Rieth result produced after the failed one-shot confirmation may be described as an independent final confirmation. No Rieth values may select, fit, calibrate, or confirm PCF-CycleRank-Scan v6."
+  },
+  "extended_tep_mode1_roles": {
+    "magnitude100_idv1_3_9_15_runs1_200": {
+      "access_level": "SELECTED_OR_SCORED",
+      "v6_role": "historical diagnosis only",
+      "administrative_disposition": "permanently consumed"
+    },
+    "magnitude50_idv1_3_9_15_runs1_100": {
+      "access_level": "SELECTED_OR_SCORED",
+      "v6_role": "historical diagnosis only; no new numeric access",
+      "administrative_disposition": "repeated v2-v4 development data"
+    },
+    "magnitude25_idv1_runs1_100": {
+      "access_level": "NEVER_NUMERIC_ACCESSED",
+      "v6_role": "sealed and unavailable because v6 terminated before development",
+      "possible_successor_role": "one-time target-domain healthy threshold calibration only under a separately frozen successor protocol",
+      "development_access_authorized": false
+    },
+    "magnitude25_idv3_9_15_runs1_100": {
+      "access_level": "NEVER_NUMERIC_ACCESSED",
+      "v6_role": "permanent quarantine; v6 terminated without access",
+      "development_access_authorized": false
+    },
+    "magnitude75_idv1_3_9_15_runs1_100": {
+      "access_level": "NEVER_NUMERIC_ACCESSED",
+      "v6_role": "sealed and unavailable because v6 terminated before development",
+      "possible_successor_role": "single irreversible target-domain severity-cell confirmation only after separately frozen valid calibration",
+      "development_access_authorized": false
+    },
+    "claim_boundary": "Mode1 is not a wholly untouched dataset and v6 is not dataset-level zero-shot. Magnitude75 may be described only as a prospectively held-out target-domain severity cell."
+  },
+  "extended_tep_mode2_roles": {
+    "magnitude50_idv1_3_9_15_runs1_100": {
+      "access_level": "SELECTED_OR_SCORED",
+      "v6_role": "v6 intent was committed but aborted before any new numeric read",
+      "successor_role": "repeatable but already-consumed adaptive exploratory development pool for a genuinely new v7 candidate; never unbiased confirmation",
+      "independent_unit": "simulator seed; run_id is a balanced stratification block, not a paired seed",
+      "selected_record_count": 400,
+      "unique_seed_count": 395,
+      "duplicate_seed_value_count": 5,
+      "cross_fold_seed_collision_count_required": 0
+    },
+    "all_other_mode2_branches": {
+      "v6_role": "unauthorized and outside this protocol",
+      "access_claim": "not audited as a lockbox by this ledger"
+    }
+  },
+  "v6_lockbox_budget": {
+    "v6_terminal_status": "TERMINAL_PROTOCOL_HANDSHAKE_ABORT",
+    "v6_same_candidate_rerun_authorized": false,
+    "mode1_budget_consumed_by_v6_abort": false,
+    "candidate_count": 1,
+    "development_source": "Extended TEP Mode2 magnitude50 only",
+    "development_is_unbiased_confirmation": false,
+    "mode1_magnitude25_open_budget": 1,
+    "mode1_magnitude75_open_budget": 1,
+    "rule_before_mode1_magnitude25": "The unique model, transforms, weights, score map, scan, threshold-rank rule, gates, implementation files, source identity, environment, and CPU/CUDA policy must be frozen and hash-bound.",
+    "calibration_no_go_rule": "Any invalid or failed magnitude25 calibration is terminal and leaves magnitude75 sealed.",
+    "confirmation_rule": "Any magnitude75 open, including a partial read or infrastructure failure after access intent, permanently consumes the lockbox and forbids same-data rescue or retuning.",
+    "new_method_after_lockbox_rule": "A successor method requires a genuinely new external lockbox; it may not reuse Mode1 magnitude25 or magnitude75 as fresh confirmation data."
+  },
+  "v6_development_authorization": {
+    "authorized": false,
+    "authorization_was_committed": true,
+    "authorization_terminally_consumed_by_handshake_abort": true,
+    "same_candidate_rerun_authorized": false,
+    "hdf5_library_opens": 0,
+    "numeric_values_decoded": 0,
+    "training_started": false,
+    "source": "Extended TEP Mode2",
+    "mode": 2,
+    "fault_regime": "SingleFault",
+    "magnitude_percent": 50,
+    "idvs": [
+      1,
+      3,
+      9,
+      15
+    ],
+    "simulation_runs": "1-100",
+    "healthy_window_zero_based_half_open": [
+      100,
+      600
+    ],
+    "fault_window_zero_based_half_open": [
+      440,
+      940
+    ],
+    "fault_local_onset_index": 160,
+    "mode1_access_authorized": false,
+    "rieth_access_authorized": false
+  },
+  "required_reporting_statements": [
+    "PCF-CycleRank-Scan v6 ended in a terminal protocol-handshake infrastructure abort before HDF5 decode or training; it produced no scientific GO or NO_GO result and cannot be rerun under the same candidate or a rescue iteration ID.",
+    "All Mode2 development metrics are adaptive exploratory feasibility evidence after multiple method versions, not an unbiased generalization estimate.",
+    "Mode1 magnitude75 is a cell-level prospective target-domain confirmation, not a wholly unseen dataset-level external or zero-shot validation.",
+    "A rank96 threshold from 100 exchangeable target-domain healthy run maxima with strict greater-than has marginal exceedance at most 5/101; this is not a conditional PAC or automatic cross-mode guarantee.",
+    "The final healthy alarm count must receive an exact one-sided 95 percent Clopper-Pearson upper bound; at most 4/100 supports below 0.10 and at most 1/100 supports below 0.05.",
+    "Per-fault detection intervals use 100 independent simulator runs per fault under the stated seed assumption; the pooled 300 fault outcomes do not receive a Binomial(300) interval.",
+    "All predecessor NO_GO and failed confirmation results, together with the terminal v6 handshake abort, must be disclosed with any successor result."
+  ],
+  "primary_evidence": [
+    "docs/pclr_cusum_successor_v2.md",
+    "docs/mstcn_spc_v3.md",
+    "docs/cf_max_glr15_v4.md",
+    "docs/pytep_r2024b_reproduction_audit.md",
+    "protocols/pclr_cusum_development_v2.json",
+    "protocols/cp_etc_scan_v5_mode2_development.json",
+    "protocols/cp_etc_scan_v5_1_mode2_development.json",
+    "protocols/pcf_cyclerank_v6_mode2_development.json.commit.json",
+    "docs/pcf_cyclerank_v6_abort_audit.md",
+    "outputs/pcf_cyclerank_v6/development_access.claim.json",
+    "outputs/pcf_cyclerank_v6/v6_fixed_formal/access_intent.json",
+    "outputs/pcf_cyclerank_v6/v6_fixed_formal/failure.json",
+    "outputs/pcf_cyclerank_v6/v6_fixed_formal/completion.json",
+    "outputs/hybrid_energy_glr_gpu_v1_final_confirmation/final_manifest.json",
+    "outputs/hybrid_pac_q100_holdout_gpu_v1_2/audit/access_intent.json",
+    "outputs/hybrid_pac_rmax_external_gpu_v1/calibration/access_intent.json",
+    "outputs/hybrid_pac_rmax_external_gpu_v1/audit/access_intent.json",
+    "outputs/extended_tep_mode1_q100_gpu_v1/calibration/access_intent.json",
+    "outputs/extended_tep_mode1_q100_gpu_v1/audit/access_intent.json"
+  ]
+}

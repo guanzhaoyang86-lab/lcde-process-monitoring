@@ -1,0 +1,74 @@
+{
+  "schema": "cp_etc_scan_preregistered_development_amendment",
+  "schema_version": 1,
+  "protocol_id": "cp-etc-scan-v5.1-mode2-development",
+  "protocol_state": "FROZEN_AFTER_MODE2_METADATA_ONLY_AND_BEFORE_PROCESSDATA_OR_IDV_INIT_VALUE_ACCESS",
+  "frozen_date": "2026-09-08",
+  "base_protocol": {
+    "path": "protocols/cp_etc_scan_v5_mode2_development.json",
+    "sha256": "296cacea8ef2b9d2e2bda3aeb5805a9e3627ad8299b564e1ac20b6a0dda5a804",
+    "inheritance": "Every data role, source hash, slice, feature, architecture, loss, optimizer, seed, endpoint, ECDF, scan, threshold, GO gate, lockbox gate, claim boundary, and no-rescue rule is inherited byte-for-byte in meaning except the two explicit seed-contract and fold-assignment replacements below."
+  },
+  "v5_disposition": {
+    "decision_record": "outputs/cp_etc_scan_v5/governance/v5_data_contract_no_go.json",
+    "decision_record_sha256": "d8f0578ebae0d0dbb4ae253be38927c8ecfea1df0591ca329a048f8ecb134160",
+    "decision": "v5 remains DATA_CONTRACT_NO_GO and is not rewritten or rescued",
+    "reason_for_new_version": "The official selected Mode2 topology has 395 unique seed values among 400 runs. Global uniqueness was an unnecessarily strict metadata assumption; repeated simulator seeds are scientifically usable only if every connected run block is confined to one fold."
+  },
+  "information_available_at_v5_1_freeze": {
+    "allowed": [
+      "whole-file SHA256 and byte size",
+      "HDF5 root keys and Processdata_Labels object shape",
+      "selected group existence and SimulationCompleted versus SimulationStopped status",
+      "selected processdata/idv_init object shapes and dtypes without value decoding",
+      "selected scalar seed attributes"
+    ],
+    "forbidden_and_not_accessed": [
+      "Processdata_Labels string values",
+      "any processdata array element",
+      "any idv_init array element",
+      "any model feature, score, loss, prediction, metric, or outcome"
+    ],
+    "observed_topology": {
+      "selected_completed": 400,
+      "selected_stopped": 0,
+      "processdata_object_shape_dtype": [[2000, 54], "float64"],
+      "idv_init_object_shape_dtype": [[3, 28], "float64"],
+      "seed_records": 400,
+      "unique_seed_values": 395
+    }
+  },
+  "replacement_seed_contract": {
+    "required_seed_records": 400,
+    "required_unique_seed_values": 395,
+    "required_duplicate_seed_values": 5,
+    "allowed_duplicate_owners_exact": {
+      "1313107": [{"run_id": 14, "idv": 1}, {"run_id": 43, "idv": 9}],
+      "1314539": [{"run_id": 9, "idv": 9}, {"run_id": 88, "idv": 15}],
+      "1315245": [{"run_id": 6, "idv": 3}, {"run_id": 76, "idv": 15}],
+      "1319584": [{"run_id": 43, "idv": 3}, {"run_id": 98, "idv": 9}],
+      "1319919": [{"run_id": 24, "idv": 3}, {"run_id": 33, "idv": 15}]
+    },
+    "failure_policy": "Any missing/nonpositive/nonintegral seed, any sixth collision, any different owner, or any changed multiplicity is DATA_CONTRACT_NO_GO. Repeated seeds are disclosed simulator identities and are not claimed as independent random realizations."
+  },
+  "replacement_folds": {
+    "graph": "Create nodes for run_id 1..100. Add an edge when any selected IDV records for two run IDs share a seed; the four IDVs within one run_id remain one balanced stratification block.",
+    "connected_components_with_multiple_runs": [[14, 43, 98], [6, 76], [9, 88], [24, 33]],
+    "deterministic_assignment": "Sort connected components by descending size then ascending minimum run_id. Repeatedly assign the next whole component to the fold with the smallest current run count, breaking ties by lowest fold index. Sort run IDs within each fold.",
+    "fold_run_ids": {
+      "0": [8, 14, 15, 20, 26, 31, 37, 42, 43, 48, 53, 58, 63, 68, 73, 79, 84, 90, 95, 98],
+      "1": [3, 6, 10, 16, 21, 27, 32, 38, 44, 49, 54, 59, 64, 69, 74, 76, 80, 85, 91, 96],
+      "2": [4, 9, 11, 17, 22, 28, 34, 39, 45, 50, 55, 60, 65, 70, 75, 81, 86, 88, 92, 97],
+      "3": [5, 12, 18, 23, 24, 29, 33, 35, 40, 46, 51, 56, 61, 66, 71, 77, 82, 87, 93, 99],
+      "4": [1, 2, 7, 13, 19, 25, 30, 36, 41, 47, 52, 57, 62, 67, 72, 78, 83, 89, 94, 100]
+    },
+    "run_to_fold_canonical_json_sha256": "64a5aee8bc61f0865072e05be3f4cdd25f1e6f39e4061b44add2ab7d1e08eb13",
+    "counts": [20, 20, 20, 20, 20],
+    "cross_fold_seed_collision_count": 0,
+    "outer_design": "For outer fold j use fold j as test, fold (j+1) mod 5 healthy only as threshold calibration, and the other three folds as model/ECDF fit, exactly as the base protocol."
+  },
+  "method_change": false,
+  "candidate_count": 1,
+  "numeric_access_gate": "This JSON, its SHA256 sidecar, and its atomic commit record must all exist and agree before any Processdata_Labels, processdata, or idv_init values are decoded.",
+  "claim_rule": "v5.1 is a transparent metadata-only protocol correction, not a favorable-outcome rerun. It must be reported together with the v5 DATA_CONTRACT_NO_GO."
+}

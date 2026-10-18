@@ -1,0 +1,58 @@
+{
+  "schema": "metropt_cared_bc_development_recovery_amendment",
+  "schema_version": 1,
+  "amendment_id": "metropt_cared_bc_v0_preaccess_amendment_002",
+  "created_date": "2026-09-07",
+  "status": "FROZEN_BEFORE_REPEATED_DEVELOPMENT_RUN_AND_BEFORE_ANY_CALIBRATION_OR_CONFIRMATION_ACCESS",
+  "parent_bindings": {
+    "development_charter_sha256": "11beddf51f11a42b8a41fb25954179e7612c387d0dad3bd74980202e63314382",
+    "preaccess_amendment_001_sha256": "9b998cd4866097443971f0f1fe6a18b6f9aba26964c164ed6a47d7684143bc83"
+  },
+  "failed_run_binding": {
+    "output_directory": "outputs/metropt_cared_bc_gpu_v0",
+    "decision": "ABORTED_BEFORE_CALIBRATION_NUMERIC_ACCESS",
+    "reason": "dev_healthy did not produce exactly nine complete calendar-day score blocks",
+    "abort_record_sha256": "08d570c0a044a56cf5b91237ceb8a3c501aacfb84e05e2c4ddf9cb13a3ccaf14",
+    "completion_sha256": "c57d421901ea1f38ea14d1412740439f5a2276cca15b51df27f83a74a3f4ebf6",
+    "completion_fingerprint": "305fe648c3a09e51fab2af0524902ed06c869d6098b660f5896630dbf10d30ee",
+    "model_artifact_was_saved": false,
+    "scorer_or_power_gate_was_evaluated": false,
+    "calibration_numeric_access_occurred": false,
+    "confirmation_numeric_access_occurred": false
+  },
+  "evidence": {
+    "timestamp_only_daily_audit_path": "protocols/metropt_dev_healthy_timestamp_daily_audit.json",
+    "timestamp_only_daily_audit_sha256": "f3ece710913539ce8961c9eac981b835d97c6bda70aa3c32c44e5c87def0a9cd",
+    "development_coverage_diagnostic_path": "outputs/metropt_cared_bc_v0_postabort_diagnostics/development_coverage_diagnostic.json",
+    "development_coverage_diagnostic_sha256": "764f321b36f038d85d62de08c71347e068ac15cfc8f8970ba44260d3bd9817cc",
+    "finding": "The nine-date interval has no source rows on 2020-02-29. Six dates satisfy the already-frozen 1141-score criterion; requiring all nine dates is structurally impossible and does not measure model power."
+  },
+  "development_threshold_revision": {
+    "supersedes": "Only the development_requirement sentence in amendment 001 complete_and_qualified_days.",
+    "candidate_dates": "Every full dataset-native calendar date in [2020-02-21,2020-03-01) is enumerated and reported, including dates with zero scores.",
+    "qualification_rule_unchanged": "At least 1141 causal scores out of the theoretical 1426.",
+    "unqualified_dates": "Excluded from the provisional maximum and reported with their score counts and reason.",
+    "minimum_qualified_development_days": 6,
+    "minimum_rule_rationale": "ceil(2/3 * 9 nominal calendar dates), frozen before the repeated run.",
+    "provisional_boundary": "Maximum two-channel dev_healthy CUSUM daily maximum over every qualified development date.",
+    "insufficient_qualified_days_action": "ABORTED_BEFORE_CALIBRATION_NUMERIC_ACCESS"
+  },
+  "unchanged_requirements": {
+    "method_family": "CARED-BC",
+    "data_transform": "unchanged",
+    "model_architecture_and_training": "unchanged",
+    "minimum_score_count_per_qualified_day": 1141,
+    "tcn_improvement_gate": 0.05,
+    "f1_latency_gate_minutes": 60,
+    "f1_peak_to_boundary_ratio_gate": 1.25,
+    "calibration_minimum_qualified_days": 39,
+    "sealed_partitions": ["calibration_a", "embargo_a", "embargo_b", "calibration_b", "confirmation", "post_study_tail"]
+  },
+  "recovery_run": {
+    "new_output_directory_required": "outputs/metropt_cared_bc_gpu_v0_1",
+    "old_failed_bundle_must_remain_unchanged": true,
+    "development_numeric_partitions_may_be_reused": ["fit", "dev_healthy", "dev_fault_f1"],
+    "calibration_or_confirmation_access_authorized": false,
+    "switch_method_family_if_recovery_power_gate_fails": true
+  }
+}

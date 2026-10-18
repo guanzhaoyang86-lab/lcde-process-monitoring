@@ -1,0 +1,174 @@
+{
+  "schema": "metropt_cared_bc_portability_development_protocol",
+  "schema_version": 1,
+  "protocol_id": "metropt_cared_bc_v1_portability_development",
+  "protocol_version": "1.0.0",
+  "created_date": "2026-09-07",
+  "status": "FROZEN_BEFORE_PORTABILITY_NUMERIC_ACCESS",
+  "disclosure": {
+    "created_after_observing_v0_1_abort": true,
+    "not_an_original_v0_or_v0_1_preregistered_pass": true,
+    "purpose": "A new development-only, fixed-model adjudication of a diagnosed CPU/CUDA parity-test defect caused by the discontinuity of an empirical-rank transform.",
+    "old_recovery_switch_clause_acknowledged": true,
+    "reason_for_new_protocol_version": "The v0_1 test incorrectly applied a 1e-9 continuous-output tolerance after a discontinuous empirical CDF, although CPU/CUDA forecasts agreed below 1e-9 and every sampled alarm decision was identical.",
+    "development_sensor_values_already_observed": true,
+    "calibration_numeric_access_occurred": false,
+    "confirmation_numeric_access_occurred": false,
+    "sealed_partitions_remain_closed": true,
+    "old_completed_bundles_must_remain_byte_identical": true
+  },
+  "parent_bindings": {
+    "development_charter": {
+      "path": "protocols/metropt_cared_bc_v0_development_charter.json",
+      "sha256": "11beddf51f11a42b8a41fb25954179e7612c387d0dad3bd74980202e63314382"
+    },
+    "preaccess_amendment_001": {
+      "path": "protocols/metropt_cared_bc_v0_preaccess_amendment_001.json",
+      "sha256": "9b998cd4866097443971f0f1fe6a18b6f9aba26964c164ed6a47d7684143bc83"
+    },
+    "preaccess_amendment_002": {
+      "path": "protocols/metropt_cared_bc_v0_preaccess_amendment_002.json",
+      "sha256": "cf68a99a74ac1505975987785222d3095c8243394d13f60d5134ca8b4fe7f9bc"
+    },
+    "v0_structural_abort": {
+      "output_directory": "outputs/metropt_cared_bc_gpu_v0",
+      "decision": "ABORTED_BEFORE_CALIBRATION_NUMERIC_ACCESS",
+      "abort_record_sha256": "08d570c0a044a56cf5b91237ceb8a3c501aacfb84e05e2c4ddf9cb13a3ccaf14",
+      "completion_sha256": "c57d421901ea1f38ea14d1412740439f5a2276cca15b51df27f83a74a3f4ebf6",
+      "completion_fingerprint": "305fe648c3a09e51fab2af0524902ed06c869d6098b660f5896630dbf10d30ee"
+    },
+    "v0_1_parity_abort": {
+      "output_directory": "outputs/metropt_cared_bc_gpu_v0_1",
+      "decision": "ABORTED_BEFORE_CALIBRATION_NUMERIC_ACCESS",
+      "phase_manifest_sha256": "8c6275c800b99cb8842ad7ad3915ae996c36a184b86bfd9bcd7897924add5016",
+      "phase_manifest_fingerprint": "d26b87f46f7125fdb90ea8a07622e1438833171aadd3a7f4f0cd2a14f3970943",
+      "artifact_manifest_sha256": "d2e0543d80cd0e3526e3b5239e020f174d1030d0c3f7da75313090eba8d2e64f",
+      "artifact_manifest_fingerprint": "6218409d21de6cf5af82e94bb095a139d91a67e99b287b18cc8902402cfcefca",
+      "completion_sha256": "e68fe843083473088725d43f1a5d7639524263a62d6f55f8981d088fc8e504d2",
+      "completion_fingerprint": "54a40a2ae70bedc8c3275d28af27ca29d4f6a801cce0040abd72cff5fc639db0",
+      "result_sha256": "6a195f2f90383a9dcfc4c339cc629e2612e15e5d8cefa70bfb2faca4f731e116",
+      "gpu_execution_sha256": "d62340eb1667292365b3edb572ae39e5ecb59dd5fb58594f42549080552ed494"
+    }
+  },
+  "fixed_artifacts": {
+    "ensemble": {
+      "path": "outputs/metropt_cared_bc_gpu_v0_1/cared_ensemble.npz",
+      "size_bytes": 2376101,
+      "sha256": "4e75c7718482e66f0fd535a5bd0bf4c0dd78ec3335c3f420797d728c8e9d970f"
+    },
+    "uncalibrated_scorer": {
+      "path": "outputs/metropt_cared_bc_gpu_v0_1/cared_scorer.npz",
+      "size_bytes": 181175,
+      "sha256": "a7da9f5980778f0f65d51e7ab64e1cee3a9604cb186025d1240c45623d7d1887",
+      "threshold_must_be_null": true
+    },
+    "copy_exact_bytes_into_new_output": true,
+    "ensemble_seeds_weights_scalers_and_dtype_frozen": true,
+    "scorer_covariance_direction_rank_reference_and_cusum_frozen": true,
+    "retraining_forbidden": true,
+    "scorer_refitting_forbidden": true,
+    "optimizer_or_backward_forbidden": true
+  },
+  "fixed_development_evidence": {
+    "raw_provisional_threshold": 36.02052930938596,
+    "threshold_source": "Authenticated v0_1 maximum over its six qualified dev_healthy calendar-day CUSUM maxima.",
+    "tcn_relative_improvement_over_persistence": 0.5025773655903889,
+    "minimum_tcn_relative_improvement": 0.05,
+    "legacy_nonparity_gates_must_all_remain_passed": [
+      "tcn_relative_improvement",
+      "f1_alarm",
+      "f1_first_alarm_delay_minutes",
+      "f1_maximum_to_threshold_ratio",
+      "direct_alarm_channels_excluded",
+      "feature_and_score_causality"
+    ],
+    "development_day_rule_may_not_change": true,
+    "feature_or_model_selection_may_not_change": true
+  },
+  "numeric_access": {
+    "runner_may_load_only": [
+      "dev_healthy",
+      "dev_fault_f1"
+    ],
+    "fit_partition_must_not_be_loaded": true,
+    "expected_counts": {
+      "dev_healthy": {
+        "inference_windows": 10387,
+        "aligned_scores": 10327
+      },
+      "dev_fault_f1": {
+        "inference_windows": 1416,
+        "aligned_scores": 1406
+      }
+    },
+    "sealed_or_excluded_partitions": [
+      "fit",
+      "calibration_a",
+      "embargo_a",
+      "embargo_b",
+      "calibration_b",
+      "confirmation",
+      "post_study_tail"
+    ],
+    "complete_sequence_required": true,
+    "sampling_or_prefix_parity_forbidden": true,
+    "governed_partition_loader_required": true
+  },
+  "runtime": {
+    "primary_device": "cuda",
+    "comparison_device": "cpu",
+    "dtype": "float64",
+    "batch_size": 1024,
+    "cuda_matmul_tf32": false,
+    "cudnn_tf32": false
+  },
+  "portability_gate": {
+    "primitive_max_absolute_tolerance": 1e-09,
+    "boundary_distance_tolerance": 1e-09,
+    "prediction_shape": [
+      "N",
+      3,
+      7
+    ],
+    "residual_shape": [
+      "M",
+      31
+    ],
+    "forecast_residual_width": 21,
+    "physical_feature_width": 10,
+    "physical_features_cpu_cuda_exact": true,
+    "timestamps_score_indices_state_codes_and_reset_exact": true,
+    "rank_normal_cusum_and_envelope_differences": "reported but not subjected to a 1e-9 continuous-map assertion because empirical ranks are discontinuous",
+    "global_envelope_delta": "maximum absolute CPU/CUDA envelope difference over every score in both complete development sequences",
+    "effective_boundary_formula": "nextafter(h_raw + global_envelope_delta + 1e-9, +infinity)",
+    "effective_boundary_can_only_increase": true,
+    "alarm_comparison": "strictly_greater_than",
+    "required_checks": {
+      "full_cpu_cuda_alarm_arrays_exact": true,
+      "dev_healthy_alarm_count_each_device": 0,
+      "f1_detected_each_device": true,
+      "f1_first_alarm_availability_exact": true,
+      "f1_availability_lag_minutes": 1,
+      "f1_maximum_delay_minutes_inclusive": 60,
+      "f1_minimum_peak_to_effective_boundary_ratio_inclusive": 1.25,
+      "minimum_absolute_distance_of_every_envelope_to_boundary_strictly_greater_than": 1e-09
+    }
+  },
+  "output_contract": {
+    "directory": "outputs/metropt_cared_bc_gpu_v1_portability",
+    "copy_fixed_npz_artifacts": true,
+    "save_alarm_array_hashes": true,
+    "create_new_only": true,
+    "completed_reentry_must_not_read_csv": true,
+    "implementation_snapshot_required_before_numeric_access": true,
+    "calibration_access_authorized_directly_by_this_protocol": false,
+    "final_analysis_protocol_still_required_after_pass": true
+  },
+  "outcome_policy": {
+    "pass_decision": "PASS_DEVELOPMENT_POWER_GATE",
+    "failure_decision": "ABORTED_BEFORE_CALIBRATION_NUMERIC_ACCESS",
+    "failure_next_method_family": "MB-CycleMIL-BC",
+    "further_cared_bc_development_repair_after_failure_forbidden": true,
+    "calibration_and_confirmation_remain_sealed_on_failure": true
+  }
+}

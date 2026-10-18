@@ -1,0 +1,74 @@
+{
+  "canonical_upstream_bytes": {
+    "checkout_note": "Canonical hashes bind raw Git blob bytes with LF line endings. A default Windows core.autocrlf checkout produced derived CRLF bytes and is not the canonical source identity.",
+    "license": {
+      "git_blob_sha1": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "size_bytes": 11357,
+      "windows_crlf_checkout_sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6"
+    },
+    "source": {
+      "git_blob_sha1": "16a9357de1ae20d4d58f3534d49b66558d0f01ff",
+      "path": "tsai/models/MINIROCKETPlus_Pytorch.py",
+      "sha256": "7e3071cebef34b9eb7c1b458c9fc2503acce71de206b65e675ef9c76672001b1",
+      "size_bytes": 15644,
+      "windows_crlf_checkout_sha256": "f9b280f90558894e3b6e8665b80dc3d6cc7c78a9cad3d1500f15460e9988e562"
+    }
+  },
+  "class_equivalence": {
+    "algorithm": "sha256(ast.dump(MiniRocketFeaturesPlus, include_attributes=False))",
+    "official_class_ast_sha256": "3644e12a5af80f25617824c1b34f04af2a665ee5d548b9e696135e5bbc30358d",
+    "vendored_class_ast_sha256": "3644e12a5af80f25617824c1b34f04af2a665ee5d548b9e696135e5bbc30358d"
+  },
+  "golden": {
+    "artifact_path": "golden/upstream_v1_0_1_synthetic.npz",
+    "artifact_sha256": "07c3af6f0972d52d0d9aeed635b68425e697b9fbbed90dfd2e3bb852d6a2f549",
+    "generated_by_unmodified_official_class": true,
+    "generator_path": "generate_upstream_golden.py",
+    "generator_sha256": "c28d8d728a6ce97df2cd5008204e852919493d40a158ac0bd7356d342f650b48",
+    "manifest_path": "golden/manifest.json",
+    "manifest_sha256": "25acef90b0ea188c1d8685c89242ad2a9e48bf0540845b6ea6660034df7a20c6",
+    "numpy_allow_pickle": false,
+    "real_dataset_accessed": false,
+    "synthetic_only": true
+  },
+  "license": {
+    "id": "Apache-2.0",
+    "local_license_is_exact_upstream_blob": true,
+    "local_license_path": "LICENSE",
+    "upstream_notice_present_at_commit": false
+  },
+  "local_files": {
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "NOTICE": "b44c73f898da115b690586e910cc1384537e6cb879b305e1c62d586df579b261",
+    "README.md": "452e5b39748a66936c9e2daebdeaa191e89182928ee4c080bd054fd1f5d10436",
+    "__init__.py": "37946e7f168273619e626452f24ce9b4de15ba65d156d8087e1541bdf2281042",
+    "generate_upstream_golden.py": "c28d8d728a6ce97df2cd5008204e852919493d40a158ac0bd7356d342f650b48",
+    "golden/manifest.json": "25acef90b0ea188c1d8685c89242ad2a9e48bf0540845b6ea6660034df7a20c6",
+    "golden/upstream_v1_0_1_synthetic.npz": "07c3af6f0972d52d0d9aeed635b68425e697b9fbbed90dfd2e3bb852d6a2f549",
+    "golden_handshake.py": "c3620a050612bb71a925902f570186e688e0320d5ebd2155d585fb7339a53343",
+    "minirocket_plus.py": "2d68936955c06d2989f53c10e743adb1d4ca868f7644ccc8c16b396928d41622"
+  },
+  "local_modifications": [
+    "Extracted only MiniRocketFeaturesPlus and its direct imports from the generated upstream module.",
+    "Replaced the generated notebook header with an explicit provenance and modification notice.",
+    "Declared a narrow __all__ and packaged the class under vendor.tsai_v1_0_1_minirocket.",
+    "No statement in the MiniRocketFeaturesPlus class AST or numerical algorithm was changed."
+  ],
+  "schema": "vendored_tsai_minirocket_provenance",
+  "schema_version": 1,
+  "tag_resolution": {
+    "annotated_tag_object_git_sha1": "2bca845b2905aa2cfcb03a2e1615bdb196b821e5",
+    "full_commit_sha": "f9ecc6b6df798946fa5fb290ac2ade9a00815289",
+    "git_object_type": "tag",
+    "peeled_commit_git_sha1": "f9ecc6b6df798946fa5fb290ac2ade9a00815289",
+    "repository": "https://github.com/timeseriesAI/tsai",
+    "tag": "v1.0.1",
+    "verification": {
+      "git_cat_file_tag_target": "f9ecc6b6df798946fa5fb290ac2ade9a00815289",
+      "git_ls_remote_ref_target": "2bca845b2905aa2cfcb03a2e1615bdb196b821e5"
+    }
+  },
+  "vendor_scope": "MiniRocketFeaturesPlus and minimal direct pure-PyTorch/NumPy helpers only"
+}

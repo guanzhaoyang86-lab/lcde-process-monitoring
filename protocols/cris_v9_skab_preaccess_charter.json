@@ -1,0 +1,110 @@
+{
+  "schema": "cris_v9_skab_preaccess_charter",
+  "schema_version": 1,
+  "protocol_id": "cris-v9-skab-v0.9.0-prospective-audit",
+  "created_utc": "2026-09-09T15:15:00Z",
+  "state": "FROZEN_SPLIT_BEFORE_LOCAL_DOWNLOAD_OR_NUMERIC_ACCESS",
+  "method": {
+    "id": "CRIS-v9",
+    "document": "docs/cris_v9_method.md",
+    "not_a_v8_rescue": true,
+    "extended_tep_mode2_use": "FORBIDDEN",
+    "rieth_use": "FORBIDDEN"
+  },
+  "source": {
+    "name": "Skoltech Anomaly Benchmark",
+    "version": "v0.9.0",
+    "official_repository": "https://github.com/waico/SKAB",
+    "archive_url": "https://github.com/waico/skab/archive/refs/tags/v0.9.0.zip",
+    "tag_commit_sha1": "80bac4a00d9cd2a277a6fda8f6a6d5936b892bd2",
+    "expected_layout": {
+      "anomaly_free_files": 1,
+      "valve1_files": 16,
+      "valve2_files": 4,
+      "other_files": 14,
+      "anomaly_experiment_files": 34,
+      "sensor_columns": 8,
+      "label_columns": ["anomaly", "changepoint"],
+      "time_column": "datetime"
+    },
+    "local_archive_sha256": null,
+    "local_file_manifest_sha256": null,
+    "rule_after_download": "fill hashes only in a new append-only acquisition record; do not alter this charter"
+  },
+  "split_rule": {
+    "unit": "complete CSV experiment",
+    "strata": {
+      "valve1": ["valve1/1.csv", "valve1/2.csv", "valve1/3.csv", "valve1/4.csv", "valve1/5.csv", "valve1/6.csv", "valve1/7.csv", "valve1/8.csv", "valve1/9.csv", "valve1/10.csv", "valve1/11.csv", "valve1/12.csv", "valve1/13.csv", "valve1/14.csv", "valve1/15.csv", "valve1/16.csv"],
+      "valve2": ["valve2/1.csv", "valve2/2.csv", "valve2/3.csv", "valve2/4.csv"],
+      "other_fluid": ["other/1.csv", "other/2.csv", "other/3.csv", "other/4.csv"],
+      "other_rotor": ["other/5.csv", "other/6.csv", "other/7.csv", "other/8.csv", "other/9.csv"],
+      "other_water": ["other/10.csv", "other/11.csv", "other/12.csv", "other/13.csv", "other/14.csv"]
+    },
+    "ordering": "ascending SHA256 of UTF-8('SKAB-v0.9.0-80bac4a00d9cd2a277a6fda8f6a6d5936b892bd2-split-v1|' + relative_path) within stratum",
+    "assignment": "odd one-based rank development; even one-based rank final",
+    "development_files": [
+      "valve1/2.csv", "valve1/3.csv", "valve1/4.csv", "valve1/14.csv",
+      "valve1/12.csv", "valve1/7.csv", "valve1/16.csv", "valve1/13.csv",
+      "valve2/2.csv", "valve2/4.csv",
+      "other/4.csv", "other/3.csv", "other/7.csv", "other/5.csv",
+      "other/9.csv", "other/13.csv", "other/10.csv", "other/12.csv"
+    ],
+    "final_files": [
+      "valve1/6.csv", "valve1/15.csv", "valve1/1.csv", "valve1/8.csv",
+      "valve1/9.csv", "valve1/5.csv", "valve1/11.csv", "valve1/10.csv",
+      "valve2/3.csv", "valve2/1.csv",
+      "other/1.csv", "other/2.csv", "other/8.csv", "other/6.csv",
+      "other/14.csv", "other/11.csv"
+    ],
+    "development_count": 18,
+    "final_count": 16,
+    "final_files_access_before_development_go": "FORBIDDEN"
+  },
+  "anomaly_free_roles": {
+    "file": "anomaly-free/anomaly-free.csv",
+    "partition_by_row_fraction_half_open": {
+      "healthy_model_fit": [0.0, 0.5],
+      "point_score_reference": [0.5, 0.7],
+      "trajectory_threshold_blocks": [0.7, 0.85],
+      "healthy_development_audit": [0.85, 1.0]
+    },
+    "state_reset_at_each_boundary": true,
+    "warmup_discarded_after_each_boundary": true,
+    "limitation": "one physical healthy experiment; blocked empirical evidence is not independent-run conformal evidence"
+  },
+  "development_candidates": [
+    {"id": "cris-k1-equal", "top_k": 1, "moment_weights": [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]},
+    {"id": "cris-k2-equal", "top_k": 2, "moment_weights": [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]},
+    {"id": "cris-k2-location", "top_k": 2, "moment_weights": [0.5, 0.25, 0.25]}
+  ],
+  "development_gate": {
+    "detected_within_right_sided_60_seconds_min": 14,
+    "denominator": 18,
+    "pre_changepoint_false_alarm_experiments_max": 3,
+    "conditional_median_delay_seconds_max": 30,
+    "healthy_audit_alarm_episodes_max": 1,
+    "all_conditions_required": true
+  },
+  "final_reporting": {
+    "event_unit": "complete experiment CSV",
+    "point_adjustment": "FORBIDDEN",
+    "primary": ["run_event_recall", "first_alarm_delay_seconds", "pre_event_false_alarm_runs", "alarm_episodes_per_hour", "alarm_occupancy"],
+    "secondary": ["right_sided_60_second_changepoint_detection", "unadjusted_point_AUPRC", "unadjusted_point_F1"],
+    "subgroup_inference": "descriptive only",
+    "success_reference": {
+      "detected_runs_min": 12,
+      "denominator": 16,
+      "pre_changepoint_false_alarm_experiments_max": 3,
+      "conditional_median_delay_seconds_max": 30,
+      "conditional_nearest_rank_p90_delay_seconds_max": 60
+    }
+  },
+  "access_governance": {
+    "labels_excluded_from_model_fit_and_score_generation": true,
+    "persist_score_paths_before_opening_labels_for_evaluation": true,
+    "final_global_claim_required": true,
+    "same_final_candidate_rerun_after_claim": false,
+    "alternate_output_root_rerun": false,
+    "producer_consumer_schema_integration_test_required": true
+  }
+}

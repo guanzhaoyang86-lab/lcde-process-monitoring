@@ -1,0 +1,161 @@
+{
+  "schema": "hydraulic_padr_pac_analysis_protocol",
+  "schema_version": 1,
+  "protocol_id": "hydraulic_padr_pac_v1",
+  "frozen_before_sensor_access": true,
+  "frozen_date": "2026-09-07",
+  "status": "prospective_external_confirmation",
+  "method_name": "PAC-PADR-CUSUM",
+  "method_expansion": "PAC-calibrated phase-aligned directional residual CUSUM",
+  "inputs": {
+    "acquisition_protocol_sha256": "25840109b6f75fe2e56ecd0dc259da0bd356205e1bd706596e26c9334f88e74d",
+    "label_audit_fingerprint": "2983dea038f1272ddc354a468e1c6427fec7d27ab71e1f73a8703060d0b5114a",
+    "archive_sha256": "24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2",
+    "profile_sha256": "867987ca884b2f0fd607ad3918329eba887d095af2befa21122cea518eaa584a"
+  },
+  "estimand": {
+    "analysis_unit": "one official stable 60-second hydraulic load cycle",
+    "healthy": "stable_flag=0 and valve_condition_percent=100",
+    "fault_severities": [90, 80, 73],
+    "nuisance_group": [
+      "cooler_condition_percent",
+      "internal_pump_leakage",
+      "hydraulic_accumulator_bar"
+    ],
+    "other_component_labels_used_as_model_inputs": false,
+    "pac_claim": "distribution-free run-maximum risk bound under exchangeability of calibration and future cycles",
+    "serial_dependence_caveat": "episodes are kept intact across partitions and episode-level sensitivity is mandatory; the PAC statement is conditional on cycle exchangeability"
+  },
+  "split": {
+    "unit": "complete nuisance group containing all four valve episodes",
+    "salt": "HYDRAULIC-PADR-PAC-v1",
+    "ordering": "ascending SHA256(salt + '|' + group_key), then group_key",
+    "group_key_format": "C{cooler:03d}-P{pump}-A{accumulator:03d}",
+    "development_groups": [
+      "C100-P1-A115",
+      "C003-P0-A130",
+      "C020-P1-A115",
+      "C003-P1-A100",
+      "C003-P1-A090",
+      "C100-P0-A100",
+      "C020-P1-A130",
+      "C020-P2-A115",
+      "C100-P2-A115",
+      "C003-P1-A115",
+      "C100-P0-A130",
+      "C003-P2-A090",
+      "C003-P0-A100",
+      "C020-P0-A115",
+      "C020-P2-A090",
+      "C003-P0-A090",
+      "C020-P0-A130",
+      "C003-P2-A115"
+    ],
+    "calibration_groups": [
+      "C100-P2-A090",
+      "C003-P1-A130",
+      "C100-P1-A130",
+      "C003-P2-A100",
+      "C100-P1-A090",
+      "C003-P2-A130",
+      "C020-P2-A130",
+      "C020-P0-A090",
+      "C100-P2-A130"
+    ],
+    "confirmation_groups": [
+      "C100-P0-A115",
+      "C100-P0-A090",
+      "C003-P0-A115",
+      "C020-P1-A090",
+      "C020-P0-A100",
+      "C020-P1-A100",
+      "C100-P2-A100",
+      "C100-P1-A100",
+      "C020-P2-A100"
+    ],
+    "expected_stable_cycle_counts": {
+      "development": {"100": 180, "90": 180, "80": 180, "73": 180},
+      "calibration": {"100": 90, "90": 90, "80": 90, "73": 90},
+      "confirmation": {"100": 99, "90": 90, "80": 90, "73": 90}
+    },
+    "confirmation_sensor_values_forbidden_until_method_frozen": true
+  },
+  "features": {
+    "time_grid": "60 causal non-overlapping one-second bins",
+    "high_rate_sensor_statistics": ["mean", "population_std", "minimum", "maximum"],
+    "one_hz_sensor_statistic": "observed value",
+    "level_channel_count": 44,
+    "phase_reference": "development healthy cycles only: per-second per-channel median",
+    "phase_scale": "1.4826*MAD with floor max(1e-6, 0.1 times the channel global healthy robust scale)",
+    "level_residual_clip": [-8.0, 8.0],
+    "causal_difference": "current clipped residual minus previous clipped residual, zero at second zero",
+    "output_channel_count": 88,
+    "future_values_used": false
+  },
+  "directional_model": {
+    "heads_in_order": [90, 80, 73],
+    "normal_label": 100,
+    "model": "three independent ridge-logistic density-ratio heads shared over cycle phase",
+    "training_samples": "all 60 phase rows from development cycles of normal and the head severity",
+    "weighting": "each nuisance-group by valve-class cell has equal total weight; phase rows share their cycle weight equally",
+    "ridge_lambda_grid": [0.0001, 0.001, 0.01, 0.1, 1.0],
+    "selection": "three-fold nuisance-group cross-validation minimizing mean cell-balanced binary log loss over heads; exact ties choose larger lambda",
+    "fold_ordering": "ascending SHA256('HYDRAULIC-PADR-PAC-v1-CV|' + group_key), round-robin into folds 0,1,2",
+    "optimizer": "PyTorch CUDA float64 LBFGS",
+    "max_iter": 500,
+    "max_eval": 625,
+    "tolerance_grad": 1e-7,
+    "tolerance_change": 1e-10,
+    "history_size": 100,
+    "required_device": "cuda",
+    "tf32": false
+  },
+  "online_statistic": {
+    "logit_reference": "development healthy cycles: per-phase per-head median and 1.4826*MAD",
+    "logit_scale_floor": "max(1e-6, 0.1 times head global healthy robust scale)",
+    "standardized_logit_clip": [-8.0, 8.0],
+    "page_kappa": 0.75,
+    "page_reset": "zero at the beginning of every official cycle",
+    "persistence": "3 of 3 consecutive one-second samples per head",
+    "envelope": "maximum persistent Page statistic across the three heads",
+    "run_loss": "maximum envelope over the complete 60-second cycle",
+    "alarm_comparison": "strictly greater than threshold"
+  },
+  "calibration": {
+    "data": "healthy cycles in calibration groups only",
+    "expected_count": 90,
+    "epsilon": 0.05,
+    "delta": 0.05,
+    "threshold_rule": "smallest one-sided binomial tolerance rank k with P(Binomial(n,1-epsilon)<=k-1)>=1-delta",
+    "minimum_count": 59,
+    "insufficient_action": "stop without a certificate",
+    "fault_cycles_in_calibration_groups_may_not_be_used": true
+  },
+  "confirmation": {
+    "single_access_after_freeze": true,
+    "healthy_maximum_alarms": 3,
+    "healthy_point_fap_maximum": 0.05,
+    "healthy_exact_one_sided_95pct_ucb_maximum": 0.08,
+    "minimum_recall_each_severity": 0.8,
+    "minimum_overall_fault_recall": 0.85,
+    "cpu_cuda_max_abs_error": 1e-10,
+    "cpu_cuda_alarm_decisions_exact": true,
+    "secondary_metrics": [
+      "episode-level false-alarm incidence",
+      "recall by complete nuisance group",
+      "median first-alarm second",
+      "severity-head attribution",
+      "calibration and confirmation score distributions"
+    ],
+    "decision_pass": "PASS_EXTERNAL_CONFIRMATION",
+    "decision_fail": "FAIL_EXTERNAL_CONFIRMATION_NO_RETUNING"
+  },
+  "governance": {
+    "source_hashes_and_data_file_hashes_locked_before_measurement_loading": true,
+    "development_may_select_only_ridge_lambda": true,
+    "calibration_may_set_only_the_pac_threshold": true,
+    "confirmation_may_not_change_any_method_or_gate": true,
+    "failed_confirmation_forbids_same_data_retuning": true,
+    "rieth_final_data_not_used": true
+  }
+}

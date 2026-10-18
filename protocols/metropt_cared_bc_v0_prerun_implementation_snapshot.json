@@ -1,0 +1,75 @@
+{
+  "schema": "metropt_cared_bc_prerun_implementation_snapshot",
+  "schema_version": 1,
+  "snapshot_id": "metropt_cared_bc_v0_prerun_implementation_20260907",
+  "created_date": "2026-09-07",
+  "status": "FROZEN_BEFORE_FIRST_DEVELOPMENT_SENSOR_NUMERIC_ACCESS",
+  "protocol_bindings": {
+    "development_charter_sha256": "11beddf51f11a42b8a41fb25954179e7612c387d0dad3bd74980202e63314382",
+    "preaccess_amendment_sha256": "9b998cd4866097443971f0f1fe6a18b6f9aba26964c164ed6a47d7684143bc83"
+  },
+  "implementation_files": [
+    {
+      "path": "src/mate_spc_metropt/data.py",
+      "size_bytes": 41420,
+      "sha256": "8c5766400d6bc916f8676f6f030df228f2bafbf7734c373d73a95c9b6bc3da64"
+    },
+    {
+      "path": "src/mate_spc_metropt/model.py",
+      "size_bytes": 92730,
+      "sha256": "28d08ff51533a3a52453d12042e99f03b4ec0691ae41eab7b919c3122f0a83a9"
+    },
+    {
+      "path": "src/mate_spc_metropt/governance.py",
+      "size_bytes": 53105,
+      "sha256": "389c33a0058656f71104143e29c9fd8f4fb421f72d78cfa860ddf7a97db46471"
+    },
+    {
+      "path": "src/mate_spc_metropt/__init__.py",
+      "size_bytes": 984,
+      "sha256": "281dd3961d9abdb052444814cbe73947bce40bc91844f02f38587e6fd230788b"
+    },
+    {
+      "path": "scripts/run_metropt_cared_bc_gpu.py",
+      "size_bytes": 61789,
+      "sha256": "c25171cd71de390c6be696b290fd960df92058576611853faa71f93f21432ee3"
+    }
+  ],
+  "test_files": [
+    {
+      "path": "tests/test_metropt_cared_data.py",
+      "size_bytes": 20934,
+      "sha256": "89f0e86c4d39a52fff2ad5eb77d8b8304908cbb09d85937ee88a642acfbe597b"
+    },
+    {
+      "path": "tests/test_metropt_cared_model.py",
+      "size_bytes": 24552,
+      "sha256": "f6febbb1b01a190d60c969f1d24ac59c019f81198fe75fd3994b36f4d83008df"
+    },
+    {
+      "path": "tests/test_metropt_cared_governance.py",
+      "size_bytes": 21922,
+      "sha256": "59b794b711a14febcc0b6c99f32be57396e04a1398fd3efebe53d816d5845f5a"
+    },
+    {
+      "path": "tests/test_run_metropt_cared_bc_gpu.py",
+      "size_bytes": 28497,
+      "sha256": "f8d060e8effa3f8af21d90b6601f56ac2838522cef8d01f12bc06b31f2b3aeb7"
+    }
+  ],
+  "verification": {
+    "command": "conda run -n torch5090 python -u -c import_torch_then_pytest_q",
+    "result": "PASS",
+    "pytest_passed": 271,
+    "pytest_failed": 0,
+    "pytest_subtests_passed": 42,
+    "elapsed_seconds": 19.69,
+    "torch_version": "2.10.0.dev20251124+cu128",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA GeForce RTX 5090 Laptop GPU",
+    "runner_help_smoke": "PASS",
+    "formal_output_directory_absent": true,
+    "development_access_ledger_absent": true,
+    "metropt_sensor_numeric_values_accessed_before_snapshot": false
+  }
+}

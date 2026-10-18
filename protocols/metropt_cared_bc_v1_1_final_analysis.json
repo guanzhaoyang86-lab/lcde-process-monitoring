@@ -1,0 +1,204 @@
+{
+  "schema": "metropt_cared_bc_locked_analysis_protocol",
+  "schema_version": 1,
+  "protocol_id": "metropt_cared_bc_v1_1_final_analysis",
+  "protocol_version": "1.0.0",
+  "status": "FROZEN_BEFORE_CALIBRATION_NUMERIC_ACCESS",
+  "disclosure": {
+    "created_after_observing_development": true,
+    "development_values_observed": true,
+    "calibration_numeric_values_observed": false,
+    "confirmation_numeric_values_observed": false,
+    "model_and_scorer_frozen": true,
+    "same_data_retuning_forbidden": true
+  },
+  "development_pass_binding": {
+    "output_directory": "outputs/metropt_cared_bc_gpu_v1_1_portability",
+    "protocol": {
+      "path": "protocols/metropt_cared_bc_v1_1_portability_development.json",
+      "sidecar_path": "protocols/metropt_cared_bc_v1_1_portability_development.sha256",
+      "sha256": "2b694d95748fa82153b25c22028030a842f724b7e18a34e5769dce095ff12183"
+    },
+    "phase_manifest": {
+      "path": "outputs/metropt_cared_bc_gpu_v1_1_portability/development_phase_manifest.json",
+      "size_bytes": 4588,
+      "sha256": "e6a8ff7e045a048064ee462a023dd58a84b4690d2da786a415d73e365229e784",
+      "manifest_fingerprint": "8dfa8ebbd0c02111edaf1c24949ace974f039255b0c7ba172f490e48812465fb"
+    },
+    "artifact_manifest": {
+      "path": "outputs/metropt_cared_bc_gpu_v1_1_portability/development_artifact_manifest.json",
+      "size_bytes": 1958,
+      "sha256": "af6f2f799354f29201f75cbcecfc2bcd819b481f8e845176e194ed7815d72b7e",
+      "artifact_manifest_fingerprint": "0ea7d7eaffde015426c82ebc070722e8215a50a7ff7874f9b052c70752214017"
+    },
+    "completion": {
+      "path": "outputs/metropt_cared_bc_gpu_v1_1_portability/development_completion.json",
+      "size_bytes": 1437,
+      "sha256": "9670cc9bdf416bf01322af2c64deea35bfa4e0fa7fc48bc9e5577ce590e82470",
+      "completion_fingerprint": "041dfef4c4d02ed162bc7c3e65e498857a50620d12ff7160e7bb8fc093afd060",
+      "decision": "PASS_DEVELOPMENT_POWER_GATE"
+    },
+    "result": {
+      "path": "outputs/metropt_cared_bc_gpu_v1_1_portability/development_result.json",
+      "size_bytes": 1750,
+      "sha256": "0f6cbad9af37e0bdb96a9e6b32482ee281c313f0b936f4f1f0703772bc89c222"
+    },
+    "portability_audit": {
+      "path": "outputs/metropt_cared_bc_gpu_v1_1_portability/portability_audit.json",
+      "size_bytes": 7195,
+      "sha256": "8e3d3fa3930e28b17e9dcdc41f5d64f0a4d6d04d77ee15577d0f5e603175a6c4"
+    },
+    "portability_evidence": {
+      "path": "outputs/metropt_cared_bc_gpu_v1_1_portability/portability_evidence.npz",
+      "size_bytes": 5820354,
+      "sha256": "651b6d4c405df392baa9511f25f93ab3a648aa696fe3c64db5f1630450046d00"
+    },
+    "gpu_execution": {
+      "path": "outputs/metropt_cared_bc_gpu_v1_1_portability/gpu_execution_development.json",
+      "size_bytes": 3298,
+      "sha256": "ff4736d57a1c3bf88919b4d66c0bc8a9a42dc048452760a371398a4f6a547bd7"
+    },
+    "artifact_names": [
+      "development_phase_manifest.json",
+      "runtime_preflight.json",
+      "cared_ensemble.npz",
+      "cared_scorer.npz",
+      "portability_evidence.npz",
+      "portability_audit.json",
+      "development_result.json",
+      "gpu_execution_development.json"
+    ],
+    "global_envelope_delta": 0.21800327523659302,
+    "evidence_semantic_sha256": "f7d459b2db239fe244cacbdd38e0ec3655a4039cc3a2f816b331768383e91b50",
+    "v1_projection_semantic_sha256": "59597b715973599186767ca1a68e7a47728fb1ddd4216be8d6d570379297289c"
+  },
+  "source_binding": {
+    "source_fingerprint": "340805938a72af9c1f9273a3c75b90a246b11b6aea7bc254c6d0e7103602d705",
+    "sensor_csv": {
+      "path": "data/metropt/MetroPT3(AirCompressor).csv",
+      "size_bytes": 218300507,
+      "sha256": "db30ccb4ea402e3c8bf2c99db06e288d4f2a772f6928f9dbe26a920d69793e24"
+    },
+    "timestamp_audit": {
+      "path": "outputs/metropt_cared_bc_gpu_v0_1/timestamp_audit.json",
+      "size_bytes": 1480,
+      "sha256": "c62d9c9dce50ea63507c301b8f7d6344d5426176c07dc098ac8219831944cbcc"
+    }
+  },
+  "fixed_artifacts": {
+    "ensemble": {
+      "path": "outputs/metropt_cared_bc_gpu_v1_1_portability/cared_ensemble.npz",
+      "size_bytes": 2376101,
+      "sha256": "4e75c7718482e66f0fd535a5bd0bf4c0dd78ec3335c3f420797d728c8e9d970f"
+    },
+    "uncalibrated_scorer": {
+      "path": "outputs/metropt_cared_bc_gpu_v1_1_portability/cared_scorer.npz",
+      "size_bytes": 181175,
+      "sha256": "a7da9f5980778f0f65d51e7ab64e1cee3a9604cb186025d1240c45623d7d1887",
+      "threshold_must_be_null": true
+    }
+  },
+  "implementation_snapshot": {
+    "runner": {
+      "path": "scripts/run_metropt_cared_bc_locked_gpu.py",
+      "size_bytes": 141191,
+      "sha256": "56bf70fa011c664038899b23ff31dc71d6e8108bcc3a5a99f006b4d2cf05bfab"
+    },
+    "data": {
+      "path": "src/mate_spc_metropt/data.py",
+      "size_bytes": 43100,
+      "sha256": "441c58fa263bc9f3809678d9482e13d660aa4d6db4f15c347033967e920aa0d2"
+    },
+    "governance": {
+      "path": "src/mate_spc_metropt/governance.py",
+      "size_bytes": 57504,
+      "sha256": "eced483f5cceab03c4d8e7bf92adc9f9d6cc912c5cae22994d84e92672ed2460"
+    },
+    "model": {
+      "path": "src/mate_spc_metropt/model.py",
+      "size_bytes": 92730,
+      "sha256": "28d08ff51533a3a52453d12042e99f03b4ec0691ae41eab7b919c3122f0a83a9"
+    },
+    "locked_evaluation": {
+      "path": "src/mate_spc_metropt/locked_evaluation.py",
+      "size_bytes": 31389,
+      "sha256": "9bc48a958d6d024166ddfb5798de723849c8c0975703b57f1e8eb903ddc07aea"
+    },
+    "portability": {
+      "path": "src/mate_spc_metropt/portability.py",
+      "size_bytes": 20874,
+      "sha256": "b219850b30b422a6a374c5e98406320784d30ec32e9e344a696c84b74b03c8b7"
+    }
+  },
+  "runtime": {
+    "primary_device": "cuda",
+    "comparison_device": "cpu",
+    "dtype": "float64",
+    "batch_size": 1024,
+    "cuda_matmul_tf32": false,
+    "cudnn_tf32": false,
+    "deterministic_algorithms": true
+  },
+  "cpu_cuda_primitive_parity": {
+    "complete_sequences_required": true,
+    "prediction_shape_tail": [3, 7],
+    "residual_dimension": 31,
+    "forecast_residual_dimensions": 21,
+    "physical_residual_dimensions": 10,
+    "prediction_max_abs_error": 1e-09,
+    "forecast_residual_max_abs_error": 1e-09,
+    "physical_residual_exact": true,
+    "timestamps_exact": true,
+    "indices_exact": true,
+    "state_codes_exact": true,
+    "reset_before_exact": true,
+    "source_window_rows_exact": true,
+    "score_reset_exact": true
+  },
+  "calibration": {
+    "partitions": ["calibration_a", "calibration_b"],
+    "candidate_complete_days": 70,
+    "minimum_qualified_days": 39,
+    "minimum_scores_per_qualified_day": 1141,
+    "alpha": 0.05,
+    "primary_boundary_source": "cuda",
+    "rank_formula": "ceil((n+1)*(1-0.05))",
+    "effective_boundary_formula": "nextafter(raw_boundary + development_global_envelope_delta + 1e-9, +infinity)",
+    "complete_cpu_cuda_inference_required": true,
+    "cpu_cuda_alarm_arrays_exact": true,
+    "minimum_boundary_distance_strictly_greater_than": 1e-09
+  },
+  "confirmation": {
+    "partition": "confirmation",
+    "start_inclusive": "2020-05-21 00:00:00",
+    "end_exclusive": "2020-09-01 00:00:00",
+    "fault_event_ids": ["F2", "F3", "F4"],
+    "fault_event_intervals": [
+      {"event_id": "F2", "start": "2020-05-29 23:30:00", "end": "2020-05-30 06:00:00"},
+      {"event_id": "F3", "start": "2020-06-05 10:00:00", "end": "2020-06-07 14:30:00"},
+      {"event_id": "F4", "start": "2020-07-15 14:30:00", "end": "2020-07-15 19:00:00"}
+    ],
+    "recovery_exclusion_hours": 72,
+    "availability_lag_minutes": 1,
+    "alarm_event_semantics": "false_to_true_onset_only",
+    "persistent_pre_event_alarm_does_not_count": true,
+    "event_detection_requirement": "3_of_3",
+    "maximum_each_delay_minutes": 60.0,
+    "maximum_median_delay_minutes": 30.0,
+    "minimum_qualified_healthy_days": 39,
+    "minimum_scores_per_qualified_day": 1141,
+    "maximum_healthy_day_alarm_rate": 0.05,
+    "maximum_healthy_day_cp95_upper": 0.1,
+    "maximum_healthy_time_alarm_fraction": 0.01,
+    "cpu_cuda_alarm_arrays_exact": true,
+    "threshold_adjustment_forbidden": true
+  },
+  "output_contract": {
+    "calibration_directory": "outputs/metropt_cared_bc_locked_gpu/calibration",
+    "confirmation_directory": "outputs/metropt_cared_bc_locked_gpu/confirmation",
+    "create_new_only": true,
+    "completed_reentry_reads_csv": false,
+    "calibration_and_confirmation_separate_single_access": true,
+    "runtime_preflight_intent_loader_binding": "locked_runner_authenticated_numeric_authorization"
+  }
+}
